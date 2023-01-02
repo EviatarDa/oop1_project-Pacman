@@ -1,0 +1,6 @@
+﻿#configure_file ("digger.png" ${CMAKE_BINARY_DIR} COPYONLY)
+#configure_file ("Wall.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("PacmanMenuBackground.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("red.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("blue.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("yellow.png" ${CMAKE_BINARY_DIR} COPYONLY)
