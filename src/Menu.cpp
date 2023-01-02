@@ -42,5 +42,5 @@ void Menu::SetPosition()
 											m_WINDOW_HEIGHT - m_buttons[HELP].getTextureRect().height * 1.5 * 2));
 
 	m_buttons[EXIT].setPosition(sf::Vector2f((m_WINDOW_WIDTH - m_buttons[EXIT].getTextureRect().width) * 0.5,
-											m_WINDOW_HEIGHT- m_buttons[EXIT].getTextureRect().height*1.5*1));
+											m_WINDOW_HEIGHT - m_buttons[EXIT].getTextureRect().height * 1.5 * 1));
 }
