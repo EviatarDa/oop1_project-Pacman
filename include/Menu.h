@@ -8,17 +8,19 @@ const int BUTTONS = 4;
 class Menu
 {
 public:
-	Menu();
+	Menu(int, int);
 	sf::Sprite GetSprite(const button) const;
 
 private:
 
 	//members
-	//sf::Texture m_BackGround;
+	const int m_WINDOW_HEIGHT;
+	const int m_WINDOW_WIDTH;
+
+	sf::Texture m_BackGround;
 	sf::Texture m_Play;
 	sf::Texture m_Help;
 	sf::Texture m_Exit;
-	sf::Texture m_BackGroung;
 
 	sf::Sprite m_buttons[BUTTONS];
 

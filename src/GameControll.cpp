@@ -3,7 +3,8 @@
 #include "GameControll.h"
 
 GameControll::GameControll()
-    :m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Pacman")
+    :m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Pacman"),
+    m_menu(WINDOW_WIDTH, WINDOW_HEIGHT)
 {
     m_window.setFramerateLimit(60);
 }
