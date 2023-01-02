@@ -5,8 +5,10 @@
 Menu::Menu()
 {
 	
-	//m_BackGroung.loadFromFile("PacmanMenuBackground.png");
-	//m_buttons[].setTexture(m_TBackGroung);
+	m_BackGroung.loadFromFile("PacmanMenuBackground.png");
+	m_BackGroung.setSmooth(true);
+	m_buttons[BACKGROUND].setTexture(m_BackGroung);
+
 	
 	m_Play.loadFromFile("yellow.png");
 	m_buttons[PLAY].setTexture(m_Play);
@@ -29,7 +31,9 @@ sf::Sprite Menu::GetSprite(const button index) const
 
 void Menu::SetPosition()
 {
-	m_buttons[PLAY].setPosition(sf::Vector2f(0, 0));
-	m_buttons[HELP].setPosition(sf::Vector2f(0, 50));
-	m_buttons[EXIT].setPosition(sf::Vector2f(0, 100));
+	m_buttons[BACKGROUND].setPosition(sf::Vector2f(370, 80));
+	m_buttons[BACKGROUND].scale(sf::Vector2f(2.f, 2.f));
+	m_buttons[PLAY].setPosition(sf::Vector2f(550, 500));
+	m_buttons[HELP].setPosition(sf::Vector2f(550, 590));
+	m_buttons[EXIT].setPosition(sf::Vector2f(550, 680));
 }

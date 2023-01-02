@@ -4,10 +4,8 @@
 #include "Menu.h"
 
 
-const int WINDOW_HEIGHT = sf::VideoMode::getDesktopMode().height;
-const int WINDOW_WIDTH = sf::VideoMode::getDesktopMode().width;
-
-
+const int WINDOW_HEIGHT = sf::VideoMode::getDesktopMode().height - 300;
+const int WINDOW_WIDTH = sf::VideoMode::getDesktopMode().width - 500;
 
 
 class GameControll

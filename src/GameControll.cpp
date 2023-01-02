@@ -3,7 +3,7 @@
 #include "GameControll.h"
 
 GameControll::GameControll()
-    :m_window(sf::VideoMode(WINDOW_WIDTH-100,WINDOW_HEIGHT-100), "Pacman")
+    :m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Pacman")
 {
     m_window.setFramerateLimit(60);
 }
@@ -43,6 +43,7 @@ void GameControll::handleClick(const sf::Vector2f&)
 
 void GameControll::DrawMenu()
 {
+    m_window.draw(m_menu.GetSprite(BACKGROUND));
     m_window.draw(m_menu.GetSprite(PLAY));
     m_window.draw(m_menu.GetSprite(HELP));
     m_window.draw(m_menu.GetSprite(EXIT));
