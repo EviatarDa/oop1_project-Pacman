@@ -13,7 +13,7 @@ void GameControll::run()
 {
     while (m_window.isOpen())
     {
-        m_window.clear();
+        m_window.clear(sf::Color::Color(0,0,0));
         DrawMenu();
         m_window.display();
         
@@ -44,7 +44,7 @@ void GameControll::handleClick(const sf::Vector2f&)
 
 void GameControll::DrawMenu()
 {
-    m_window.draw(m_menu.GetSprite(BACKGROUND));
+    m_window.draw(m_menu.GetSprite(TITLE));
     m_window.draw(m_menu.GetSprite(PLAY));
     m_window.draw(m_menu.GetSprite(HELP));
     m_window.draw(m_menu.GetSprite(EXIT));

@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-const enum button { BACKGROUND ,PLAY, HELP, EXIT };
+const enum button { TITLE ,PLAY, HELP, EXIT };
 const int BUTTONS = 4;
 
 class Menu
@@ -17,7 +17,7 @@ private:
 	const int m_WINDOW_HEIGHT;
 	const int m_WINDOW_WIDTH;
 
-	sf::Texture m_BackGround;
+	sf::Texture m_Title;
 	sf::Texture m_Play;
 	sf::Texture m_Help;
 	sf::Texture m_Exit;

@@ -5,18 +5,18 @@
 Menu::Menu(int width, int height)
 	:m_WINDOW_WIDTH(width), m_WINDOW_HEIGHT(height)
 {
-	m_BackGround.loadFromFile("PacmanMenuBackground.png");
-	m_BackGround.setSmooth(true);
-	m_buttons[BACKGROUND].setTexture(m_BackGround);
+	m_Title.loadFromFile("title.png");
+	m_Title.setSmooth(true);
+	m_buttons[TITLE].setTexture(m_Title);
 
 	
-	m_Play.loadFromFile("yellow.png");
+	m_Play.loadFromFile("Play.png");
 	m_buttons[PLAY].setTexture(m_Play);
 
-	m_Help.loadFromFile("blue.png");
+	m_Help.loadFromFile("Help.png");
 	m_buttons[HELP].setTexture(m_Help);
 	
-	m_Exit.loadFromFile("red.png");
+	m_Exit.loadFromFile("Exit.png");
 	m_buttons[EXIT].setTexture(m_Exit);
 
 	SetPosition();
@@ -31,9 +31,9 @@ sf::Sprite Menu::GetSprite(const button index) const
 
 void Menu::SetPosition()
 {
-	m_buttons[BACKGROUND].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.5 / m_buttons[BACKGROUND].getTextureRect().width, 
-										     m_WINDOW_WIDTH * 0.5 / m_buttons[BACKGROUND].getTextureRect().width));
-	m_buttons[BACKGROUND].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.25, m_WINDOW_HEIGHT * 0.1));
+	m_buttons[TITLE].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.5 / m_buttons[TITLE].getTextureRect().width,
+										     m_WINDOW_WIDTH * 0.5 / m_buttons[TITLE].getTextureRect().width));
+	m_buttons[TITLE].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.25, m_WINDOW_HEIGHT * 0.1));
 	
 	m_buttons[PLAY].setPosition(sf::Vector2f((m_WINDOW_WIDTH - m_buttons[PLAY].getTextureRect().width)*0.5, 
 											m_WINDOW_HEIGHT - m_buttons[PLAY].getTextureRect().height * 1.5 * 3));
