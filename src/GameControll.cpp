@@ -25,6 +25,7 @@ void GameControll::run()
             case sf::Event::Closed:
                 m_window.close();
                 break;
+
             case sf::Event::MouseButtonReleased:
             {
                 auto location = m_window.mapPixelToCoords(
@@ -32,6 +33,14 @@ void GameControll::run()
                 handleClick(location);
                 break;
             }
+
+            case sf::Event::MouseMoved:
+            {
+                auto location = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
+                hendleMouseMoved(location);
+            }
+
+
             }
         }
     }
@@ -42,12 +51,26 @@ void GameControll::handleClick(const sf::Vector2f&)
 
 }
 
+void GameControll::hendleMouseMoved(const sf::Vector2f location)
+{
+    for (button i = PLAY; i < HELP; (button)(((int)i)+1))
+    {
+        if ((m_menu.GetSprite(i).getGlobalBounds().contains(location)))
+        {
+
+        }
+    }
+}
+
 void GameControll::DrawMenu()
 {
     m_window.draw(m_menu.GetSprite(TITLE));
     m_window.draw(m_menu.GetSprite(PLAY));
     m_window.draw(m_menu.GetSprite(HELP));
     m_window.draw(m_menu.GetSprite(EXIT));
+    m_window.draw(m_menu.GetSprite(HELLO));
+    m_window.draw(m_menu.GetSprite(WANNA_PLAY));
+
 }
 
 

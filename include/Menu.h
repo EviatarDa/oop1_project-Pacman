@@ -2,8 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
-const enum button { TITLE ,PLAY, HELP, EXIT };
-const int BUTTONS = 4;
+enum button { TITLE ,PLAY, HELP, EXIT ,HELLO ,WANNA_PLAY };
+const int BUTTONS = 6;
 
 class Menu
 {
@@ -21,6 +21,8 @@ private:
 	sf::Texture m_Play;
 	sf::Texture m_Help;
 	sf::Texture m_Exit;
+	sf::Texture m_Hello;
+	sf::Texture m_WannaPlay;
 
 	sf::Sprite m_buttons[BUTTONS];
 

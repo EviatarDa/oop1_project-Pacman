@@ -14,6 +14,7 @@ public:
 	GameControll();
 	void run();
 	void handleClick(const sf::Vector2f&);
+	void hendleMouseMoved(const sf::Vector2f);
 	void DrawMenu();
 
 

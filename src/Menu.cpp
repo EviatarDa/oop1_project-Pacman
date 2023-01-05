@@ -19,6 +19,12 @@ Menu::Menu(int width, int height)
 	m_Exit.loadFromFile("Exit.png");
 	m_buttons[EXIT].setTexture(m_Exit);
 
+	m_Hello.loadFromFile("Hello.png");
+	m_buttons[HELLO].setTexture(m_Hello);
+
+	m_WannaPlay.loadFromFile("WannaPlay.png");
+	m_buttons[WANNA_PLAY].setTexture(m_WannaPlay);
+
 	SetPosition();
 }
 
@@ -43,4 +49,13 @@ void Menu::SetPosition()
 
 	m_buttons[EXIT].setPosition(sf::Vector2f((m_WINDOW_WIDTH - m_buttons[EXIT].getTextureRect().width) * 0.5,
 											m_WINDOW_HEIGHT - m_buttons[EXIT].getTextureRect().height * 1.5 * 1));
+
+	m_buttons[HELLO].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.075 / m_buttons[HELLO].getTextureRect().width,
+										m_WINDOW_WIDTH * 0.075 / m_buttons[HELLO].getTextureRect().width));
+	m_buttons[HELLO].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.25, m_WINDOW_HEIGHT * 0.14));
+
+	m_buttons[WANNA_PLAY].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.1 / m_buttons[WANNA_PLAY].getTextureRect().width,
+											m_WINDOW_WIDTH * 0.1 / m_buttons[WANNA_PLAY].getTextureRect().width));
+	m_buttons[WANNA_PLAY].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.65, m_WINDOW_HEIGHT * 0.15));
+
 }
