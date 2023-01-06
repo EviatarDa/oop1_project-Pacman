@@ -60,6 +60,9 @@ void GameControll::handleClick(const sf::Vector2f& location)
     else if (m_menu.GetSprite(HELP).getGlobalBounds().contains(location))
     {
         //Instructions
+        m_window.clear(sf::Color::Color(0, 0, 0));
+        DrawInstructions();
+        m_window.display();
     }
     else if (m_menu.GetSprite(EXIT).getGlobalBounds().contains(location))
     {
@@ -84,13 +87,52 @@ void GameControll::hendleMouseMoved(const sf::Vector2f location)
 
 void GameControll::DrawMenu()
 {
-    m_window.draw(m_menu.GetSprite(TITLE));
-    m_window.draw(m_menu.GetSprite(PLAY));
-    m_window.draw(m_menu.GetSprite(HELP));
-    m_window.draw(m_menu.GetSprite(EXIT));
-    m_window.draw(m_menu.GetSprite(HELLO));
-    m_window.draw(m_menu.GetSprite(WANNA_PLAY));
+    for (int Object = TITLE; Object <= WANNA_PLAY; ++Object)
+    {
+        m_window.draw(m_menu.GetSprite((Button)Object));
+    }
 
+    //m_window.draw(m_menu.GetSprite(TITLE));
+    //m_window.draw(m_menu.GetSprite(PLAY));
+    //m_window.draw(m_menu.GetSprite(HELP));
+    //m_window.draw(m_menu.GetSprite(EXIT));
+    //m_window.draw(m_menu.GetSprite(HELLO));
+    //m_window.draw(m_menu.GetSprite(WANNA_PLAY));
+}
+
+void GameControll::DrawInstructions()
+{
+    bool exit = false;
+    while (!exit)
+    {
+        m_window.clear(sf::Color::Color(0, 0, 0));
+        m_window.draw(m_menu.GetSprite(INSTRUCTIONS));
+        m_window.display();
+
+        if (auto event = sf::Event{}; m_window.waitEvent(event))
+        {
+            //handle every case of event
+            switch (event.type)
+            {
+            case sf::Event::Closed:
+                exit = true;
+                break;
+
+            case sf::Event::MouseButtonReleased:
+            {
+                auto location = m_window.mapPixelToCoords(
+                    { event.mouseButton.x, event.mouseButton.y });
+                break;
+            }
+
+            case sf::Event::MouseMoved:
+            {
+                auto location = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
+            }
+
+            }
+        }
+    }
 }
 
 

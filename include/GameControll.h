@@ -18,6 +18,7 @@ public:
 	void handleClick(const sf::Vector2f&);
 	void hendleMouseMoved(const sf::Vector2f);
 	void DrawMenu();
+	void DrawInstructions();
 
 
 private:

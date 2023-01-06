@@ -2,8 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
-enum Button { TITLE ,PLAY, HELP, EXIT ,HELLO ,WANNA_PLAY };
-const int BUTTONS = 6;
+enum Button { TITLE ,PLAY, HELP, EXIT ,HELLO ,WANNA_PLAY ,INSTRUCTIONS }; 
+const int SPRITES = 7;
 
 class Menu
 {
@@ -19,6 +19,7 @@ private:
 	const int m_WINDOW_HEIGHT;
 	const int m_WINDOW_WIDTH;
 
+	//menu pictures
 	sf::Texture m_Title;
 	sf::Texture m_Play;
 	sf::Texture m_Help;
@@ -26,8 +27,10 @@ private:
 	sf::Texture m_Hello;
 	sf::Texture m_WannaPlay;
 
-	sf::Sprite m_buttons[BUTTONS];
+	sf::Sprite m_buttons[SPRITES];
 
+	//hidden picture
+	sf::Texture m_Instructions;
 
 	//functions
 	void SetPosition();
