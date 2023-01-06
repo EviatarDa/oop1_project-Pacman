@@ -8,7 +8,6 @@ Menu::Menu(int width, int height)
 	m_Title.loadFromFile("title.png");
 	m_Title.setSmooth(true);
 	m_buttons[TITLE].setTexture(m_Title);
-
 	
 	m_Play.loadFromFile("Play.png");
 	m_buttons[PLAY].setTexture(m_Play);
@@ -28,12 +27,21 @@ Menu::Menu(int width, int height)
 	SetPosition();
 }
 
-sf::Sprite Menu::GetSprite(const button index) const
+sf::Sprite Menu::GetSprite(const Button index) const
 {
 	return m_buttons[index];
 }
 
+void Menu::ButtonPress(const Button button)
+{
+	m_buttons[button].setColor(sf::Color::Color(255, 255, 255, 150));
+}
 
+void Menu::ButtonRelease(const Button button)
+{
+	m_buttons[button].setColor(sf::Color::Color(255, 255, 255));
+
+}
 
 void Menu::SetPosition()
 {

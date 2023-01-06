@@ -2,14 +2,16 @@
 
 #include <SFML/Graphics.hpp>
 
-enum button { TITLE ,PLAY, HELP, EXIT ,HELLO ,WANNA_PLAY };
+enum Button { TITLE ,PLAY, HELP, EXIT ,HELLO ,WANNA_PLAY };
 const int BUTTONS = 6;
 
 class Menu
 {
 public:
 	Menu(int, int);
-	sf::Sprite GetSprite(const button) const;
+	sf::Sprite GetSprite(const Button) const;
+	void ButtonPress(const Button);
+	void ButtonRelease(const Button); 
 
 private:
 

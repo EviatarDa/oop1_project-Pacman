@@ -4,7 +4,8 @@
 
 GameControll::GameControll()
     :m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Pacman"),
-    m_menu(WINDOW_WIDTH, WINDOW_HEIGHT)
+     m_menu(WINDOW_WIDTH, WINDOW_HEIGHT),
+     m_board(m_matrix.GetRow(), m_matrix.GetCol())
 {
     m_window.setFramerateLimit(60);
 }
@@ -43,21 +44,40 @@ void GameControll::run()
 
             }
         }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        {
+            m_window.close();
+        }
     }
 }
 
-void GameControll::handleClick(const sf::Vector2f&)
+void GameControll::handleClick(const sf::Vector2f& location)
 {
-
+    if (m_menu.GetSprite(PLAY).getGlobalBounds().contains(location))
+    {
+        //StartGame();
+    }
+    else if (m_menu.GetSprite(HELP).getGlobalBounds().contains(location))
+    {
+        //Instructions
+    }
+    else if (m_menu.GetSprite(EXIT).getGlobalBounds().contains(location))
+    {
+        m_window.close();
+    }
 }
 
 void GameControll::hendleMouseMoved(const sf::Vector2f location)
 {
-    for (button i = PLAY; i < HELP; (button)(((int)i)+1))
+    for (int button = PLAY ; button <= EXIT ; button++)
     {
-        if ((m_menu.GetSprite(i).getGlobalBounds().contains(location)))
+        if ((m_menu.GetSprite((Button)button).getGlobalBounds().contains(location)))
         {
-
+            m_menu.ButtonPress((Button)button);
+        }
+        else
+        {
+            m_menu.ButtonRelease((Button)button);
         }
     }
 }

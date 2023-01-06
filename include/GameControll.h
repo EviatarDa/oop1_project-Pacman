@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "Menu.h"
+#include "Matrix.h"
+#include "Board.h"
 
 
 const int WINDOW_HEIGHT = sf::VideoMode::getDesktopMode().height - 300;
@@ -21,7 +23,7 @@ public:
 private:
 	sf::RenderWindow m_window;
 	Menu m_menu;
-	//Board m_board;
-	//Matrix m_matrix;
+	Board m_board;
+	Matrix m_matrix;
 
 };
