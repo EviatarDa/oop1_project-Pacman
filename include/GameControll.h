@@ -19,6 +19,7 @@ public:
 	void hendleMouseMoved(const sf::Vector2f);
 	void DrawMenu();
 	void DrawInstructions();
+	void PlayVideo();
 
 
 private:

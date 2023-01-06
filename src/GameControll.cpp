@@ -12,12 +12,13 @@ GameControll::GameControll()
 
 void GameControll::run()
 {
+
     while (m_window.isOpen())
     {
         m_window.clear(sf::Color::Color(0,0,0));
         DrawMenu();
         m_window.display();
-        
+
         if (auto event = sf::Event{}; m_window.waitEvent(event))
         {
             //handle every case of event
@@ -53,7 +54,11 @@ void GameControll::run()
 
 void GameControll::handleClick(const sf::Vector2f& location)
 {
-    if (m_menu.GetSprite(PLAY).getGlobalBounds().contains(location))
+    if (m_menu.GetSprite(VIDEO_PLAY).getGlobalBounds().contains(location))
+    {
+       PlayVideo();
+    }
+    else if (m_menu.GetSprite(PLAY).getGlobalBounds().contains(location))
     {
         //StartGame();
     }
@@ -72,7 +77,7 @@ void GameControll::handleClick(const sf::Vector2f& location)
 
 void GameControll::hendleMouseMoved(const sf::Vector2f location)
 {
-    for (int button = PLAY ; button <= EXIT ; button++)
+    for (int button = VIDEO_PLAY ; button <= EXIT ; button++)
     {
         if ((m_menu.GetSprite((Button)button).getGlobalBounds().contains(location)))
         {
@@ -130,6 +135,30 @@ void GameControll::DrawInstructions()
                 auto location = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
             }
 
+            }
+        }
+    }
+}
+
+void GameControll::PlayVideo()
+{
+    int hello_visibility = 0;
+    int wanna_play_visibility = 0;
+    m_menu.Mirror(PACMAN);
+
+    while (m_window.isOpen())
+    {
+        m_window.clear(sf::Color::Color(0, 0, 0));
+        DrawMenu();
+        m_window.display();
+
+        m_menu.UpdateVisible(HELLO, hello_visibility);
+        if (hello_visibility == 255)
+        {
+            m_menu.UpdateVisible(WANNA_PLAY, wanna_play_visibility);
+            if (wanna_play_visibility == 255)
+            {
+                break;
             }
         }
     }
