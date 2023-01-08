@@ -42,7 +42,6 @@ void GameControll::run()
                 hendleMouseMoved(location);
             }
 
-
             }
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -54,22 +53,22 @@ void GameControll::run()
 
 void GameControll::handleClick(const sf::Vector2f& location)
 {
-    if (m_menu.GetSprite(VIDEO_PLAY).getGlobalBounds().contains(location))
+    if (m_menu.GetButton(VIDEO_PLAY).getGlobalBounds().contains(location))
     {
        PlayVideo();
     }
-    else if (m_menu.GetSprite(PLAY).getGlobalBounds().contains(location))
+    else if (m_menu.GetButton(PLAY).getGlobalBounds().contains(location))
     {
         //StartGame();
     }
-    else if (m_menu.GetSprite(HELP).getGlobalBounds().contains(location))
+    else if (m_menu.GetButton(HELP).getGlobalBounds().contains(location))
     {
         //Instructions
         m_window.clear(sf::Color::Color(0, 0, 0));
         DrawInstructions();
         m_window.display();
     }
-    else if (m_menu.GetSprite(EXIT).getGlobalBounds().contains(location))
+    else if (m_menu.GetButton(EXIT).getGlobalBounds().contains(location))
     {
         m_window.close();
     }
@@ -79,7 +78,7 @@ void GameControll::hendleMouseMoved(const sf::Vector2f location)
 {
     for (int button = VIDEO_PLAY ; button <= EXIT ; button++)
     {
-        if ((m_menu.GetSprite((Button)button).getGlobalBounds().contains(location)))
+        if ((m_menu.GetButton((Button)button).getGlobalBounds().contains(location)))
         {
             m_menu.ButtonPress((Button)button);
         }
@@ -92,17 +91,22 @@ void GameControll::hendleMouseMoved(const sf::Vector2f location)
 
 void GameControll::DrawMenu()
 {
-    for (int Object = TITLE; Object <= WANNA_PLAY; ++Object)
+    for (int button = VIDEO_PLAY; button <= EXIT; ++button)
     {
-        m_window.draw(m_menu.GetSprite((Button)Object));
+        m_window.draw(m_menu.GetButton((Button)button));
     }
 
-    //m_window.draw(m_menu.GetSprite(TITLE));
-    //m_window.draw(m_menu.GetSprite(PLAY));
-    //m_window.draw(m_menu.GetSprite(HELP));
-    //m_window.draw(m_menu.GetSprite(EXIT));
-    //m_window.draw(m_menu.GetSprite(HELLO));
-    //m_window.draw(m_menu.GetSprite(WANNA_PLAY));
+    for (int object = TITLE; object <= DEMONS; ++object)
+    {
+        m_window.draw(m_menu.GetTitle((Title)object));
+    }
+
+    //m_window.draw(m_menu.GetButton(TITLE));
+    //m_window.draw(m_menu.GetButton(PLAY));
+    //m_window.draw(m_menu.GetButton(HELP));
+    //m_window.draw(m_menu.GetButton(EXIT));
+    //m_window.draw(m_menu.GetButton(HELLO));
+    //m_window.draw(m_menu.GetButton(WANNA_PLAY));
 }
 
 void GameControll::DrawInstructions()
@@ -111,7 +115,7 @@ void GameControll::DrawInstructions()
     while (!exit)
     {
         m_window.clear(sf::Color::Color(0, 0, 0));
-        m_window.draw(m_menu.GetSprite(INSTRUCTIONS));
+        m_window.draw(m_menu.GetInstructions(INSTRUCTION));
         m_window.display();
 
         if (auto event = sf::Event{}; m_window.waitEvent(event))
@@ -142,25 +146,101 @@ void GameControll::DrawInstructions()
 
 void GameControll::PlayVideo()
 {
-    int hello_visibility = 0;
-    int wanna_play_visibility = 0;
-    m_menu.Mirror(PACMAN);
+    int pacman_chat_box = 0;
+    int demons_chat_box = 0;
+    int title = 255;
 
     while (m_window.isOpen())
     {
         m_window.clear(sf::Color::Color(0, 0, 0));
+        m_menu.UpdateVisible(TITLE, title, 0);
         DrawMenu();
         m_window.display();
 
-        m_menu.UpdateVisible(HELLO, hello_visibility);
-        if (hello_visibility == 255)
+        while (pacman_chat_box != 255)
         {
-            m_menu.UpdateVisible(WANNA_PLAY, wanna_play_visibility);
-            if (wanna_play_visibility == 255)
-            {
-                break;
-            }
+            m_window.clear(sf::Color::Color(0, 0, 0));
+            DrawMenu();
+            m_window.display();
+            m_menu.UpdateVisible(HELLO, pacman_chat_box, 5);
         }
+
+        while (demons_chat_box != 255)
+        {
+            m_window.clear(sf::Color::Color(0, 0, 0));
+            DrawMenu();
+            m_window.display();
+            m_menu.UpdateVisible(WANNA_PLAY, demons_chat_box, 5);
+        }
+
+        while (pacman_chat_box != 0)
+        {
+            m_window.clear(sf::Color::Color(0, 0, 0));
+            DrawMenu();
+            m_window.display();
+            m_menu.UpdateVisible(HELLO, pacman_chat_box, -5);
+        }
+
+        while (pacman_chat_box != 255)
+        {
+            m_window.clear(sf::Color::Color(0, 0, 0));
+            DrawMenu();
+            m_window.display();
+            m_menu.UpdateVisible(LETS_GO, pacman_chat_box, 5);
+        }
+
+        while (demons_chat_box != 0)
+        {
+            m_window.clear(sf::Color::Color(0, 0, 0));
+            DrawMenu();
+            m_window.display();
+            m_menu.UpdateVisible(WANNA_PLAY, demons_chat_box, -5);
+        }
+
+        while (pacman_chat_box != 0)
+        {
+            m_window.clear(sf::Color::Color(0, 0, 0));
+            DrawMenu();
+            m_window.display();
+            m_menu.UpdateVisible(LETS_GO, pacman_chat_box, -5);
+        }
+
+        m_menu.UpdateVisible(PACMAN, title, 255);
+        m_menu.UpdateVisible(DEMONS, title, 255);
+
+        while (title != 0)
+        {
+            m_window.clear(sf::Color::Color(0, 0, 0));
+            DrawMenu();
+            m_window.display();
+            m_menu.UpdateVisible(TITLE, title, -5);
+        }
+        
+        m_menu.Mirror(PACMAN);
+        while (m_menu.GetTitle(DEMONS).getPosition().x > -m_menu.GetTitle(DEMONS).getGlobalBounds().width)
+        {
+            m_window.clear(sf::Color::Color(0, 0, 0));
+            DrawMenu();
+            m_window.display();
+            m_menu.UpdateLocation(PACMAN, -5);
+            m_menu.UpdateLocation(DEMONS, -5);
+        }
+
+        //ends
+        m_menu.Mirror(PACMAN);
+        m_menu.ResetLocation();
+        m_menu.UpdateVisible(PACMAN, title, 0);
+        m_menu.UpdateVisible(DEMONS, title, 0);
+
+        while( title != 255)
+        {
+            m_window.clear(sf::Color::Color(0, 0, 0));
+            DrawMenu();
+            m_window.display();
+            m_menu.UpdateVisible(TITLE, title, 5);
+        }
+
+        break;
     }
 }
 
