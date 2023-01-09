@@ -31,6 +31,7 @@ void Pacman::UpdateDirection(sf::Keyboard::Key key)
         break;
 
     default:
+        m_direction = Stay;
         break;
     }
 }
@@ -52,11 +53,10 @@ sf::Vector2f Pacman::DirectionToVector(Direction direction)
     }
 }
 
-void Pacman::Move()//sf::Time delta)
+void Pacman::Move(sf::Time delta)
 {
-    //m_pacman.move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
-    m_pacman.move(DirectionToVector(m_direction) * PACMAN_SPEED);
-
+    m_pacman.move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
+    
 }
 
 sf::Sprite Pacman::GetPacman()

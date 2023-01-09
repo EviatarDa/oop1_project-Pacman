@@ -5,6 +5,8 @@
 #include "Matrix.h"
 #include "Board.h"
 #include "Pacman.h"
+//#include "Deamon.h"
+#include "StaticObjects.h"
 
 
 const int WINDOW_HEIGHT = sf::VideoMode::getDesktopMode().height - 280;

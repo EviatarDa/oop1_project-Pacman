@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include "GameControll.h"
 
 GameControll::GameControll()
@@ -54,6 +54,7 @@ void GameControll::run()
 
 void GameControll::StartGame()
 {
+    //init();
     while (m_window.isOpen())
     {
         m_window.clear(sf::Color::Color(0, 0, 0));
@@ -70,28 +71,26 @@ void GameControll::StartGame()
 
             case sf::Event::KeyPressed:
             {
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-                {
-                    m_window.close();
-                }
                 m_pacman.UpdateDirection(event.key.code);
-               // auto delta = m_game_clock.restart();
-                m_pacman.Move();
-
-                //sf::Keyboard::Key = event.key.code
-                //HandleGameClick();
+                
                 break;
             }
-
-
+            case sf::Event::KeyReleased:
+            {
+                m_pacman.UpdateDirection(sf::Keyboard::Space);
+                break;
+            }
+            
             }
         }
+        auto delta = m_game_clock.restart();
+        m_pacman.Move(delta);
+
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         {
             m_window.close();
         }
-
     }
 }
 
