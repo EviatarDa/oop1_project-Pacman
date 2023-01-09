@@ -1,6 +1,11 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Key.h"
+#include "Present.h"
+#include "Door.h"
+#include "Cookie.h"
+#include "Wall.h"
 
 class Board
 {
