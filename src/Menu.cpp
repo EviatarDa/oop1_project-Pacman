@@ -104,7 +104,6 @@ void Menu::ResetLocation()
 void Menu::Mirror(const Title object)
 {
 	m_TitleObjects[object].scale(-1, 1);
-	m_TitleObjects[object].setOrigin(m_TitleObjects[object].getTextureRect().width, 0);
 }
 
 void Menu::SetPosition()
@@ -139,8 +138,8 @@ void Menu::SetPosition()
 	m_TitleObjects[PACMAN].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.053 / m_TitleObjects[PACMAN].getTextureRect().width,
 											  m_WINDOW_WIDTH * 0.053 / m_TitleObjects[PACMAN].getTextureRect().width));
 
-	m_TitleObjects[DEMONS].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.25 / m_TitleObjects[DEMONS].getTextureRect().width,
-											  m_WINDOW_WIDTH * 0.25 / m_TitleObjects[DEMONS].getTextureRect().width));
+	m_TitleObjects[DEMONS].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.26 / m_TitleObjects[DEMONS].getTextureRect().width,
+											  m_WINDOW_WIDTH * 0.26 / m_TitleObjects[DEMONS].getTextureRect().width));
 
 	//Instructions:
 	m_Instructions_Page[INSTRUCTION].scale(sf::Vector2f(m_WINDOW_WIDTH / m_Instructions_Page[INSTRUCTION].getTextureRect().width,
@@ -164,7 +163,7 @@ void Menu::SetPosition()
 
 	m_TitleObjects[PACMAN].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.25, m_WINDOW_HEIGHT * 0.27));
 
-	m_TitleObjects[DEMONS].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.50, m_WINDOW_HEIGHT * 0.27));
+	m_TitleObjects[DEMONS].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.493, m_WINDOW_HEIGHT * 0.27));
 
 	m_TitleObjects[HELLO].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.25, m_WINDOW_HEIGHT * 0.14));
 

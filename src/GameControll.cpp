@@ -64,9 +64,7 @@ void GameControll::handleClick(const sf::Vector2f& location)
     else if (m_menu.GetButton(HELP).getGlobalBounds().contains(location))
     {
         //Instructions
-        m_window.clear(sf::Color::Color(0, 0, 0));
         DrawInstructions();
-        m_window.display();
     }
     else if (m_menu.GetButton(EXIT).getGlobalBounds().contains(location))
     {
@@ -100,13 +98,6 @@ void GameControll::DrawMenu()
     {
         m_window.draw(m_menu.GetTitle((Title)object));
     }
-
-    //m_window.draw(m_menu.GetButton(TITLE));
-    //m_window.draw(m_menu.GetButton(PLAY));
-    //m_window.draw(m_menu.GetButton(HELP));
-    //m_window.draw(m_menu.GetButton(EXIT));
-    //m_window.draw(m_menu.GetButton(HELLO));
-    //m_window.draw(m_menu.GetButton(WANNA_PLAY));
 }
 
 void GameControll::DrawInstructions()
@@ -152,11 +143,6 @@ void GameControll::PlayVideo()
 
     while (m_window.isOpen())
     {
-        m_window.clear(sf::Color::Color(0, 0, 0));
-        m_menu.UpdateVisible(TITLE, title, 0);
-        DrawMenu();
-        m_window.display();
-
         while (pacman_chat_box != 255)
         {
             m_window.clear(sf::Color::Color(0, 0, 0));
@@ -217,6 +203,7 @@ void GameControll::PlayVideo()
         }
         
         m_menu.Mirror(PACMAN);
+        m_menu.GetTitle(PACMAN).setOrigin(m_menu.GetTitle(PACMAN).getGlobalBounds().width, 0);
         while (m_menu.GetTitle(DEMONS).getPosition().x > -m_menu.GetTitle(DEMONS).getGlobalBounds().width)
         {
             m_window.clear(sf::Color::Color(0, 0, 0));
@@ -228,6 +215,7 @@ void GameControll::PlayVideo()
 
         //ends
         m_menu.Mirror(PACMAN);
+        m_menu.GetTitle(PACMAN).setOrigin(0, 0);
         m_menu.ResetLocation();
         m_menu.UpdateVisible(PACMAN, title, 0);
         m_menu.UpdateVisible(DEMONS, title, 0);
@@ -239,7 +227,6 @@ void GameControll::PlayVideo()
             m_window.display();
             m_menu.UpdateVisible(TITLE, title, 5);
         }
-
         break;
     }
 }
