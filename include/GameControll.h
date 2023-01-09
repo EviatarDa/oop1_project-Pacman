@@ -32,4 +32,6 @@ private:
 	Board m_board;
 	Pacman m_pacman;
 
+	sf::Clock m_game_clock;
+
 };

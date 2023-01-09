@@ -74,7 +74,9 @@ void GameControll::StartGame()
                 {
                     m_window.close();
                 }
-                //m_pacman.UpdateDirection(event.key.code);
+                m_pacman.UpdateDirection(event.key.code);
+               // auto delta = m_game_clock.restart();
+                m_pacman.Move();
 
                 //sf::Keyboard::Key = event.key.code
                 //HandleGameClick();
@@ -102,7 +104,7 @@ void GameControll::DrawGame()
             m_window.draw(m_board.GetRectangle(row, col));
         }
     }
-    //m_window.draw(m_pacman.GetPacman());
+    m_window.draw(m_pacman.GetPacman());
     //todo : draw pac
 }
 

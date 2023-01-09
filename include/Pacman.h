@@ -2,9 +2,9 @@
 
 #include <SFML/Graphics.hpp>
 
-const float PACMAN_SPEED = 10.f;
+const float PACMAN_SPEED = 5.f;
 
-enum Direction { Up, Down, Right, Left };
+enum Direction { Up, Down, Right, Left, Stay };
 
 class Pacman
 {
@@ -12,7 +12,7 @@ public:
     Pacman();
     void UpdateDirection(sf::Keyboard::Key key);
     sf::Vector2f DirectionToVector(Direction);
-    void Move(sf::Time delta);
+    void Move();// sf::Time delta);
     sf::Sprite GetPacman();
 
 private:
@@ -20,6 +20,6 @@ private:
     int m_score = 0;
     sf::Texture m_Tpacman;
     sf::Sprite m_pacman;
-    Direction m_direction;
+    Direction m_direction = Stay;
     //Animation m_animation;
 };
