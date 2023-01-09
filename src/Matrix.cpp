@@ -9,6 +9,8 @@ Matrix::Matrix() /// constructor?
 
 void Matrix::ReadLevel()
 {
+    //TODO check
+    m_file.seekg(0);
     m_file >> m_row >> m_col;
     m_file.get(); //for /n
 

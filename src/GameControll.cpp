@@ -5,6 +5,7 @@
 GameControll::GameControll()
     :m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Pacman"),
      m_menu(WINDOW_WIDTH, WINDOW_HEIGHT),
+     m_matrix(),
      m_board(m_matrix.GetRow(), m_matrix.GetCol())
 {
     m_window.setFramerateLimit(60);
@@ -51,6 +52,60 @@ void GameControll::run()
     }
 }
 
+void GameControll::StartGame()
+{
+    while (m_window.isOpen())
+    {
+        m_window.clear(sf::Color::Color(0, 0, 0));
+        DrawGame();
+        m_window.display();
+
+        for (auto event = sf::Event{}; m_window.pollEvent(event); )
+        {
+            switch (event.type)
+            {
+            case sf::Event::Closed:
+                m_window.close();
+                break;
+
+            case sf::Event::KeyPressed:
+            {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+                {
+                    m_window.close();
+                }
+                //m_pacman.UpdateDirection(event.key.code);
+
+                //sf::Keyboard::Key = event.key.code
+                //HandleGameClick();
+                break;
+            }
+
+
+            }
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        {
+            m_window.close();
+        }
+
+    }
+}
+
+void GameControll::DrawGame()
+{
+    for (int row = 0; row < m_matrix.GetRow(); row++)
+    {
+        for (int col = 0; col < m_matrix.GetCol(); col++)
+        {
+            m_window.draw(m_board.GetRectangle(row, col));
+        }
+    }
+    //m_window.draw(m_pacman.GetPacman());
+    //todo : draw pac
+}
+
 void GameControll::handleClick(const sf::Vector2f& location)
 {
     if (m_menu.GetButton(VIDEO_PLAY).getGlobalBounds().contains(location))
@@ -59,7 +114,7 @@ void GameControll::handleClick(const sf::Vector2f& location)
     }
     else if (m_menu.GetButton(PLAY).getGlobalBounds().contains(location))
     {
-        //StartGame();
+        StartGame();
     }
     else if (m_menu.GetButton(HELP).getGlobalBounds().contains(location))
     {

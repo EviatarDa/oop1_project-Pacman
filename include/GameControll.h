@@ -4,10 +4,11 @@
 #include "Menu.h"
 #include "Matrix.h"
 #include "Board.h"
+#include "Pacman.h"
 
 
-const int WINDOW_HEIGHT = sf::VideoMode::getDesktopMode().height - 300;
-const int WINDOW_WIDTH = sf::VideoMode::getDesktopMode().width - 500;
+const int WINDOW_HEIGHT = sf::VideoMode::getDesktopMode().height - 280;
+const int WINDOW_WIDTH = sf::VideoMode::getDesktopMode().width - 520;
 
 
 class GameControll
@@ -15,6 +16,8 @@ class GameControll
 public:
 	GameControll();
 	void run();
+	void StartGame();
+	void DrawGame();
 	void handleClick(const sf::Vector2f&);
 	void hendleMouseMoved(const sf::Vector2f);
 	void DrawMenu();
@@ -25,7 +28,8 @@ public:
 private:
 	sf::RenderWindow m_window;
 	Menu m_menu;
-	Board m_board;
 	Matrix m_matrix;
+	Board m_board;
+	Pacman m_pacman;
 
 };

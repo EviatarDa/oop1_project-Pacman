@@ -22,9 +22,9 @@ const sf::RectangleShape Board::CreateRectangle(const int row, const int col) co
 	sf::RectangleShape rec;
 
 	//Position
-	rec.setSize(sf::Vector2(50.f, 50.f));
-	rec.setPosition((float)((1000 - m_row * 50.f) / 2 + (row * 50.f)),
-		(float)((900 - m_col * 50.f) / 2 + (col * 50.f)));
+	rec.setSize(sf::Vector2f(50.f, 50.f));
+	rec.setPosition((float)((1400 - m_col * 50.f) / 2 + (col * 50.f)),
+					(float)((800 - m_row * 50.f) / 2 + (row * 50.f)));
 
 	//Style
 	rec.setOutlineColor(sf::Color::Color(102, 102, 102));
@@ -32,4 +32,10 @@ const sf::RectangleShape Board::CreateRectangle(const int row, const int col) co
 	rec.setFillColor(sf::Color::Transparent);
 
 	return rec;
+}
+
+sf::RectangleShape Board::GetRectangle(const int row, const int col) const
+{
+	return m_RectangleMatrix[row][col];
+
 }
