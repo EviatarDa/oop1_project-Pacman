@@ -15,7 +15,7 @@ Menu::Menu(int width, int height)
 	m_WannaPlay.loadFromFile("WannaPlay.png");
 	m_LetsGo.loadFromFile("LetsGo.png");
 	m_Pacman.loadFromFile("Pacman-Title.png"); //new
-	m_Demons.loadFromFile("Demons-Title.png"); //new
+	m_Demons.loadFromFile("Deamons-Title.png"); //new
 	m_Instructions.loadFromFile("Instructions.png");
 
 

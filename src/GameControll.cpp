@@ -72,7 +72,6 @@ void GameControll::StartGame()
             case sf::Event::KeyPressed:
             {
                 m_pacman.UpdateDirection(event.key.code);
-                
                 break;
             }
             case sf::Event::KeyReleased:

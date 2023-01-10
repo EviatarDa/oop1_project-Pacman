@@ -6,8 +6,8 @@
 class StaticObjects
 {
 public:
-	
-	const  sf::Vector2f GetLocation() { return m_location; }
+
+	const  sf::Vector2f GetLocation() const { return m_location; }
 	void SetLocation(const int, const int); // TODO 
 	 
 private:
