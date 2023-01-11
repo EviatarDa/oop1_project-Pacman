@@ -9,6 +9,7 @@ GameControll::GameControll()
      m_board(m_matrix.GetRow(), m_matrix.GetCol())
 {
     m_window.setFramerateLimit(60);
+    PlayMusic();
 }
 
 void GameControll::run()
@@ -284,6 +285,14 @@ void GameControll::PlayVideo()
         }
         break;
     }
+}
+
+void GameControll::PlayMusic()
+{
+    m_song.loadFromFile("Song.ogg");
+    m_Sound.setBuffer(m_song);
+    m_Sound.play();
+    m_Sound.setLoop(true);
 }
 
 

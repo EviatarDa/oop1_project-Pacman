@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Menu.h"
 #include "Matrix.h"
 #include "Board.h"
@@ -25,10 +26,15 @@ public:
 	void DrawMenu();
 	void DrawInstructions();
 	void PlayVideo();
+	void PlayMusic();
 
 
 private:
 	sf::RenderWindow m_window;
+
+	sf::Sound m_Sound;
+	sf::SoundBuffer m_song;
+
 	Menu m_menu;
 	Matrix m_matrix;
 	Board m_board;
