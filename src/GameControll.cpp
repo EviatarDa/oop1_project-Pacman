@@ -5,11 +5,10 @@
 GameControll::GameControll()
     :m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Pacman"),
      m_menu(WINDOW_WIDTH, WINDOW_HEIGHT),
-     m_matrix(),
-     m_board(m_matrix.GetRow(), m_matrix.GetCol())
+     m_board()
 {
     m_window.setFramerateLimit(60);
-    PlayMusic();
+    //PlayMusic();
 }
 
 void GameControll::run()
@@ -96,15 +95,24 @@ void GameControll::StartGame()
 
 void GameControll::DrawGame()
 {
-    for (int row = 0; row < m_matrix.GetRow(); row++)
+    for (int row = 0; row < m_board.GetRow(); row++)
     {
-        for (int col = 0; col < m_matrix.GetCol(); col++)
+        for (int col = 0; col < m_board.GetCol(); col++)
         {
-            m_window.draw(m_board.GetRectangle(row, col));
+            m_window.draw(m_board.GetRectangle(row, col));//get_object(row,col)
+            
+        }
+    }
+    for (int row = 0; row < m_board.GetRowVec(); row++)
+    {
+        for (int col = 0; col < m_board.GetColVec(row); col++)
+        {
+            m_window.draw(m_board.GetStaticObject(row, col));
         }
     }
     m_window.draw(m_pacman.GetPacman());
-    //todo : draw pac
+    //for loop:
+    //m_window.draw(m_deamons.GetDeamon());
 }
 
 void GameControll::handleClick(const sf::Vector2f& location)

@@ -6,11 +6,11 @@
 class Present :public StaticObjects
 {
 public:
-	Present();
+	Present(const int, const int, const int, const int);
+	sf::Sprite GetSprite();
 
 
 private:
-	const sf::Vector2f m_location;
 	sf::Texture m_Texture;
 	sf::Sprite m_Sprite;
 };

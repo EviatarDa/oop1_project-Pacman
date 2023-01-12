@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Menu.h"
-#include "Matrix.h"
+//#include "Matrix.h"
 #include "Board.h"
 #include "Pacman.h"
 //#include "Deamon.h"
@@ -36,7 +36,6 @@ private:
 	sf::SoundBuffer m_song;
 
 	Menu m_menu;
-	Matrix m_matrix;
 	Board m_board;
 	Pacman m_pacman;
 

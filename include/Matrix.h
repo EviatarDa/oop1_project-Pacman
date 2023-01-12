@@ -10,6 +10,7 @@ public:
 	void ReadLevel();
 	const int GetRow()const;
 	const int GetCol()const;
+	const char GetChar(const int, const int);
 
 private:
 	std::ifstream m_file = std::ifstream("Board.txt"); // where is he locate?>

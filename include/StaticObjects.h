@@ -6,10 +6,11 @@
 class StaticObjects
 {
 public:
+	StaticObjects(const int, const int, const int, const int);
 
-	const  sf::Vector2f GetLocation() const { return m_location; }
-	void SetLocation(const int, const int); // TODO 
-	 
+	const  sf::Vector2f GetLocation() const;
+	virtual sf::Sprite GetSprite() = 0;
+
 private:
-	const sf::Vector2f m_location;
+	sf::Vector2f m_location;
 };

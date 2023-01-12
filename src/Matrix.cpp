@@ -10,7 +10,7 @@ Matrix::Matrix() /// constructor?
 void Matrix::ReadLevel()
 {
     //TODO check
-    m_file.seekg(0);
+    //m_file.seekg(0);
     m_file >> m_row >> m_col;
     m_file.get(); //for /n
 
@@ -35,4 +35,9 @@ const int Matrix::GetRow() const
 const int Matrix::GetCol() const
 {
     return m_col;
+}
+
+const char Matrix::GetChar(const int row, const int col)
+{
+    return m_matrix[row][col];
 }
