@@ -26,7 +26,7 @@ public:
 	void DrawMenu();
 	void DrawInstructions();
 	void PlayVideo();
-	void PlayMusic();
+	void PlayMusic();//
 
 
 private:
