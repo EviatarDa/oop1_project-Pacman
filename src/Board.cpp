@@ -70,10 +70,10 @@ void Board::InitVector()
 			char type = m_matrix.GetChar(row, col);
 			if (type != 'a' && type != '&')
 			{
-				row_vector.push_back(Getptr(type, row, col));
+				//row_vector.push_back(Getptr(type, row, col));
 			}	
 		}
-		m_StaticObjects.push_back(row_vector);
+		//m_StaticObjects.push_back(row_vector);
 	}
 }
 

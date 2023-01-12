@@ -8,3 +8,8 @@ Cookie::Cookie(const int row, const int col, const int board_row, const int boar
 	m_Texture.loadFromFile("Cookie.pnj");
 	m_Sprite.setTexture(m_Texture);
 }
+
+sf::Sprite Cookie::GetSprite()
+{
+	return m_Sprite;
+}
