@@ -14,6 +14,7 @@ Board::Board()
 		}
 		m_RectangleMatrix.push_back(vector_row); // push the vector to the vector
 	}
+	InitVector();
 }
 
 int Board::GetRow() const
@@ -68,12 +69,12 @@ void Board::InitVector()
 		for (int col = 0; col < m_col; col++)
 		{
 			char type = m_matrix.GetChar(row, col);
-			if (type != 'a' && type != '&')
+			if (type != 'a' && type != '&' && type!= ' ')
 			{
-				//row_vector.push_back(Getptr(type, row, col));
+				row_vector.push_back(Getptr(type, row, col));
 			}	
 		}
-		//m_StaticObjects.push_back(row_vector);
+		m_StaticObjects.push_back(std::move(row_vector));
 	}
 }
 
@@ -87,7 +88,7 @@ std::unique_ptr<StaticObjects> Board::Getptr(const char type, const int row, con
 	switch (type)
 	{
 	case 'D':
-		return std::make_unique <Door>(row, col, m_row,m_col);
+		return std::make_unique <Door>(row, col, m_row, m_col);
 
 	case '%':
 		return std::make_unique<Key>(row, col, m_row, m_col);
@@ -97,6 +98,9 @@ std::unique_ptr<StaticObjects> Board::Getptr(const char type, const int row, con
 
 	case '*':
 		return std::make_unique<Cookie>(row, col, m_row, m_col);
+
+	case '#':
+		return std::make_unique<Wall>(row, col, m_row, m_col);
 	}			
 }
 

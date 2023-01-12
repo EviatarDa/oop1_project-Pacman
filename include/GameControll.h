@@ -10,8 +10,8 @@
 #include "StaticObjects.h"
 
 
-const int WINDOW_HEIGHT = sf::VideoMode::getDesktopMode().height - 280;
-const int WINDOW_WIDTH = sf::VideoMode::getDesktopMode().width - 520;
+const int WINDOW_HEIGHT = 800;
+const int WINDOW_WIDTH = 1400;
 
 
 class GameControll
