@@ -18,15 +18,17 @@ class GameControll
 {
 public:
 	GameControll();
+	void DrawMenu();
 	void run();
 	void StartGame();
 	void DrawGame();
 	void handleClick(const sf::Vector2f&);
-	void hendleMouseMoved(const sf::Vector2f);
-	void DrawMenu();
+	void handleMouseMoved(const sf::Vector2f, const Button, const Button);
+	void Instructions();
 	void DrawInstructions();
+	void BrighteningSprite(Title, int&, int, int);
 	void PlayVideo();
-	void PlayMusic();//
+	void PlayMusic();
 
 
 private:

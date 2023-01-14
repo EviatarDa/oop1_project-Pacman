@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Board.h"
+#include <iostream>
 
 Board::Board()
 	:m_matrix(), m_row(m_matrix.GetRow()), m_col(m_matrix.GetCol())
@@ -14,7 +15,7 @@ Board::Board()
 		}
 		m_RectangleMatrix.push_back(vector_row); // push the vector to the vector
 	}
-	InitVector();
+	//InitVector();
 }
 
 int Board::GetRow() const
@@ -88,18 +89,23 @@ std::unique_ptr<StaticObjects> Board::Getptr(const char type, const int row, con
 	switch (type)
 	{
 	case 'D':
+		std::cout << " door at " << row << " " << col << std::endl;
 		return std::make_unique <Door>(row, col, m_row, m_col);
 
 	case '%':
+		std::cout << " key at " << row << " " << col << std::endl;
 		return std::make_unique<Key>(row, col, m_row, m_col);
 
 	case '$':
+		std::cout << " present at " << row << " " << col << std::endl;
 		return std::make_unique<Present>(row, col, m_row, m_col);
 
 	case '*':
+		std::cout << " cookie at " << row << " " << col << std::endl;
 		return std::make_unique<Cookie>(row, col, m_row, m_col);
 
 	case '#':
+		std::cout << " wall at " << row << " " << col << std::endl;
 		return std::make_unique<Wall>(row, col, m_row, m_col);
 	}			
 }

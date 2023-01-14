@@ -13,7 +13,6 @@ GameControll::GameControll()
 
 void GameControll::run()
 {
-
     while (m_window.isOpen())
     {
         m_window.clear(sf::Color::Color(0,0,0));
@@ -40,7 +39,7 @@ void GameControll::run()
             case sf::Event::MouseMoved:
             {
                 auto location = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
-                hendleMouseMoved(location);
+                handleMouseMoved(location, PLAY, EXIT);
             }
 
             }
@@ -117,18 +116,14 @@ void GameControll::DrawGame()
 
 void GameControll::handleClick(const sf::Vector2f& location)
 {
-    if (m_menu.GetButton(VIDEO_PLAY).getGlobalBounds().contains(location))
+    if (m_menu.GetButton(PLAY).getGlobalBounds().contains(location))
     {
-       PlayVideo();
-    }
-    else if (m_menu.GetButton(PLAY).getGlobalBounds().contains(location))
-    {
+        PlayVideo();
         StartGame();
     }
     else if (m_menu.GetButton(HELP).getGlobalBounds().contains(location))
     {
-        //Instructions
-        DrawInstructions();
+        Instructions();
     }
     else if (m_menu.GetButton(EXIT).getGlobalBounds().contains(location))
     {
@@ -136,9 +131,9 @@ void GameControll::handleClick(const sf::Vector2f& location)
     }
 }
 
-void GameControll::hendleMouseMoved(const sf::Vector2f location)
+void GameControll::handleMouseMoved(const sf::Vector2f location, const Button first, const Button last)
 {
-    for (int button = VIDEO_PLAY ; button <= EXIT ; button++)
+    for (int button = first; button <= last; button++)
     {
         if ((m_menu.GetButton((Button)button).getGlobalBounds().contains(location)))
         {
@@ -153,24 +148,24 @@ void GameControll::hendleMouseMoved(const sf::Vector2f location)
 
 void GameControll::DrawMenu()
 {
-    for (int button = VIDEO_PLAY; button <= EXIT; ++button)
-    {
-        m_window.draw(m_menu.GetButton((Button)button));
-    }
-
     for (int object = TITLE; object <= DEMONS; ++object)
     {
         m_window.draw(m_menu.GetTitle((Title)object));
     }
+
+    for (int button = PLAY; button <= EXIT; ++button)
+    {
+        m_window.draw(m_menu.GetButton((Button)button));
+    }
 }
 
-void GameControll::DrawInstructions()
+void GameControll::Instructions()
 {
     bool exit = false;
     while (!exit)
     {
         m_window.clear(sf::Color::Color(0, 0, 0));
-        m_window.draw(m_menu.GetInstructions(INSTRUCTION));
+        DrawInstructions();
         m_window.display();
 
         if (auto event = sf::Event{}; m_window.waitEvent(event))
@@ -180,22 +175,52 @@ void GameControll::DrawInstructions()
             {
             case sf::Event::Closed:
                 exit = true;
+                m_window.close();
                 break;
 
             case sf::Event::MouseButtonReleased:
             {
                 auto location = m_window.mapPixelToCoords(
                     { event.mouseButton.x, event.mouseButton.y });
+                if (m_menu.GetButton(BACK).getGlobalBounds().contains(location))
+                {
+                    exit = true;
+                }
                 break;
             }
 
             case sf::Event::MouseMoved:
             {
                 auto location = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
+                handleMouseMoved(location, VIDEO_PLAY, BACK);
             }
 
             }
         }
+    }
+}
+
+void GameControll::DrawInstructions()
+{
+    m_window.draw(m_menu.GetInstructions(SHIR));
+    m_window.draw(m_menu.GetInstructions(EVIATAR1));
+    m_window.draw(m_menu.GetInstructions(EVIATAR2));
+    m_window.draw(m_menu.GetInstructions(SHIR_DROP));
+    m_window.draw(m_menu.GetInstructions(EVIATAR_DROP));
+    m_window.draw(m_menu.GetInstructions(OH_NO));
+    m_window.draw(m_menu.GetInstructions(GAME_RULES));
+    m_window.draw(m_menu.GetButton(VIDEO_PLAY));
+    m_window.draw(m_menu.GetButton(BACK));
+}
+
+void GameControll::BrighteningSprite(Title object, int& curr_brightness, int add, int brightness)
+{
+    while (curr_brightness != brightness)
+    {
+        m_window.clear(sf::Color::Color(0, 0, 0));
+        DrawMenu();
+        m_window.display();
+        m_menu.UpdateVisible(object, curr_brightness, add, brightness);
     }
 }
 
@@ -204,93 +229,51 @@ void GameControll::PlayVideo()
     int pacman_chat_box = 0;
     int demons_chat_box = 0;
     int title = 255;
+    int pacman = 0;
+    int deamons = 0;
 
     while (m_window.isOpen())
     {
-        while (pacman_chat_box != 255)
-        {
-            m_window.clear(sf::Color::Color(0, 0, 0));
-            DrawMenu();
-            m_window.display();
-            m_menu.UpdateVisible(HELLO, pacman_chat_box, 5);
-        }
+        BrighteningSprite(HELLO, pacman_chat_box, 5, 255);
 
-        while (demons_chat_box != 255)
-        {
-            m_window.clear(sf::Color::Color(0, 0, 0));
-            DrawMenu();
-            m_window.display();
-            m_menu.UpdateVisible(WANNA_PLAY, demons_chat_box, 5);
-        }
+        BrighteningSprite(WANNA_PLAY, demons_chat_box, 5, 255);
 
-        while (pacman_chat_box != 0)
-        {
-            m_window.clear(sf::Color::Color(0, 0, 0));
-            DrawMenu();
-            m_window.display();
-            m_menu.UpdateVisible(HELLO, pacman_chat_box, -5);
-        }
+        BrighteningSprite(HELLO, pacman_chat_box, -5, 0);
 
-        while (pacman_chat_box != 255)
-        {
-            m_window.clear(sf::Color::Color(0, 0, 0));
-            DrawMenu();
-            m_window.display();
-            m_menu.UpdateVisible(LETS_GO, pacman_chat_box, 5);
-        }
+        BrighteningSprite(LETS_GO, pacman_chat_box, 5, 255);
 
-        while (demons_chat_box != 0)
-        {
-            m_window.clear(sf::Color::Color(0, 0, 0));
-            DrawMenu();
-            m_window.display();
-            m_menu.UpdateVisible(WANNA_PLAY, demons_chat_box, -5);
-        }
+        BrighteningSprite(WANNA_PLAY, demons_chat_box, -5, 0);
 
-        while (pacman_chat_box != 0)
-        {
-            m_window.clear(sf::Color::Color(0, 0, 0));
-            DrawMenu();
-            m_window.display();
-            m_menu.UpdateVisible(LETS_GO, pacman_chat_box, -5);
-        }
+        BrighteningSprite(LETS_GO, pacman_chat_box, -5, 0);
 
-        m_menu.UpdateVisible(PACMAN, title, 255);
-        m_menu.UpdateVisible(DEMONS, title, 255);
+        m_menu.UpdateVisible(PACMAN, pacman, 255, 255);
 
-        while (title != 0)
-        {
-            m_window.clear(sf::Color::Color(0, 0, 0));
-            DrawMenu();
-            m_window.display();
-            m_menu.UpdateVisible(TITLE, title, -5);
-        }
-        
+        m_menu.UpdateVisible(DEMONS, deamons, 255, 255);
+
+        BrighteningSprite(TITLE, title, -5, 0);
+
+        m_menu.GetTitle(PACMAN).setOrigin(m_menu.GetTitle(PACMAN).getGlobalBounds().width / 2,
+                                          m_menu.GetTitle(PACMAN).getGlobalBounds().height / 2);
         m_menu.Mirror(PACMAN);
         m_menu.GetTitle(PACMAN).setOrigin(m_menu.GetTitle(PACMAN).getGlobalBounds().width, 0);
+
         while (m_menu.GetTitle(DEMONS).getPosition().x > -m_menu.GetTitle(DEMONS).getGlobalBounds().width)
         {
             m_window.clear(sf::Color::Color(0, 0, 0));
             DrawMenu();
             m_window.display();
-            m_menu.UpdateLocation(PACMAN, -5);
-            m_menu.UpdateLocation(DEMONS, -5);
+            m_menu.MoveObject(PACMAN, -5, 0);
+            m_menu.MoveObject(DEMONS, -5, 0);
         }
 
         //ends
         m_menu.Mirror(PACMAN);
         m_menu.GetTitle(PACMAN).setOrigin(0, 0);
         m_menu.ResetLocation();
-        m_menu.UpdateVisible(PACMAN, title, 0);
-        m_menu.UpdateVisible(DEMONS, title, 0);
+        m_menu.UpdateVisible(PACMAN, pacman, -255, 0);
+        m_menu.UpdateVisible(DEMONS, deamons, -255, 0);
+        m_menu.UpdateVisible(TITLE, title, 255, 255);
 
-        while( title != 255)
-        {
-            m_window.clear(sf::Color::Color(0, 0, 0));
-            DrawMenu();
-            m_window.display();
-            m_menu.UpdateVisible(TITLE, title, 5);
-        }
         break;
     }
 }
