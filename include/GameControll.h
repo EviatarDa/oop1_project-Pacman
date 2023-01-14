@@ -23,8 +23,9 @@ public:
 	void StartGame();
 	void DrawGame();
 	void handleClick(const sf::Vector2f&);
+	void handleNextClick(const sf::Vector2f&, bool&);
 	void handleMouseMoved(const sf::Vector2f, const Button, const Button);
-	void Instructions();
+	void InstructionsLoop();
 	void DrawInstructions();
 	void BrighteningSprite(Title, int&, int, int);
 	void PlayVideo();

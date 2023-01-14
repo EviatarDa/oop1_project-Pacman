@@ -123,11 +123,42 @@ void GameControll::handleClick(const sf::Vector2f& location)
     }
     else if (m_menu.GetButton(HELP).getGlobalBounds().contains(location))
     {
-        Instructions();
+        InstructionsLoop();
     }
     else if (m_menu.GetButton(EXIT).getGlobalBounds().contains(location))
     {
         m_window.close();
+    }
+}
+
+void GameControll::handleNextClick(const sf::Vector2f& location, bool& exit)
+{
+    static int display = EVIATAR1;
+    if (m_menu.GetButton(BACK).getGlobalBounds().contains(location))
+    {
+        m_menu.ResetRules();
+        display = EVIATAR1;
+        exit = true;
+    }
+    else if (m_menu.GetButton(VIDEO_PLAY).getGlobalBounds().contains(location))
+    {
+        switch (display)
+        {
+        case EVIATAR1:
+        {
+            m_menu.DisplayRules();
+            display = SHIR;
+            break;
+        }
+        case SHIR:
+        {
+            m_menu.DropTheMic();
+            break;
+        }
+
+        default:
+            break;
+        }
     }
 }
 
@@ -159,7 +190,7 @@ void GameControll::DrawMenu()
     }
 }
 
-void GameControll::Instructions()
+void GameControll::InstructionsLoop()
 {
     bool exit = false;
     while (!exit)
@@ -182,10 +213,7 @@ void GameControll::Instructions()
             {
                 auto location = m_window.mapPixelToCoords(
                     { event.mouseButton.x, event.mouseButton.y });
-                if (m_menu.GetButton(BACK).getGlobalBounds().contains(location))
-                {
-                    exit = true;
-                }
+                handleNextClick(location, exit);
                 break;
             }
 
@@ -202,15 +230,24 @@ void GameControll::Instructions()
 
 void GameControll::DrawInstructions()
 {
-    m_window.draw(m_menu.GetInstructions(SHIR));
-    m_window.draw(m_menu.GetInstructions(EVIATAR1));
-    m_window.draw(m_menu.GetInstructions(EVIATAR2));
-    m_window.draw(m_menu.GetInstructions(SHIR_DROP));
-    m_window.draw(m_menu.GetInstructions(EVIATAR_DROP));
-    m_window.draw(m_menu.GetInstructions(OH_NO));
-    m_window.draw(m_menu.GetInstructions(GAME_RULES));
-    m_window.draw(m_menu.GetButton(VIDEO_PLAY));
-    m_window.draw(m_menu.GetButton(BACK));
+    for (int object = SHIR; object <= GAME_RULES; ++object)
+    {
+        m_window.draw(m_menu.GetInstructions((Instructions)object));
+    }
+    for (int object = VIDEO_PLAY; object <= BACK; ++object)
+    {
+        m_window.draw(m_menu.GetButton((Button)object));
+    }
+
+    //m_window.draw(m_menu.GetInstructions(SHIR));
+    //m_window.draw(m_menu.GetInstructions(EVIATAR1));
+    //m_window.draw(m_menu.GetInstructions(EVIATAR2));
+    //m_window.draw(m_menu.GetInstructions(SHIR_DROP));
+    //m_window.draw(m_menu.GetInstructions(EVIATAR_DROP));
+    //m_window.draw(m_menu.GetInstructions(OH_NO));
+    //m_window.draw(m_menu.GetInstructions(GAME_RULES));
+    //m_window.draw(m_menu.GetButton(VIDEO_PLAY));
+    //m_window.draw(m_menu.GetButton(BACK));
 }
 
 void GameControll::BrighteningSprite(Title object, int& curr_brightness, int add, int brightness)

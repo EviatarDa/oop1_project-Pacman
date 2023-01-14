@@ -26,6 +26,9 @@ public:
 	void MoveObject(const Title, const int, const int);
 	void ResetLocation();
 	void Mirror(const Title);
+	void DisplayRules();
+	void DropTheMic();
+	void ResetRules();
 
 
 private:

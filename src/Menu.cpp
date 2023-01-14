@@ -33,6 +33,7 @@ Menu::Menu(int width, int height)
 	m_eviatar2.setSmooth(true);
 	m_ShirDrop.setSmooth(true);
 	m_EviatarDrop.setSmooth(true);
+	m_GameRules.setSmooth(true);
 
 	//define the array:
 	m_buttons[VIDEO_PLAY].setTexture(m_VideoPlay);
@@ -62,11 +63,11 @@ Menu::Menu(int width, int height)
 	m_TitleObjects[LETS_GO].setColor(sf::Color::Color(255, 255, 255, 0));
 	m_TitleObjects[PACMAN].setColor(sf::Color::Color(255, 255, 255, 0));
 	m_TitleObjects[DEMONS].setColor(sf::Color::Color(255, 255, 255, 0));
-	//m_Instructions_Page[SHIR].setColor(sf::Color::Color(255, 255, 255, 0));
-	//m_Instructions_Page[EVIATAR2].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[SHIR].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[EVIATAR2].setColor(sf::Color::Color(255, 255, 255, 0));
 	m_Instructions_Page[SHIR_DROP].setColor(sf::Color::Color(255, 255, 255, 0));
 	m_Instructions_Page[EVIATAR_DROP].setColor(sf::Color::Color(255, 255, 255, 0));
-	//m_Instructions_Page[GAME_RULES].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[GAME_RULES].setColor(sf::Color::Color(255, 255, 255, 0));
 	SetPosition();
 }
 
@@ -121,6 +122,36 @@ void Menu::ResetLocation()
 void Menu::Mirror(const Title object)
 {
 	m_TitleObjects[object].scale(-1, 1);
+}
+
+void Menu::DisplayRules()
+{
+	m_Instructions_Page[EVIATAR1].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[OH_NO].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[SHIR].setColor(sf::Color::Color(255, 255, 255, 255));
+	m_Instructions_Page[GAME_RULES].setColor(sf::Color::Color(255, 255, 255, 255));
+	m_Instructions_Page[EVIATAR2].setColor(sf::Color::Color(255, 255, 255, 255));
+}
+
+void Menu::DropTheMic()
+{
+	m_Instructions_Page[SHIR].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[GAME_RULES].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[EVIATAR2].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[SHIR_DROP].setColor(sf::Color::Color(255, 255, 255, 255));
+	m_Instructions_Page[EVIATAR_DROP].setColor(sf::Color::Color(255, 255, 255, 255));
+}
+
+void Menu::ResetRules()
+{
+	m_Instructions_Page[EVIATAR1].setColor(sf::Color::Color(255, 255, 255, 255));
+	m_Instructions_Page[OH_NO].setColor(sf::Color::Color(255, 255, 255, 255));
+
+	m_Instructions_Page[SHIR].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[EVIATAR2].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[SHIR_DROP].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[EVIATAR_DROP].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_Instructions_Page[GAME_RULES].setColor(sf::Color::Color(255, 255, 255, 0));
 }
 
 void Menu::SetPosition()
