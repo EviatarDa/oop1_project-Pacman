@@ -33,16 +33,13 @@ public:
 
 
 private:
+//	sf::SoundBuffer m_song;
 	sf::RenderWindow m_window;
 	Resources& m_resource = Resources::instance();
-	sf::Sound m_Sound;
-//	sf::SoundBuffer m_song;
-
 	Menu m_menu;
 	Board m_board;
 	Pacman m_pacman;
-	
-
+	sf::Sound m_Sound;
 	sf::Clock m_game_clock;
 
 

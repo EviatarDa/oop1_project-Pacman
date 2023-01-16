@@ -8,7 +8,6 @@ GameControll::GameControll()
      m_board()
 {
     m_window.setFramerateLimit(60);
-    m_resource.loadfromfile();
     PlayMusic();
 }
 
