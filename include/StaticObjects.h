@@ -13,8 +13,7 @@ class StaticObjects :public GameObject
 {
 public:
 	StaticObjects(const int , const int , const int , const int , Object );
-	virtual void UpdateDirection(sf::Keyboard::Key, sf::Vector2f) { ; }
-	virtual void Move(sf::Time) { ; };
+
 
 private:
 

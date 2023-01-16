@@ -33,31 +33,7 @@ void Pacman::UpdateDirection(sf::Keyboard::Key key, sf::Vector2f PacLocation)
     }
 }
 
-//sf::Vector2f Pacman::DirectionToVector(Direction direction)
-//{
-//    switch (direction)
-//    {
-//    case Direction::Up:
-//        return { 0, -1 };
-//    case Direction::Down:
-//        return { 0, 1 };
-//    case Direction::Right:
-//        return { 1, 0 };
-//    case Direction::Left:
-//        return { -1, 0 };
-//    default:
-//        return { 0, 0 };
-//    }
-//}
-
-void Pacman::Move(sf::Time deltaa)
+void Pacman::Move(sf::Time delta)
 {
-    auto delta = m_game_clock.restart();
-
     this->GetSprite().move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
 }
-
-//sf::Sprite Pacman::GetPacman()
-//{
-//    return m_pacman;
-//}

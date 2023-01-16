@@ -18,25 +18,31 @@ public:
     Board();
     int GetRow() const;
     int GetCol() const;
-    int GetRowVec()const;
-    int GetColVec(const int) const;
+    int GetRowVecMove()const;
+    int GetRowVecStat()const;
+    int GetColVecMove(const int) const;
+    int GetColVecStat(const int) const;
     void UpdateDirection(sf::Keyboard::Key key);
     const sf::RectangleShape CreateRectangle(const int, const int) const;
     sf::RectangleShape GetRectangle(const int, const int) const;
     void InitVector();
-    sf::Sprite GetGameObject(const int, const int);
+    sf::Sprite GetGameObjectMoving(const int, const int);
+    sf::Sprite GetGameObjectStatic(const int, const int);
     void MoveObjects(sf::Time);
 
 
 private:
     std::vector<std::vector<sf::RectangleShape>> m_RectangleMatrix; //the board
-    std::vector < std::vector < std::unique_ptr< GameObject>> > m_GameObjects;
+    std::vector < std::vector < std::unique_ptr< MovingObject>> > m_MovingObject;
+    std::vector < std::vector < std::unique_ptr< StaticObjects>> > m_StaticObject;
+
     Matrix m_matrix;
     int m_row;
     int m_col;
     sf::Vector2i m_P2Pacman;
 
     //function ;
-    std::unique_ptr <GameObject> Getptr(const char,const int, const int) const;
+    std::unique_ptr <StaticObjects> Getptrstatic(const char,const int, const int) const;
+    std::unique_ptr <MovingObject> Getptrmove(const char,const int, const int) const;
     //int AddMod4();
 };

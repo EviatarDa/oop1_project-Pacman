@@ -63,6 +63,6 @@ Direction Deamon::PursuePacman(sf::Vector2f PacLocation)
 	}
 	else
 	{
-		return Stay;
+		return Down;
 	}
 }

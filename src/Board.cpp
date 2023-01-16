@@ -27,23 +27,35 @@ int Board::GetCol() const
 	return m_col;
 }
 
-int Board::GetRowVec() const
+int Board::GetRowVecMove() const
 {
-	return m_GameObjects.size();
+	return m_MovingObject.size();
 }
 
-int Board::GetColVec(const int row) const
+int Board::GetRowVecStat() const
 {
-	return m_GameObjects[row].size();
+	return m_StaticObject.size();
+
+}
+
+int Board::GetColVecMove(const int row) const
+{
+	return m_MovingObject[row].size();
+}
+
+int Board::GetColVecStat(const int row) const
+{
+	return m_StaticObject[row].size();
+
 }
 
 void Board::UpdateDirection(sf::Keyboard::Key key)
 {
-	for (int row = 0; row < this->GetRowVec(); row++)
+	for (int row = 0; row < this->GetRowVecMove(); ++row)
 	{
-		for (int col = 0; col < this->GetColVec(row); col++)
+		for (int col = 0; col < this->GetColVecMove(row); ++col)
 		{
-			m_GameObjects[row][col]->UpdateDirection(key, GetGameObject(m_P2Pacman.x, m_P2Pacman.y).getPosition());
+			m_MovingObject[row][col]->UpdateDirection(key, GetGameObjectMoving(m_P2Pacman.x,m_P2Pacman.y).getPosition());
 		}
 	}
 }
@@ -76,40 +88,54 @@ void Board::InitVector()
 {
 	for (int row = 0; row < m_row; row++)
 	{
-		std::vector < std::unique_ptr< GameObject>> row_vector;
+		std::vector < std::unique_ptr< MovingObject>> row_vector_move;
+		std::vector < std::unique_ptr< StaticObjects>> row_vector_static;
 		for (int col = 0; col < m_col; col++)
 		{
 			char type = m_matrix.GetChar(row, col);
-			if (type != ' ')
+			if (type == 'a' || type == '&')
 			{
-				row_vector.push_back(Getptr(type, row, col));
+				row_vector_move.push_back(Getptrmove(type, row, col));
+				if (type == 'a')
+				{
+					m_P2Pacman = { row, col };
+
+				}
+
 			}
-			if (type == 'a')
+			else if (type != ' ')
 			{
-				m_P2Pacman = {row, col};
+				row_vector_static.push_back(Getptrstatic(type, row, col));
 			}
+	
 		}
-		m_GameObjects.push_back(std::move(row_vector));
+		m_MovingObject.push_back(std::move( row_vector_move));
+		m_StaticObject.push_back(std::move(row_vector_static));
 	}
 }
 
-sf::Sprite Board::GetGameObject(const int row, const int col)
+sf::Sprite Board::GetGameObjectMoving(const int row, const int col)
 {
-	return m_GameObjects[row][col]->GetSprite();
+	return m_MovingObject[row][col]->GetSprite();
+}
+
+sf::Sprite Board::GetGameObjectStatic(const int row, const int col)
+{
+	return m_StaticObject[row][col]->GetSprite();
 }
 
 void Board::MoveObjects(sf::Time delta)
 {
-	for (int row = 0; row < this->GetRowVec(); row++)
+	for (int row = 0; row < this->GetRowVecMove(); row++)
 	{
-		for (int col = 0; col < this->GetColVec(row); col++)
+		for (int col = 0; col < this->GetColVecMove(row); col++)
 		{
-			m_GameObjects[row][col]->Move(delta);
+			m_MovingObject[row][col]->Move(delta);
 		}
 	}
 }
 
-std::unique_ptr<GameObject> Board::Getptr(const char type, const int row, const int col) const
+std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int row, const int col) const
 {
 	switch (type)
 	{
@@ -128,6 +154,14 @@ std::unique_ptr<GameObject> Board::Getptr(const char type, const int row, const 
 	case '#':
 		return std::make_unique<Wall>(row, col, m_row, m_col, WALL);
 
+	}
+}
+
+std::unique_ptr<MovingObject> Board::Getptrmove(const char type, const int row, const int col) const
+{
+	switch (type)
+	{
+
 	case 'a':
 		return std::make_unique<Pacman>(row, col, m_row, m_col, PACMAN);
 
@@ -139,7 +173,12 @@ std::unique_ptr<GameObject> Board::Getptr(const char type, const int row, const 
 		return std::make_unique<Deamon>(row, col, m_row, m_col, (Object)(DEAMON_ORANGE + add), (Object)(DEAMON_ORANGE + add));///todo fix
 	}
 	}
+
+
 }
+
+
+
 
 //int Board::AddMod4()
 //{
