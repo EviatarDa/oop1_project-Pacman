@@ -8,7 +8,8 @@ GameControll::GameControll()
      m_board()
 {
     m_window.setFramerateLimit(60);
-    //PlayMusic();
+    m_resource.loadfromfile();
+    PlayMusic();
 }
 
 void GameControll::run()
@@ -317,8 +318,7 @@ void GameControll::PlayVideo()
 
 void GameControll::PlayMusic()
 {
-    m_song.loadFromFile("Song.ogg");
-    m_Sound.setBuffer(m_song);
+    m_Sound.setBuffer(m_resource.getsong());
     m_Sound.play();
     m_Sound.setLoop(true);
 }

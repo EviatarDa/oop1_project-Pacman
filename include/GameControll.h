@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Menu.h"
-//#include "Matrix.h"
+#include "Resources.h"
 #include "Board.h"
 #include "Pacman.h"
 //#include "Deamon.h"
@@ -34,14 +34,16 @@ public:
 
 private:
 	sf::RenderWindow m_window;
-
+	Resources& m_resource = Resources::instance();
 	sf::Sound m_Sound;
-	sf::SoundBuffer m_song;
+//	sf::SoundBuffer m_song;
 
 	Menu m_menu;
 	Board m_board;
 	Pacman m_pacman;
+	
 
 	sf::Clock m_game_clock;
+
 
 };
