@@ -6,8 +6,7 @@ Pacman::Pacman()
 {
 	m_Tpacman.loadFromFile("Pacman.png");
 	m_pacman.setTexture(m_Tpacman);
-    m_pacman.scale(sf::Vector2f((sf::VideoMode::getDesktopMode().width - 520) * 0.07 / m_pacman.getTextureRect().width,
-                                (sf::VideoMode::getDesktopMode().width - 520) * 0.07 / m_pacman.getTextureRect().width));
+    m_pacman.scale(sf::Vector2f(0.12,0.12));
 }
 
 void Pacman::UpdateDirection(sf::Keyboard::Key key)
