@@ -15,7 +15,7 @@ Board::Board()
 		}
 		m_RectangleMatrix.push_back(vector_row); // push the vector to the vector
 	}
-	//InitVector();
+	InitVector();
 }
 
 int Board::GetRow() const
@@ -30,12 +30,12 @@ int Board::GetCol() const
 
 int Board::GetRowVec() const
 {
-	return m_StaticObjects.size();
+	return m_GameObjects.size();
 }
 
 int Board::GetColVec(const int row) const
 {
-	return m_StaticObjects[row].size();
+	return m_GameObjects[row].size();
 }
 
 
@@ -66,47 +66,56 @@ void Board::InitVector()
 {
 	for (int row = 0; row < m_row; row++)
 	{
-		std::vector < std::unique_ptr< StaticObjects>> row_vector;
+		std::vector < std::unique_ptr< GameObject>> row_vector;
 		for (int col = 0; col < m_col; col++)
 		{
 			char type = m_matrix.GetChar(row, col);
-			if (type != 'a' && type != '&' && type!= ' ')
+			if (type != ' ')
 			{
 				row_vector.push_back(Getptr(type, row, col));
-			}	
+			}
 		}
-		m_StaticObjects.push_back(std::move(row_vector));
+		m_GameObjects.push_back(std::move(row_vector));
 	}
 }
 
-sf::Sprite Board::GetStaticObject(const int row, const int col)
+sf::Sprite Board::GetGameObject(const int row, const int col)
 {
-	return m_StaticObjects[row][col]->GetSprite();
+	return m_GameObjects[row][col]->GetSprite();
 }
 
-std::unique_ptr<StaticObjects> Board::Getptr(const char type, const int row, const int col) const
+std::unique_ptr<GameObject> Board::Getptr(const char type, const int row, const int col) const
 {
 	switch (type)
 	{
 	case 'D':
 		std::cout << " door at " << row << " " << col << std::endl;
-		return std::make_unique <Door>(row, col, m_row, m_col);
+		return std::make_unique <Door>(row, col, m_row, m_col, DOOR);
 
 	case '%':
 		std::cout << " key at " << row << " " << col << std::endl;
-		return std::make_unique<Key>(row, col, m_row, m_col);
+		return std::make_unique<Key>(row, col, m_row, m_col, KEY);
 
 	case '$':
 		std::cout << " present at " << row << " " << col << std::endl;
-		return std::make_unique<Present>(row, col, m_row, m_col);
+		return std::make_unique<Present>(row, col, m_row, m_col, PRESENT);
 
 	case '*':
 		std::cout << " cookie at " << row << " " << col << std::endl;
-		return std::make_unique<Cookie>(row, col, m_row, m_col);
+		return std::make_unique<Cookie>(row, col, m_row, m_col, COOKIE);
 
 	case '#':
 		std::cout << " wall at " << row << " " << col << std::endl;
-		return std::make_unique<Wall>(row, col, m_row, m_col);
+		return std::make_unique<Wall>(row, col, m_row, m_col, WALL);
+
+	//case 'a':
+	//	std::cout << " pacman at " << row << " " << col << std::endl;
+	//	return std::make_unique<Pacman>(row, col, m_row, m_col, PACMAN);
+
+	//case '&':
+	//	std::cout << " deamon at " << row << " " << col << std::endl;
+	//	return std::make_unique<Deamon>(row, col, m_row, m_col, DEAMON);
+
 	}			
 }
 

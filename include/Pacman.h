@@ -1,12 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+//#include "MovingObject.h"
 
 const float PACMAN_SPEED = 300.f;
 
 enum Direction { Up, Down, Right, Left, Stay };
 
-class Pacman
+class Pacman 
 {
 public:
     Pacman();

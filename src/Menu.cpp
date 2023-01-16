@@ -12,7 +12,7 @@ Menu::Menu(int width, int height)
 		m_Buttons[button].setTexture(Resources::instance().GetButton((Button)button));
 	}
 
-	for (int title = TITLE; title <= DEMONS; title++)
+	for (int title = TITLE; title <= TITLE_DEAMONS; title++)
 	{
 		m_TitleObjects[title].setTexture(Resources::instance().GetTitle((Title)title));
 	}
@@ -26,8 +26,8 @@ Menu::Menu(int width, int height)
 	m_TitleObjects[HELLO].setColor(sf::Color::Color(255, 255, 255, 0));
 	m_TitleObjects[WANNA_PLAY].setColor(sf::Color::Color(255, 255, 255, 0));
 	m_TitleObjects[LETS_GO].setColor(sf::Color::Color(255, 255, 255, 0));
-	m_TitleObjects[PACMAN].setColor(sf::Color::Color(255, 255, 255, 0));
-	m_TitleObjects[DEMONS].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_TitleObjects[TITLE_PACMAN].setColor(sf::Color::Color(255, 255, 255, 0));
+	m_TitleObjects[TITLE_DEAMONS].setColor(sf::Color::Color(255, 255, 255, 0));
 	m_Instructions_Page[SHIR].setColor(sf::Color::Color(255, 255, 255, 0));
 	m_Instructions_Page[EVIATAR2].setColor(sf::Color::Color(255, 255, 255, 0));
 	m_Instructions_Page[SHIR_DROP].setColor(sf::Color::Color(255, 255, 255, 0));
@@ -82,9 +82,9 @@ void Menu::MoveObject(const Title object, const int x, const int y)
 
 void Menu::ResetLocation()
 {
-	m_TitleObjects[PACMAN].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.249, m_WINDOW_HEIGHT * 0.265));
+	m_TitleObjects[TITLE_PACMAN].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.249, m_WINDOW_HEIGHT * 0.265));
 
-	m_TitleObjects[DEMONS].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.495, m_WINDOW_HEIGHT * 0.265));
+	m_TitleObjects[TITLE_DEAMONS].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.495, m_WINDOW_HEIGHT * 0.265));
 }
 
 void Menu::Mirror(const Title object)
@@ -154,11 +154,11 @@ void Menu::SetPosition()
 	m_TitleObjects[LETS_GO].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.075 / m_TitleObjects[LETS_GO].getTextureRect().width,
 										   	   m_WINDOW_WIDTH * 0.075 / m_TitleObjects[LETS_GO].getTextureRect().width));
 
-	m_TitleObjects[PACMAN].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.053 / m_TitleObjects[PACMAN].getTextureRect().width,
-											  m_WINDOW_WIDTH * 0.053 / m_TitleObjects[PACMAN].getTextureRect().width));
+	m_TitleObjects[TITLE_PACMAN].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.053 / m_TitleObjects[TITLE_PACMAN].getTextureRect().width,
+											  m_WINDOW_WIDTH * 0.053 / m_TitleObjects[TITLE_PACMAN].getTextureRect().width));
 
-	m_TitleObjects[DEMONS].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.257 / m_TitleObjects[DEMONS].getTextureRect().width,
-											  m_WINDOW_WIDTH * 0.257 / m_TitleObjects[DEMONS].getTextureRect().width));
+	m_TitleObjects[TITLE_DEAMONS].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.257 / m_TitleObjects[TITLE_DEAMONS].getTextureRect().width,
+											  m_WINDOW_WIDTH * 0.257 / m_TitleObjects[TITLE_DEAMONS].getTextureRect().width));
 
 	//Instructions:
 	m_Instructions_Page[SHIR].scale(sf::Vector2f(m_WINDOW_WIDTH * 0.2 / m_Instructions_Page[SHIR].getTextureRect().width,
@@ -198,8 +198,8 @@ void Menu::SetPosition()
 
 	//Title
 	m_TitleObjects[TITLE].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.25, m_WINDOW_HEIGHT * 0.1));
-	m_TitleObjects[PACMAN].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.249, m_WINDOW_HEIGHT * 0.265));
-	m_TitleObjects[DEMONS].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.495, m_WINDOW_HEIGHT * 0.265));
+	m_TitleObjects[TITLE_PACMAN].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.249, m_WINDOW_HEIGHT * 0.265));
+	m_TitleObjects[TITLE_DEAMONS].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.495, m_WINDOW_HEIGHT * 0.265));
 	m_TitleObjects[HELLO].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.25, m_WINDOW_HEIGHT * 0.14));
 	m_TitleObjects[WANNA_PLAY].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.65, m_WINDOW_HEIGHT * 0.15));
 	m_TitleObjects[LETS_GO].setPosition(sf::Vector2f(m_WINDOW_WIDTH * 0.25, m_WINDOW_HEIGHT * 0.14));

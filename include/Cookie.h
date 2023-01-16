@@ -6,11 +6,8 @@
 class Cookie :public StaticObjects
 {
 public:
-	Cookie(const int, const int, const int, const int);
-	sf::Sprite GetSprite();
+	Cookie(const int, const int, const int, const int, Object);
 
 
 private:
-	sf::Texture m_Texture;
-	sf::Sprite m_Sprite;
 };

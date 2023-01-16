@@ -1,16 +1,19 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "GameObject.h"
+//#include "Key.h"
+//#include "Present.h"
+//#include "Door.h"
+//#include "Cookie.h"
+//#include "Wall.h"
 
 //abstruct class
-class StaticObjects
+class StaticObjects :public GameObject
 {
 public:
-	StaticObjects(const int, const int, const int, const int);
-
-	const  sf::Vector2f GetLocation() const;
-	virtual sf::Sprite GetSprite() = 0;
+	StaticObjects(const int , const int , const int , const int , Object );
 
 private:
-	sf::Vector2f m_location;
+
 };

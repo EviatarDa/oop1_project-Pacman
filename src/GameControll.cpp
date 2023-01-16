@@ -106,7 +106,7 @@ void GameControll::DrawGame()
     {
         for (int col = 0; col < m_board.GetColVec(row); col++)
         {
-            m_window.draw(m_board.GetStaticObject(row, col));
+            m_window.draw(m_board.GetGameObject(row, col));
         }
     }
     m_window.draw(m_pacman.GetPacman());
@@ -118,7 +118,7 @@ void GameControll::handleClick(const sf::Vector2f& location)
 {
     if (m_menu.GetButton(PLAY).getGlobalBounds().contains(location))
     {
-        PlayVideo();
+        //PlayVideo();
         StartGame();
     }
     else if (m_menu.GetButton(HELP).getGlobalBounds().contains(location))
@@ -179,7 +179,7 @@ void GameControll::handleMouseMoved(const sf::Vector2f location, const Button fi
 
 void GameControll::DrawMenu()
 {
-    for (int object = TITLE; object <= DEMONS; ++object)
+    for (int object = TITLE; object <= TITLE_DEAMONS; ++object)
     {
         m_window.draw(m_menu.GetTitle((Title)object));
     }
@@ -283,32 +283,32 @@ void GameControll::PlayVideo()
 
         BrighteningSprite(LETS_GO, pacman_chat_box, -5, 0);
 
-        m_menu.UpdateVisible(PACMAN, pacman, 255, 255);
+        m_menu.UpdateVisible(TITLE_PACMAN, pacman, 255, 255);
 
-        m_menu.UpdateVisible(DEMONS, deamons, 255, 255);
+        m_menu.UpdateVisible(TITLE_DEAMONS, deamons, 255, 255);
 
         BrighteningSprite(TITLE, title, -5, 0);
 
-        m_menu.GetTitle(PACMAN).setOrigin(m_menu.GetTitle(PACMAN).getGlobalBounds().width / 2,
-                                          m_menu.GetTitle(PACMAN).getGlobalBounds().height / 2);
-        m_menu.Mirror(PACMAN);
-        m_menu.GetTitle(PACMAN).setOrigin(m_menu.GetTitle(PACMAN).getGlobalBounds().width, 0);
+        m_menu.GetTitle(TITLE_PACMAN).setOrigin(m_menu.GetTitle(TITLE_PACMAN).getGlobalBounds().width / 2,
+                                          m_menu.GetTitle(TITLE_PACMAN).getGlobalBounds().height / 2);
+        m_menu.Mirror(TITLE_PACMAN);
+        m_menu.GetTitle(TITLE_PACMAN).setOrigin(m_menu.GetTitle(TITLE_PACMAN).getGlobalBounds().width, 0);
 
-        while (m_menu.GetTitle(DEMONS).getPosition().x > -m_menu.GetTitle(DEMONS).getGlobalBounds().width)
+        while (m_menu.GetTitle(TITLE_DEAMONS).getPosition().x > -m_menu.GetTitle(TITLE_DEAMONS).getGlobalBounds().width)
         {
             m_window.clear(sf::Color::Color(0, 0, 0));
             DrawMenu();
             m_window.display();
-            m_menu.MoveObject(PACMAN, -5, 0);
-            m_menu.MoveObject(DEMONS, -5, 0);
+            m_menu.MoveObject(TITLE_PACMAN, -5, 0);
+            m_menu.MoveObject(TITLE_DEAMONS, -5, 0);
         }
 
         //ends
-        m_menu.Mirror(PACMAN);
-        m_menu.GetTitle(PACMAN).setOrigin(0, 0);
+        m_menu.Mirror(TITLE_PACMAN);
+        m_menu.GetTitle(TITLE_PACMAN).setOrigin(0, 0);
         m_menu.ResetLocation();
-        m_menu.UpdateVisible(PACMAN, pacman, -255, 0);
-        m_menu.UpdateVisible(DEMONS, deamons, -255, 0);
+        m_menu.UpdateVisible(TITLE_PACMAN, pacman, -255, 0);
+        m_menu.UpdateVisible(TITLE_DEAMONS, deamons, -255, 0);
         m_menu.UpdateVisible(TITLE, title, 255, 255);
 
         break;

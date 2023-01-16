@@ -7,11 +7,8 @@
 class Door :public StaticObjects
 {
 public:
-	Door(const int, const int, const int, const int);
-	sf::Sprite GetSprite();
+	Door(const int, const int, const int, const int, Object);
 
 
 private:
-	sf::Texture m_Texture;
-	sf::Sprite m_Sprite;
 };

@@ -6,11 +6,8 @@
 class Key :public StaticObjects
 {
 public:
-	Key(const int, const int, const int, const int);
-	sf::Sprite GetSprite();
+	Key(const int, const int, const int, const int, Object);
 
 
 private:
-	sf::Texture m_Texture;
-	sf::Sprite m_Sprite;
 };

@@ -22,7 +22,7 @@ void Resources::LoadFromFile()
 		m_ButtonTextures[button].setSmooth(true);
 	}
 
-	for (int title = TITLE; title <= DEMONS; title++)
+	for (int title = TITLE; title <= TITLE_DEAMONS; title++)
 	{
 		m_TitleTextures[title].loadFromFile(m_TitleFiles[title]);
 		m_TitleTextures[title].setSmooth(true);
@@ -34,6 +34,14 @@ void Resources::LoadFromFile()
 		m_InstructionsTextures[instruction].loadFromFile(m_InstructionFiles[instruction]);
 		m_InstructionsTextures[instruction].setSmooth(true);
 	}
+
+	for (int object = PACMAN; object <= PRESENT; object++)
+	{
+		m_GameObjectTextures[object].loadFromFile(m_GameObjectFiles[object]);
+		m_GameObjectTextures[object].setSmooth(true);
+	}
+
+
 	m_song.loadFromFile("Song.ogg");
 }
 
@@ -50,6 +58,11 @@ sf::Texture& Resources::GetTitle(Title title)
 sf::Texture& Resources::GetInstruction(Instructions instruction)
 {
 	return m_InstructionsTextures[instruction];
+}
+
+sf::Texture& Resources::GetGameObject(Object object)
+{
+	return m_GameObjectTextures[object];
 }
 
 sf::SoundBuffer& Resources::getsong()

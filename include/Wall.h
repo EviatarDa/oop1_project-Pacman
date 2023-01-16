@@ -6,11 +6,9 @@
 class Wall :public StaticObjects
 {
 public:
-	Wall(const int, const int, const int, const int);
-	sf::Sprite GetSprite();
+	Wall(const int, const int, const int, const int, Object);
 
 
 private:
-	sf::Texture m_Texture;
-	sf::Sprite m_Sprite;
+
 };
