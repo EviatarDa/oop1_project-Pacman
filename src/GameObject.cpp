@@ -11,7 +11,7 @@ GameObject::GameObject(const int row, const int col, const int board_row, const 
 	m_sprite.scale(0.125, 0.125);
 }
 
-sf::Sprite GameObject::GetSprite()
+sf::Sprite& GameObject::GetSprite()
 {
 	return m_sprite;
 }

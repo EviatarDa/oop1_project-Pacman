@@ -38,7 +38,7 @@ private:
 	Resources& m_resource = Resources::instance();
 	Menu m_menu;
 	Board m_board;
-	Pacman m_pacman;
+	//Pacman m_pacman;
 	sf::Sound m_Sound;
 	sf::Clock m_game_clock;
 

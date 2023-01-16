@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Board.h"
-#include <iostream>
 
 Board::Board()
 	:m_matrix(), m_row(m_matrix.GetRow()), m_col(m_matrix.GetCol())
@@ -36,6 +35,17 @@ int Board::GetRowVec() const
 int Board::GetColVec(const int row) const
 {
 	return m_GameObjects[row].size();
+}
+
+void Board::UpdateDirection(sf::Keyboard::Key key)
+{
+	for (int row = 0; row < this->GetRowVec(); row++)
+	{
+		for (int col = 0; col < this->GetColVec(row); col++)
+		{
+			m_GameObjects[row][col]->UpdateDirection(key, GetGameObject(m_P2Pacman.x, m_P2Pacman.y).getPosition());
+		}
+	}
 }
 
 
@@ -74,6 +84,10 @@ void Board::InitVector()
 			{
 				row_vector.push_back(Getptr(type, row, col));
 			}
+			if (type == 'a')
+			{
+				m_P2Pacman = {row, col};
+			}
 		}
 		m_GameObjects.push_back(std::move(row_vector));
 	}
@@ -84,39 +98,69 @@ sf::Sprite Board::GetGameObject(const int row, const int col)
 	return m_GameObjects[row][col]->GetSprite();
 }
 
+void Board::MoveObjects(sf::Time delta)
+{
+	for (int row = 0; row < this->GetRowVec(); row++)
+	{
+		for (int col = 0; col < this->GetColVec(row); col++)
+		{
+			m_GameObjects[row][col]->Move(delta);
+		}
+	}
+}
+
 std::unique_ptr<GameObject> Board::Getptr(const char type, const int row, const int col) const
 {
 	switch (type)
 	{
 	case 'D':
-		std::cout << " door at " << row << " " << col << std::endl;
 		return std::make_unique <Door>(row, col, m_row, m_col, DOOR);
 
 	case '%':
-		std::cout << " key at " << row << " " << col << std::endl;
 		return std::make_unique<Key>(row, col, m_row, m_col, KEY);
 
 	case '$':
-		std::cout << " present at " << row << " " << col << std::endl;
 		return std::make_unique<Present>(row, col, m_row, m_col, PRESENT);
 
 	case '*':
-		std::cout << " cookie at " << row << " " << col << std::endl;
 		return std::make_unique<Cookie>(row, col, m_row, m_col, COOKIE);
 
 	case '#':
-		std::cout << " wall at " << row << " " << col << std::endl;
 		return std::make_unique<Wall>(row, col, m_row, m_col, WALL);
 
-	//case 'a':
-	//	std::cout << " pacman at " << row << " " << col << std::endl;
-	//	return std::make_unique<Pacman>(row, col, m_row, m_col, PACMAN);
+	case 'a':
+		return std::make_unique<Pacman>(row, col, m_row, m_col, PACMAN);
 
-	//case '&':
-	//	std::cout << " deamon at " << row << " " << col << std::endl;
-	//	return std::make_unique<Deamon>(row, col, m_row, m_col, DEAMON);
-
-	}			
+	case '&':
+	{
+		static int add = 0;
+		add++;
+		add %= 4;
+		return std::make_unique<Deamon>(row, col, m_row, m_col, (Object)(DEAMON_ORANGE + add), (Object)(DEAMON_ORANGE + add));///todo fix
+	}
+	}
 }
+
+//int Board::AddMod4()
+//{
+//	static int add = 0;
+//	add++;
+//	return add % 4;
+// 
+// 		switch (add)
+		//{
+		//case 0:
+		//	break;
+
+		//case 1:
+		//	break;
+
+		//case 2:
+		//	break;
+
+		//case 3:
+		//	break;
+
+//}
 
 

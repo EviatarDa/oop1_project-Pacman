@@ -70,19 +70,22 @@ void GameControll::StartGame()
 
             case sf::Event::KeyPressed:
             {
-                m_pacman.UpdateDirection(event.key.code);
+                m_board.UpdateDirection(event.key.code);
+               // m_pacman.UpdateDirection(event.key.code);
                 break;
             }
             case sf::Event::KeyReleased:
             {
-                m_pacman.UpdateDirection(sf::Keyboard::Space);
+                m_board.UpdateDirection(sf::Keyboard::Space);
+                //m_pacman.UpdateDirection(sf::Keyboard::Space);
                 break;
             }
             
             }
         }
         auto delta = m_game_clock.restart();
-        m_pacman.Move(delta);
+        m_board.MoveObjects(delta);
+        //m_pacman.Move(delta);
 
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -98,7 +101,7 @@ void GameControll::DrawGame()
     {
         for (int col = 0; col < m_board.GetCol(); col++)
         {
-            m_window.draw(m_board.GetRectangle(row, col));//get_object(row,col)
+            m_window.draw(m_board.GetRectangle(row, col));
             
         }
     }
@@ -109,9 +112,6 @@ void GameControll::DrawGame()
             m_window.draw(m_board.GetGameObject(row, col));
         }
     }
-    m_window.draw(m_pacman.GetPacman());
-    //for loop:
-    //m_window.draw(m_deamons.GetDeamon());
 }
 
 void GameControll::handleClick(const sf::Vector2f& location)
@@ -238,16 +238,6 @@ void GameControll::DrawInstructions()
     {
         m_window.draw(m_menu.GetButton((Button)object));
     }
-
-    //m_window.draw(m_menu.GetInstructions(SHIR));
-    //m_window.draw(m_menu.GetInstructions(EVIATAR1));
-    //m_window.draw(m_menu.GetInstructions(EVIATAR2));
-    //m_window.draw(m_menu.GetInstructions(SHIR_DROP));
-    //m_window.draw(m_menu.GetInstructions(EVIATAR_DROP));
-    //m_window.draw(m_menu.GetInstructions(OH_NO));
-    //m_window.draw(m_menu.GetInstructions(GAME_RULES));
-    //m_window.draw(m_menu.GetButton(VIDEO_PLAY));
-    //m_window.draw(m_menu.GetButton(BACK));
 }
 
 void GameControll::BrighteningSprite(Title object, int& curr_brightness, int add, int brightness)

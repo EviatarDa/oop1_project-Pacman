@@ -2,14 +2,12 @@
 
 #include "Pacman.h"
 
-Pacman::Pacman()
+Pacman::Pacman(const int row, const int col, const int board_row, const int board_col, Object objec)
+    :MovingObject(row, col, board_row, board_col, objec)
 {
-	m_Tpacman.loadFromFile("Pacman.png");
-	m_pacman.setTexture(m_Tpacman);
-    m_pacman.scale(sf::Vector2f(0.12,0.12));
 }
 
-void Pacman::UpdateDirection(sf::Keyboard::Key key)
+void Pacman::UpdateDirection(sf::Keyboard::Key key, sf::Vector2f PacLocation)
 {
     switch (key)
     {
@@ -35,29 +33,31 @@ void Pacman::UpdateDirection(sf::Keyboard::Key key)
     }
 }
 
-sf::Vector2f Pacman::DirectionToVector(Direction direction)
+//sf::Vector2f Pacman::DirectionToVector(Direction direction)
+//{
+//    switch (direction)
+//    {
+//    case Direction::Up:
+//        return { 0, -1 };
+//    case Direction::Down:
+//        return { 0, 1 };
+//    case Direction::Right:
+//        return { 1, 0 };
+//    case Direction::Left:
+//        return { -1, 0 };
+//    default:
+//        return { 0, 0 };
+//    }
+//}
+
+void Pacman::Move(sf::Time deltaa)
 {
-    switch (direction)
-    {
-    case Direction::Up:
-        return { 0, -1 };
-    case Direction::Down:
-        return { 0, 1 };
-    case Direction::Right:
-        return { 1, 0 };
-    case Direction::Left:
-        return { -1, 0 };
-    default:
-        return { 0, 0 };
-    }
+    auto delta = m_game_clock.restart();
+
+    this->GetSprite().move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
 }
 
-void Pacman::Move(sf::Time delta)
-{
-    m_pacman.move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
-}
-
-sf::Sprite Pacman::GetPacman()
-{
-    return m_pacman;
-}
+//sf::Sprite Pacman::GetPacman()
+//{
+//    return m_pacman;
+//}
