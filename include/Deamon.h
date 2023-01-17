@@ -11,7 +11,7 @@ public:
 	Deamon(const int, const int, const int, const int, Object, Object);
 	void UpdateDirection(sf::Keyboard::Key,sf::Vector2f);
 	void Move(sf::Time);
-	Direction PursuePacman(sf::Vector2f);
+	Direction PursueTarget(sf::Vector2f);
 
 private:
 	Direction m_direction = Stay;

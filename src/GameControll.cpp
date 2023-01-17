@@ -8,7 +8,7 @@ GameControll::GameControll()
      m_board()
 {
     m_window.setFramerateLimit(60);
-    PlayMusic();
+    //PlayMusic();
 }
 
 void GameControll::run()
@@ -85,7 +85,7 @@ void GameControll::StartGame()
         }
         auto delta = m_game_clock.restart();
         m_board.MoveObjects(delta);
-        //m_pacman.Move(delta);
+        m_board.UpdateDirection(sf::Keyboard::Space);
 
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -104,7 +104,13 @@ void GameControll::DrawGame()
             m_window.draw(m_board.GetRectangle(row, col));
 
         }
-
+    }
+    for (int row = 0; row < m_board.GetRowVecStat(); row++)
+    {
+        for (int col = 0; col < m_board.GetColVecStat(row); col++)
+        {
+            m_window.draw(m_board.GetGameObjectStatic(row, col));
+        }
     }
     for (int row = 0; row < m_board.GetRowVecMove(); row++)
     {
@@ -114,13 +120,7 @@ void GameControll::DrawGame()
         }
     }
 
-    for (int row = 0; row < m_board.GetRowVecStat(); row++)
-    {
-        for (int col = 0; col < m_board.GetColVecStat(row); col++)
-        {
-            m_window.draw(m_board.GetGameObjectStatic(row, col));
-        }
-    }
+
 }
 
 void GameControll::handleClick(const sf::Vector2f& location)

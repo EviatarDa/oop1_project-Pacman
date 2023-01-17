@@ -13,21 +13,21 @@ void Deamon::UpdateDirection(sf::Keyboard::Key key, sf::Vector2f PacLocation)
 	{
 	case DEAMON_AZURE:
 		m_Speed = 200.f;
-		m_direction = PursuePacman(PacLocation);
+		m_direction = PursueTarget(PacLocation);
 		break;
 
 	case DEAMON_ORANGE:
 		m_Speed = 200.f;
-		m_direction = PursuePacman(PacLocation);
+		m_direction = PursueTarget(PacLocation);//sf::Vector2f(PacLocation.x + (4*50.f),PacLocation.y));
 		break;
 
 	case DEAMON_PINK:
-		m_direction = PursuePacman(PacLocation);
+		m_direction = PursueTarget(PacLocation);//sf::Vector2f(PacLocation.x + (2 * 50.f), PacLocation.y));
 		m_Speed = 200.f;
 		break;
 
 	case DEAMON_RED:
-		m_direction = PursuePacman(PacLocation);
+		m_direction = PursueTarget(PacLocation);// sf::Vector2f(PacLocation.x + (2 * 50.f), PacLocation.y + (2 * 50.f)));
 		m_Speed = 200.f;
 		break;
 
@@ -41,21 +41,28 @@ void Deamon::Move(sf::Time delta  )
 	this->GetSprite().move(DirectionToVector(m_direction) * delta.asSeconds()* m_Speed);
 }
 
-Direction Deamon::PursuePacman(sf::Vector2f PacLocation)
+Direction Deamon::PursueTarget(sf::Vector2f Target)
 {
-	float Xdistance = this->GetSprite().getPosition().x - PacLocation.x;
-	float Ydistance = this->GetSprite().getPosition().y - PacLocation.y;
+	float my_col = (this->GetSprite().getPosition().x - (1400 - 20 * 50.f) / 2)/50;
+	float my_row = (this->GetSprite().getPosition().y - (800 - 16 * 50.f) / 2)/50;
+
+	float target_col = (Target.x - (1400 - 20 * 50.f) / 2) / 50;
+	float target_row = (Target.y - (800 - 16 * 50.f) / 2) / 50;
+
+	float Xdistance = my_row - target_row;
+	float Ydistance = my_col - target_col;
+
 	if (Xdistance > 0)
 	{
 		return Left;
 	}
-	else if (Xdistance < 0)
-	{
-		return Right;
-	}
 	else if (Ydistance > 0)
 	{
 		return Down;
+	}
+	else if (Xdistance < 0)
+	{
+		return Right;
 	}
 	else if (Ydistance < 0)
 	{
@@ -63,6 +70,6 @@ Direction Deamon::PursuePacman(sf::Vector2f PacLocation)
 	}
 	else
 	{
-		return Down;
+		return Stay;
 	}
 }

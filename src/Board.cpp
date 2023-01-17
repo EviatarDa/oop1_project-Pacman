@@ -98,10 +98,10 @@ void Board::InitVector()
 				row_vector_move.push_back(Getptrmove(type, row, col));
 				if (type == 'a')
 				{
-					m_P2Pacman = { row, col };
-
+					int Prow = GetRowVecMove();
+					int Pcol = row_vector_move.size() - 1;
+					m_P2Pacman = { Prow,Pcol };
 				}
-
 			}
 			else if (type != ' ')
 			{
