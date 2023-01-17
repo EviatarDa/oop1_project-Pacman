@@ -60,6 +60,17 @@ void Board::UpdateDirection(sf::Keyboard::Key key)
 	}
 }
 
+void Board::UpdateDirection()//deamons
+{
+	for (int row = 0; row < this->GetRowVecMove(); ++row)
+	{
+		for (int col = 0; col < this->GetColVecMove(row); ++col)
+		{
+			m_MovingObject[row][col]->UpdateDeamonsDirection(GetGameObjectMoving(m_P2Pacman.x, m_P2Pacman.y).getPosition());
+		}
+	}
+}
+
 
 const sf::RectangleShape Board::CreateRectangle(const int row, const int col) const
 {
@@ -107,7 +118,6 @@ void Board::InitVector()
 			{
 				row_vector_static.push_back(Getptrstatic(type, row, col));
 			}
-	
 		}
 		m_MovingObject.push_back(std::move( row_vector_move));
 		m_StaticObject.push_back(std::move(row_vector_static));

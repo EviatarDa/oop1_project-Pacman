@@ -12,6 +12,8 @@ public:
     Pacman(const int , const int , const int , const int , Object );
     //sf::Vector2f DirectionToVector(Direction);
     void UpdateDirection(sf::Keyboard::Key key, sf::Vector2f);
+    void UpdateDeamonsDirection(sf::Vector2f);
+
     void Move(sf::Time);
 
 private:

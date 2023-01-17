@@ -33,6 +33,10 @@ void Pacman::UpdateDirection(sf::Keyboard::Key key, sf::Vector2f PacLocation)
     }
 }
 
+void Pacman::UpdateDeamonsDirection(sf::Vector2f)
+{
+}
+
 void Pacman::Move(sf::Time delta)
 {
     this->GetSprite().move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);

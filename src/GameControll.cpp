@@ -74,18 +74,20 @@ void GameControll::StartGame()
                // m_pacman.UpdateDirection(event.key.code);
                 break;
             }
-            case sf::Event::KeyReleased:
-            {
+            //case sf::Event::KeyReleased:
+            //{
+            //    m_board.UpdateDirection(sf::Keyboard::Space);
+            //    //m_pacman.UpdateDirection(sf::Keyboard::Space);
+            //    break;
+            //}
+            default:
                 m_board.UpdateDirection(sf::Keyboard::Space);
-                //m_pacman.UpdateDirection(sf::Keyboard::Space);
                 break;
             }
-            
-            }
         }
+        m_board.UpdateDirection();
         auto delta = m_game_clock.restart();
         m_board.MoveObjects(delta);
-        m_board.UpdateDirection(sf::Keyboard::Space);
 
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
