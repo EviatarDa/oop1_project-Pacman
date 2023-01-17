@@ -22,7 +22,6 @@ public:
     int GetRowVecStat()const;
     int GetColVecMove(const int) const;
     int GetColVecStat(const int) const;
-    void UpdateDirection(sf::Keyboard::Key key);
     void UpdateDirection();
     const sf::RectangleShape CreateRectangle(const int, const int) const;
     sf::RectangleShape GetRectangle(const int, const int) const;

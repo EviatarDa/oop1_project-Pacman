@@ -49,24 +49,13 @@ int Board::GetColVecStat(const int row) const
 
 }
 
-void Board::UpdateDirection(sf::Keyboard::Key key)
+void Board::UpdateDirection()
 {
 	for (int row = 0; row < this->GetRowVecMove(); ++row)
 	{
 		for (int col = 0; col < this->GetColVecMove(row); ++col)
 		{
-			m_MovingObject[row][col]->UpdateDirection(key, GetGameObjectMoving(m_P2Pacman.x,m_P2Pacman.y).getPosition());
-		}
-	}
-}
-
-void Board::UpdateDirection()//deamons
-{
-	for (int row = 0; row < this->GetRowVecMove(); ++row)
-	{
-		for (int col = 0; col < this->GetColVecMove(row); ++col)
-		{
-			m_MovingObject[row][col]->UpdateDeamonsDirection(GetGameObjectMoving(m_P2Pacman.x, m_P2Pacman.y).getPosition());
+			m_MovingObject[row][col]->UpdateDirection(GetGameObjectMoving(m_P2Pacman.x,m_P2Pacman.y).getPosition());
 		}
 	}
 }

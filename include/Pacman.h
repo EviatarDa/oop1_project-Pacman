@@ -10,15 +10,12 @@ class Pacman : public MovingObject
 {
 public:
     Pacman(const int , const int , const int , const int , Object );
-    //sf::Vector2f DirectionToVector(Direction);
-    void UpdateDirection(sf::Keyboard::Key key, sf::Vector2f);
-    void UpdateDeamonsDirection(sf::Vector2f);
-
+    void UpdateDirection(sf::Vector2f);
     void Move(sf::Time);
 
 private:
-    int m_life = 3;
-    int m_score = 0;
+    //int m_life = 3;
+    //int m_score = 0;
     Direction m_direction = Stay;
     //Animation m_animation;
 };

@@ -8,10 +8,10 @@ class MovingObject :public GameObject
 public:
 	MovingObject(const int, const int, const int, const int, Object);
 	sf::Vector2f DirectionToVector(Direction);
-	virtual void UpdateDirection(sf::Keyboard::Key, sf::Vector2f) = 0;
-	virtual void UpdateDeamonsDirection(sf::Vector2f) = 0;
+	virtual void UpdateDirection(sf::Vector2f) = 0;
 	virtual void Move(sf::Time) = 0;
 
 
 private:
+	//sf::Vector2f m_last_locatiom;// = m_location;
 };

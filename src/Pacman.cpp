@@ -7,38 +7,34 @@ Pacman::Pacman(const int row, const int col, const int board_row, const int boar
 {
 }
 
-void Pacman::UpdateDirection(sf::Keyboard::Key key, sf::Vector2f PacLocation)
+void Pacman::UpdateDirection(sf::Vector2f PacLocation)
 {
-    switch (key)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-    case sf::Keyboard::Left:
         m_direction = Left;
-        break;
-
-    case sf::Keyboard::Right:
-        m_direction = Right;
-        break;
-
-    case sf::Keyboard::Up:
-        m_direction = Up;
-        break;
-
-    case sf::Keyboard::Down:
-        m_direction = Down;
-        break;
-
-    default:
-        m_direction = Stay;
-        break;
     }
-}
-
-void Pacman::UpdateDeamonsDirection(sf::Vector2f)
-{
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        m_direction = Right;
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        m_direction = Up;
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        m_direction = Down;
+    }
+    else
+    {
+        m_direction = Stay;
+    }
 }
 
 void Pacman::Move(sf::Time delta)
 {
-    this->GetSprite().move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
-    //m_sprite.move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
+    //this->GetSprite().move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
+    m_last_locatiom = m_location;
+    m_sprite.move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
+    
 }

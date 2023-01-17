@@ -68,21 +68,21 @@ void GameControll::StartGame()
                 m_window.close();
                 break;
 
-            case sf::Event::KeyPressed:
-            {
-                m_board.UpdateDirection(event.key.code);
-               // m_pacman.UpdateDirection(event.key.code);
-                break;
-            }
+            //case sf::Event::KeyPressed:
+            //{
+            //    m_board.UpdateDirection(event.key.code);
+            //    m_pacman.UpdateDirection(event.key.code);
+            //    break;
+            //}
             //case sf::Event::KeyReleased:
             //{
             //    m_board.UpdateDirection(sf::Keyboard::Space);
             //    //m_pacman.UpdateDirection(sf::Keyboard::Space);
             //    break;
             //}
-            default:
-                m_board.UpdateDirection(sf::Keyboard::Space);
-                break;
+            //default:
+            //    m_board.UpdateDirection(sf::Keyboard::Space);
+            //    break;
             }
         }
         m_board.UpdateDirection();

@@ -9,8 +9,7 @@ class Deamon : public MovingObject
 {
 public:
 	Deamon(const int, const int, const int, const int, Object, Object);
-	void UpdateDirection(sf::Keyboard::Key,sf::Vector2f);
-	void UpdateDeamonsDirection(sf::Vector2f);
+	void UpdateDirection(sf::Vector2f);
 	void Move(sf::Time);
 	Direction PursueTarget(sf::Vector2f);
 
