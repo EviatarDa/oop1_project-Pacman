@@ -12,10 +12,10 @@ public:
 	GameObject(const int, const int, const int, const int, Object);
 	sf::Sprite& GetSprite();
 
-	
+protected:
+	sf::Sprite m_sprite;
 
 private:
 
 	sf::Vector2f m_location;
-	sf::Sprite m_sprite;
 };

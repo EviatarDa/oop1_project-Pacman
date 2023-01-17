@@ -104,9 +104,9 @@ void GameControll::DrawGame()
         for (int col = 0; col < m_board.GetCol(); col++)
         {
             m_window.draw(m_board.GetRectangle(row, col));
-
         }
     }
+
     for (int row = 0; row < m_board.GetRowVecStat(); row++)
     {
         for (int col = 0; col < m_board.GetColVecStat(row); col++)
@@ -114,6 +114,7 @@ void GameControll::DrawGame()
             m_window.draw(m_board.GetGameObjectStatic(row, col));
         }
     }
+
     for (int row = 0; row < m_board.GetRowVecMove(); row++)
     {
         for (int col = 0; col < m_board.GetColVecMove(row); col++)
@@ -121,8 +122,6 @@ void GameControll::DrawGame()
             m_window.draw(m_board.GetGameObjectMoving(row, col));
         }
     }
-
-
 }
 
 void GameControll::handleClick(const sf::Vector2f& location)

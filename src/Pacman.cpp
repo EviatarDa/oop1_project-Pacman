@@ -40,4 +40,5 @@ void Pacman::UpdateDeamonsDirection(sf::Vector2f)
 void Pacman::Move(sf::Time delta)
 {
     this->GetSprite().move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
+    //m_sprite.move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
 }

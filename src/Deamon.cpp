@@ -65,7 +65,7 @@ Direction Deamon::PursueTarget(sf::Vector2f Target)
 	float Xdistance = my_col - target_col;
 	float Ydistance = my_row - target_row;
 
-	if ((target_Pixlcol - 5.f < my_Pixlcol && my_Pixlcol < target_Pixlcol+5.f) &&
+	if ((target_Pixlcol - 5.f < my_Pixlcol && my_Pixlcol < target_Pixlcol + 5.f) &&
 		(target_Pixlrow - 5.f < my_Pixlrow && my_Pixlrow < target_Pixlrow + 5.f))
 	{
 		return Stay;
@@ -79,12 +79,13 @@ Direction Deamon::PursueTarget(sf::Vector2f Target)
 	{
 		return Down;
 	}
+	else if (Ydistance > 0)
+	{
+		return Up;
+	}
 	else if (Xdistance < 0)
 	{
 		return Right;
 	}
-	else //if (Ydistance > 0)
-	{
-		return Up;
-	}
+
 }
