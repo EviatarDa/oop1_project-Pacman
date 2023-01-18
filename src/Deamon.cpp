@@ -48,14 +48,14 @@ Direction Deamon::PursueTarget(sf::Vector2f Target)
 	float my_Pixlcol = this->GetSprite().getPosition().x;
 	float my_Pixlrow = this->GetSprite().getPosition().y;
 
-	float my_col = (my_Pixlcol - (1400 - 20 * 50.f) / 2) / 50;
-	float my_row = (my_Pixlrow - (800 - 16 * 50.f) / 2) / 50;
+	//float my_col = (my_Pixlcol - (1400 - 20 * 50.f) / 2) / 50;
+	//float my_row = (my_Pixlrow - (800 - 16 * 50.f) / 2) / 50;
 
-	float target_col = (Target.x - (1400 - 20 * 50.f) / 2) / 50;
-	float target_row = (Target.y - (800 - 16 * 50.f) / 2) / 50;
+	//float target_col = (Target.x - (1400 - 20 * 50.f) / 2) / 50;
+	//float target_row = (Target.y - (800 - 16 * 50.f) / 2) / 50;
 
-	float Xdistance = my_col - target_col;
-	float Ydistance = my_row - target_row;
+	//float Xdistance = my_col - target_col;
+	//float Ydistance = my_row - target_row;
 
 	if ((Target.x - 20.f < my_Pixlcol && my_Pixlcol < Target.x + 20.f) &&
 		(Target.y - 20.f < my_Pixlrow && my_Pixlrow < Target.y + 20.f))
