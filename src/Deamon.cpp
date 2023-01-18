@@ -13,7 +13,7 @@ void Deamon::UpdateDirection(sf::Vector2f PacLocation)
 	{
 	case DEAMON_AZURE:
 		m_direction = PursueTarget(PacLocation);
-		m_Speed = 100.f;
+		m_Speed = 75.f;
 		break;
 
 	case DEAMON_ORANGE:
@@ -23,12 +23,12 @@ void Deamon::UpdateDirection(sf::Vector2f PacLocation)
 
 	case DEAMON_PINK:
 		m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (2 * 50.f), PacLocation.y));
-		m_Speed = 150.f;
+		m_Speed = 100.f;
 		break;
 
 	case DEAMON_RED:
 		m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (2 * 50.f), PacLocation.y + (2 * 50.f)));
-		m_Speed = 100.f;
+		m_Speed = 75.f;
 		break;
 
 	default:

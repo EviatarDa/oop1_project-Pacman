@@ -11,6 +11,7 @@ public:
 	sf::Sprite GetButton(const Button) const;
 	sf::Sprite GetTitle(const Title) const;
 	sf::Sprite GetInstructions(const Instructions) const;
+	void PlaySound(const Sound);
 
 	void ButtonPress(const Button);
 	void ButtonRelease(const Button); 
@@ -33,6 +34,7 @@ private:
 	sf::Sprite m_Buttons[BUTTONS];
 	sf::Sprite m_TitleObjects[TITLE_OBJECTS];
 	sf::Sprite m_Instructions_Page[INSTRUCTIONS];
+	sf::Sound m_Sound[SOUNDS];
 
 	//functions
 	void SetPosition();

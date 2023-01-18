@@ -30,3 +30,4 @@ configure_file ("GameRules.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("OhNo.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Song.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Click.wav" ${CMAKE_BINARY_DIR} COPYONLY)

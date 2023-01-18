@@ -4,7 +4,7 @@
 #include "MovingObject.h"
 #include "Resources.h"
 
-const float PACMAN_SPEED = 300.f;
+const float PACMAN_SPEED = 150;
 
 class Pacman : public MovingObject
 {

@@ -22,6 +22,8 @@ Menu::Menu(int width, int height)
 		m_Instructions_Page[instruction].setTexture(Resources::instance().GetInstruction((Instructions)instruction));
 	}
 
+	m_Sound[CLICK].setBuffer(Resources::instance().GetSound(CLICK));
+
 	//define the first visibility
 	m_TitleObjects[HELLO].setColor(sf::Color::Color(255, 255, 255, 0));
 	m_TitleObjects[WANNA_PLAY].setColor(sf::Color::Color(255, 255, 255, 0));
@@ -49,6 +51,11 @@ sf::Sprite Menu::GetTitle(const Title object) const
 sf::Sprite Menu::GetInstructions(const Instructions object) const
 {
 	return m_Instructions_Page[object];
+}
+
+void Menu::PlaySound(const Sound sound)
+{
+	m_Sound[sound].play();
 }
 
 void Menu::ButtonPress(const Button button)

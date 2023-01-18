@@ -8,7 +8,6 @@ GameControll::GameControll()
      m_board()
 {
     m_window.setFramerateLimit(60);
-    //PlayMusic();
 }
 
 void GameControll::run()
@@ -21,7 +20,6 @@ void GameControll::run()
 
         if (auto event = sf::Event{}; m_window.waitEvent(event))
         {
-            //handle every case of event
             switch (event.type)
             {
             case sf::Event::Closed:
@@ -130,15 +128,19 @@ void GameControll::handleClick(const sf::Vector2f& location)
 {
     if (m_menu.GetButton(PLAY).getGlobalBounds().contains(location))
     {
-        //PlayVideo();
+        m_menu.PlaySound(CLICK);
+        PlayVideo();
+        //PlayMusic();
         StartGame();
     }
     else if (m_menu.GetButton(HELP).getGlobalBounds().contains(location))
     {
+        m_menu.PlaySound(CLICK);
         InstructionsLoop();
     }
     else if (m_menu.GetButton(EXIT).getGlobalBounds().contains(location))
     {
+        m_menu.PlaySound(CLICK);
         m_window.close();
     }
 }
@@ -148,12 +150,14 @@ void GameControll::handleNextClick(const sf::Vector2f& location, bool& exit)
     static int display = EVIATAR1;
     if (m_menu.GetButton(BACK).getGlobalBounds().contains(location))
     {
+        m_menu.PlaySound(CLICK);
         m_menu.ResetRules();
         display = EVIATAR1;
         exit = true;
     }
     else if (m_menu.GetButton(VIDEO_PLAY).getGlobalBounds().contains(location))
     {
+        m_menu.PlaySound(CLICK);
         switch (display)
         {
         case EVIATAR1:
@@ -213,7 +217,6 @@ void GameControll::InstructionsLoop()
 
         if (auto event = sf::Event{}; m_window.waitEvent(event))
         {
-            //handle every case of event
             switch (event.type)
             {
             case sf::Event::Closed:
@@ -301,8 +304,8 @@ void GameControll::PlayVideo()
             m_window.clear(sf::Color::Color(0, 0, 0));
             DrawMenu();
             m_window.display();
-            m_menu.MoveObject(TITLE_PACMAN, -5, 0);
-            m_menu.MoveObject(TITLE_DEAMONS, -5, 0);
+            m_menu.MoveObject(TITLE_PACMAN, -10, 0);
+            m_menu.MoveObject(TITLE_DEAMONS, -10, 0);
         }
 
         //ends
@@ -319,7 +322,7 @@ void GameControll::PlayVideo()
 
 void GameControll::PlayMusic()
 {
-    m_Sound.setBuffer(m_resource.getsong());
+    m_Sound.setBuffer(m_resource.GetSound(SONG));
     m_Sound.play();
     m_Sound.setLoop(true);
 }
