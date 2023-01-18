@@ -15,3 +15,10 @@ sf::Sprite& GameObject::GetSprite()
 {
 	return m_sprite;
 }
+
+bool GameObject::CheckCollision(const GameObject& game_object) const
+{
+	if (&game_object == this)
+		return false;
+	return m_sprite.getGlobalBounds().intersects(game_object.m_sprite.getGlobalBounds());
+}

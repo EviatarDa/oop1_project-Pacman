@@ -23,3 +23,20 @@ sf::Vector2f MovingObject::DirectionToVector(Direction direction)
         return { 0, 0 };
     }
 }
+
+sf::Vector2f MovingObject::OppositeVector(Direction direction)
+{
+    switch (direction)
+    {
+    case Direction::Up:
+        return { 0, 1 };
+    case Direction::Down:
+        return { 0, -1 };
+    case Direction::Right:
+        return { -1, 0 };
+    case Direction::Left:
+        return { 1, 0 };
+    default:
+        return { 0, 0 };
+    }
+}

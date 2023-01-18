@@ -90,6 +90,7 @@ void GameControll::StartGame()
         m_board.MoveObjects(delta);
 
 
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         {
             m_window.close();
@@ -329,7 +330,6 @@ void GameControll::DrawToolBar()
     {
         m_window.draw(m_toolbar.GetText(word));
         m_window.draw(m_toolbar.GetNum(word));
-        
     }
 }
 

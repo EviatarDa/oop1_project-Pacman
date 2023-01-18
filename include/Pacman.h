@@ -13,6 +13,15 @@ public:
     void UpdateDirection(sf::Vector2f);
     void Move(sf::Time);
 
+    virtual void HandleCollision(GameObject&)override;
+    virtual void HandleCollision(Pacman&)override;
+    virtual void HandleCollision(Deamon&)override;
+    virtual void HandleCollision(Wall&)override;
+    virtual void HandleCollision(Door&)override;
+    virtual void HandleCollision(Key&)override;
+    virtual void HandleCollision(Present&)override;
+    virtual void HandleCollision(Cookie&)override;
+
 private:
     //int m_life = 3;
     //int m_score = 0;

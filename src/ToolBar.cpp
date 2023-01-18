@@ -1,6 +1,6 @@
 #pragma once
+
 #include "ToolBar.h"
-#include <string>
 
 
 ToolBar::ToolBar()

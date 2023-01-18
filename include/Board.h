@@ -29,6 +29,7 @@ public:
     sf::Sprite GetGameObjectMoving(const int, const int);
     sf::Sprite GetGameObjectStatic(const int, const int);
     void MoveObjects(sf::Time);
+    void HandleCollisions(GameObject&);
 
 
 private:

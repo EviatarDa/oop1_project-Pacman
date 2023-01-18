@@ -34,7 +34,6 @@ void Pacman::UpdateDirection(sf::Vector2f PacLocation)
 
 void Pacman::Move(sf::Time delta)
 {
-    //this->GetSprite().move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
     switch (m_direction)
     {
     case Up:
@@ -57,4 +56,41 @@ void Pacman::Move(sf::Time delta)
     m_last_locatiom = m_location;
     m_sprite.move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
     
+}
+
+void Pacman::HandleCollision(GameObject& game_object) 
+{
+    game_object.HandleCollision(*this);
+}
+
+void Pacman::HandleCollision(Pacman& pacman)
+{
+}
+
+void Pacman::HandleCollision(Deamon& deamon)
+{
+
+}
+
+void Pacman::HandleCollision(Wall& wall)
+{
+    m_location = m_last_locatiom;
+    m_sprite.move(OppositeVector(m_direction) * 0.1f * PACMAN_SPEED);
+}
+
+void Pacman::HandleCollision(Door& door)
+{
+}
+
+void Pacman::HandleCollision(Key& door)
+{
+}
+
+void Pacman::HandleCollision(Present& present)
+{
+}
+
+void Pacman::HandleCollision(Cookie& cookie)
+{
+
 }

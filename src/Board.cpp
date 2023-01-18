@@ -130,8 +130,24 @@ void Board::MoveObjects(sf::Time delta)
 		for (int col = 0; col < this->GetColVecMove(row); col++)
 		{
 			m_MovingObject[row][col]->Move(delta);
+			HandleCollisions(*m_MovingObject[row][col]);
 		}
 	}
+}
+
+void Board::HandleCollisions(GameObject& game_object)
+{
+	for (int row = 0; row < this->GetRowVecStat(); row++)
+	{
+		for (int col = 0; col < this->GetColVecStat(row); col++)
+		{
+			if (game_object.CheckCollision(*m_StaticObject[row][col]))
+			{
+				game_object.HandleCollision(*m_StaticObject[row][col]);
+			}
+		}
+	}
+
 }
 
 std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int row, const int col) const

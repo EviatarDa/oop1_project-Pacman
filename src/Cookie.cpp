@@ -7,3 +7,35 @@ Cookie::Cookie(const int row, const int col, const int board_row, const int boar
 {
 
 }
+
+void Cookie::HandleCollision(GameObject&)
+{
+}
+
+void Cookie::HandleCollision(Pacman&)
+{
+}
+
+void Cookie::HandleCollision(Deamon&)
+{
+}
+
+void Cookie::HandleCollision(Wall&)
+{
+}
+
+void Cookie::HandleCollision(Door&)
+{
+}
+
+void Cookie::HandleCollision(Key&)
+{
+}
+
+void Cookie::HandleCollision(Present&)
+{
+}
+
+void Cookie::HandleCollision(Cookie&)
+{
+}

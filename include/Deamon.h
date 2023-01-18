@@ -12,6 +12,14 @@ public:
 	void UpdateDirection(sf::Vector2f);
 	void Move(sf::Time);
 	Direction PursueTarget(sf::Vector2f);
+	virtual void HandleCollision(GameObject&)override;
+	virtual void HandleCollision(Pacman&)override;
+	virtual void HandleCollision(Deamon&)override;
+	virtual void HandleCollision(Wall&)override;
+	virtual void HandleCollision(Door&)override;
+	virtual void HandleCollision(Key&)override;
+	virtual void HandleCollision(Present&)override;
+	virtual void HandleCollision(Cookie&)override;
 
 private:
 	Direction m_direction = Stay;

@@ -38,7 +38,6 @@ void Deamon::UpdateDirection(sf::Vector2f PacLocation)
 
 void Deamon::Move(sf::Time delta)
 {
-	//this->GetSprite().move(DirectionToVector(m_direction) * delta.asSeconds()* m_Speed);
 	m_last_locatiom = m_location;
 	m_sprite.move(DirectionToVector(m_direction) * delta.asSeconds()* m_Speed);
 }
@@ -47,15 +46,6 @@ Direction Deamon::PursueTarget(sf::Vector2f Target)
 {
 	float my_Pixlcol = this->GetSprite().getPosition().x;
 	float my_Pixlrow = this->GetSprite().getPosition().y;
-
-	//float my_col = (my_Pixlcol - (1400 - 20 * 50.f) / 2) / 50;
-	//float my_row = (my_Pixlrow - (800 - 16 * 50.f) / 2) / 50;
-
-	//float target_col = (Target.x - (1400 - 20 * 50.f) / 2) / 50;
-	//float target_row = (Target.y - (800 - 16 * 50.f) / 2) / 50;
-
-	//float Xdistance = my_col - target_col;
-	//float Ydistance = my_row - target_row;
 
 	if ((Target.x - 20.f < my_Pixlcol && my_Pixlcol < Target.x + 20.f) &&
 		(Target.y - 20.f < my_Pixlrow && my_Pixlrow < Target.y + 20.f))
@@ -80,22 +70,41 @@ Direction Deamon::PursueTarget(sf::Vector2f Target)
 	{
 		return Up;
 	}
+}
 
-	//if (Xdistance > 0) 
-	//{
-	//	return Left;
-	//}
-	//else if (Ydistance < 0)
-	//{
-	//	return Down;
-	//}
-	//else if (Xdistance < 0)
-	//{
-	//	return Right;
-	//}
-	//else if (Ydistance > 0)
-	//{
-	//	return Up;
-	//}
+void Deamon::HandleCollision(GameObject& game_object)
+{
+	game_object.HandleCollision(*this);
+}
 
+void Deamon::HandleCollision(Pacman&)
+{
+}
+
+void Deamon::HandleCollision(Deamon&)
+{
+}
+
+void Deamon::HandleCollision(Wall& wall)
+{
+	m_location = m_last_locatiom;
+	m_sprite.move(OppositeVector(m_direction) * 0.1f *  150.f); ////fix delta
+}
+
+void Deamon::HandleCollision(Door&)
+{
+	m_location = m_last_locatiom;
+	m_sprite.move(OppositeVector(m_direction) * 0.1f * 150.f); ////fix delta
+}
+
+void Deamon::HandleCollision(Key&)
+{
+}
+
+void Deamon::HandleCollision(Present&)
+{
+}
+
+void Deamon::HandleCollision(Cookie&)
+{
 }

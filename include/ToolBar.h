@@ -1,6 +1,8 @@
 #pragma once
+
 #include <SFML/Graphics/Text.hpp>
 #include "Resources.h"
+#include <string>
 
 class ToolBar
 {
