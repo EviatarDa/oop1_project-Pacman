@@ -43,6 +43,8 @@ void Resources::LoadFromFile()
 
 
 	m_song.loadFromFile("Song.ogg");
+	m_font.loadFromFile("C:/Windows/Fonts/Arial.ttf");
+
 }
 
 sf::Texture& Resources::GetButton(Button button)
@@ -68,4 +70,9 @@ sf::Texture& Resources::GetGameObject(Object object)
 sf::SoundBuffer& Resources::getsong()
 {
 	return m_song;
+}
+
+sf::Font& Resources::GetFont()
+{
+	return m_font;
 }

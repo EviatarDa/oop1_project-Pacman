@@ -8,6 +8,7 @@
 #include "Pacman.h"
 //#include "Deamon.h"
 #include "StaticObjects.h"
+#include "ToolBar.h"
 
 
 const int WINDOW_HEIGHT = 800;
@@ -30,6 +31,7 @@ public:
 	void BrighteningSprite(Title, int&, int, int);
 	void PlayVideo();
 	void PlayMusic();
+	void DrawToolBar();
 
 
 private:
@@ -38,6 +40,7 @@ private:
 	Resources& m_resource = Resources::instance();
 	Menu m_menu;
 	Board m_board;
+	ToolBar m_toolbar;
 	//Pacman m_pacman;
 	sf::Sound m_Sound;
 	sf::Clock m_game_clock;

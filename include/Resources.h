@@ -14,11 +14,14 @@ enum Object { PACMAN, DEAMON_ORANGE, DEAMON_PINK, DEAMON_RED, DEAMON_AZURE, KEY,
 
 enum Direction { Up, Down, Right, Left, Stay };
 
+enum ToolBarWord { LIFE, SCORE, LEVEL, TIME };
+
 
 const int BUTTONS = 5;
 const int TITLE_OBJECTS = 6;
 const int INSTRUCTIONS = 7;
 const int GAME_OBJECTS = 10;
+const int TOOL_BAR = 4;
 
 class Resources 
 {
@@ -34,12 +37,13 @@ public:
 	sf::Texture& GetGameObject(Object);
 
 	sf::SoundBuffer& getsong();
+	sf::Font& GetFont();
 
 private:
 	
 	Resources(const Resources&)= delete;
 	Resources operator=(const Resources&) = delete;
-
+	sf::Font m_font;
 	sf::SoundBuffer m_song;
 	sf::SoundBuffer m_Sounds;
 	sf::Texture m_ButtonTextures[BUTTONS];
@@ -52,4 +56,7 @@ private:
 	std::string m_InstructionFiles[INSTRUCTIONS] = { "Shir.png" , "Eviatar1.png", "Eviatar2.png", "ShirDrop.png" , "EviatarDrop.png", "OhNo.png", "GameRules.png" };
 	std::string m_GameObjectFiles[GAME_OBJECTS] = { "Pacman.png", "Deamon_Orange.png" ,"Deamon_Pink.png","Deamon_Red.png","Deamon_Azure.png",
 													"Key.png", "Wall.png", "Door.png", "Cookie.png", "Present.png" };
+
+
+
 };

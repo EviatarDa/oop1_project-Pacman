@@ -99,6 +99,7 @@ void GameControll::StartGame()
 
 void GameControll::DrawGame()
 {
+    DrawToolBar();
     for (int row = 0; row < m_board.GetRow(); row++)
     {
         for (int col = 0; col < m_board.GetCol(); col++)
@@ -320,6 +321,16 @@ void GameControll::PlayMusic()
     m_Sound.setBuffer(m_resource.getsong());
     m_Sound.play();
     m_Sound.setLoop(true);
+}
+
+void GameControll::DrawToolBar()
+{
+    for (int word = LIFE; word <= TIME; word++)
+    {
+        m_window.draw(m_toolbar.GetText(word));
+        m_window.draw(m_toolbar.GetNum(word));
+        
+    }
 }
 
 
