@@ -40,3 +40,8 @@ sf::Vector2f MovingObject::OppositeVector(Direction direction)
         return { 0, 0 };
     }
 }
+
+void MovingObject::SetToFirstLocation()
+{
+    m_sprite.setPosition(m_first_location);
+}

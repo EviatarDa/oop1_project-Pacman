@@ -19,6 +19,7 @@ public:
     void DowngradeToNormal();
     int GetKeyCounter();
     void DecKeys();
+    void DecLife();
     void SetLastLocation();////////////new;
     virtual void HandleCollision(GameObject&)override;
     virtual void HandleCollision(Pacman&)override;
@@ -35,6 +36,7 @@ private:
     int m_KeyCounter = 0;
     Direction m_direction = Stay;
     std::unique_ptr <PacmanState> m_state;
+    sf::Sound m_Sounds[SOUNDS];
 
     //Animation m_animation;
 };

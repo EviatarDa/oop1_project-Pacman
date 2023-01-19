@@ -35,6 +35,7 @@ public:
 protected:
 	sf::Sprite m_sprite;
 	sf::Vector2f m_last_location;
+	sf::Vector2f m_first_location;
 	bool m_IsCollide = false;
 
 private:

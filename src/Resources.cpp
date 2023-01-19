@@ -41,11 +41,10 @@ void Resources::LoadFromFile()
 		m_GameObjectTextures[object].setSmooth(true);
 	}
 
-	for (int sound = SONG; sound <= CLICK; sound++)
+	for (int sound = SONG; sound <= GAME_OVER; sound++)
 	{
 		m_Sounds[sound].loadFromFile(m_SoundFiles[sound]);
 	}
-	m_song.loadFromFile("Song.ogg");
 	m_font.loadFromFile("C:/Windows/Fonts/Arial.ttf");
 
 }
@@ -74,11 +73,6 @@ sf::SoundBuffer& Resources::GetSound(Sound sound)
 {
 	return m_Sounds[sound];
 }
-
-//sf::SoundBuffer& Resources::getsong()
-//{
-//	return m_song;
-//}
 
 sf::Font& Resources::GetFont()
 {

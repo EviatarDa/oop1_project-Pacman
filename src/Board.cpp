@@ -110,7 +110,6 @@ void Board::MoveObjects(sf::Time delta)
 	{
 		m_MovingObject[index]->Move(delta);
 		HandleCollisions(*m_MovingObject[index]);
-			
 	}
 }
 
@@ -124,6 +123,15 @@ void Board::HandleCollisions(GameObject& game_object)
 		}
 	}
 	std::erase_if(m_StaticObject, [](const auto& game_object) {return game_object->GetIsCollide(); });
+
+	//////////////////new
+	//for (int index = 0; index < m_MovingObject.size(); index++)
+	//{
+	//	if (game_object.CheckCollision(*m_MovingObject[index]))
+	//	{
+	//		game_object.HandleCollision(*m_MovingObject[index]);
+	//	}
+	//}
 }
 
 std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int row, const int col) const
@@ -164,6 +172,4 @@ std::unique_ptr<MovingObject> Board::Getptrmove(const char type, const int row, 
 		return std::make_unique<Deamon>(row, col, m_row, m_col, (Object)(DEAMON_ORANGE + add), (Object)(DEAMON_ORANGE + add));///todo fix
 	}
 	}
-
-
 }

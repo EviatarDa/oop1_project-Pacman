@@ -8,5 +8,6 @@ class NormalPacman : public PacmanState
 {
 public:
     void handleDoorCollision(int keys, Door&, Pacman&) ;
+    virtual void handleDeamonCollision(int, Deamon&, Pacman&);
 
 };

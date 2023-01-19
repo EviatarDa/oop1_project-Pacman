@@ -7,6 +7,10 @@ Pacman::Pacman(const int row, const int col, const int board_row, const int boar
      m_state(std::make_unique<NormalPacman>())
 {
     m_sprite.setOrigin((float)m_sprite.getTextureRect().height / 2,(float) m_sprite.getTextureRect().width / 2);
+    for (int sound = MINUS_LIFE ; sound <= EAT ;sound++)
+    {
+        m_Sounds[sound].setBuffer(Resources::instance().GetSound((Sound)sound));
+    }
 }
 
 void Pacman::UpdateDirection(sf::Vector2f PacLocation)
@@ -79,6 +83,11 @@ void Pacman::DecKeys()
     m_KeyCounter--;
 }
 
+void Pacman::DecLife()
+{
+    m_life--;
+}
+
 void Pacman::SetLastLocation()
 {
     m_sprite.setPosition(m_last_location);
@@ -95,7 +104,7 @@ void Pacman::HandleCollision(Pacman& pacman)
 
 void Pacman::HandleCollision(Deamon& deamon)
 {
-    //m_state->handleDeamonCollision(m_KeyCounter, deamon, *this);
+    m_state->handleDeamonCollision(m_life, deamon, *this);
 }
 
 void Pacman::HandleCollision(Wall& wall)
@@ -122,4 +131,5 @@ void Pacman::HandleCollision(Present& present)
 void Pacman::HandleCollision(Cookie& cookie)
 {
     m_score += 2;
+    m_Sounds[EAT].play();
 }

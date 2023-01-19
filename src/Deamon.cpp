@@ -77,8 +77,9 @@ void Deamon::HandleCollision(GameObject& game_object)
 	game_object.HandleCollision(*this);
 }
 
-void Deamon::HandleCollision(Pacman&)
+void Deamon::HandleCollision(Pacman& pacman)
 {
+	//pacman
 }
 
 void Deamon::HandleCollision(Deamon&)
