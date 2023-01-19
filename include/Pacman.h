@@ -23,8 +23,8 @@ public:
     virtual void HandleCollision(Cookie&)override;
 
 private:
-    //int m_life = 3;
-    //int m_score = 0;
+    int m_life = 3;
+    int m_score = 0;
     Direction m_direction = Stay;
     //Animation m_animation;
 };

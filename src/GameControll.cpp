@@ -92,20 +92,14 @@ void GameControll::DrawGame()
         }
     }
 
-    for (int row = 0; row < m_board.GetRowVecStat(); row++)
+    for (int index = 0; index < m_board.GetStaticSize(); index++)
     {
-        for (int col = 0; col < m_board.GetColVecStat(row); col++)
-        {
-            m_window.draw(m_board.GetGameObjectStatic(row, col));
-        }
+        m_window.draw(m_board.GetGameObjectStatic(index));
     }
 
-    for (int row = 0; row < m_board.GetRowVecMove(); row++)
+    for (int index = 0; index < m_board.GetMoveSize(); index++)
     {
-        for (int col = 0; col < m_board.GetColVecMove(row); col++)
-        {
-            m_window.draw(m_board.GetGameObjectMoving(row, col));
-        }
+        m_window.draw(m_board.GetGameObjectMoving(index));
     }
 }
 

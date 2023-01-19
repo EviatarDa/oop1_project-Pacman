@@ -27,36 +27,12 @@ int Board::GetCol() const
 	return m_col;
 }
 
-int Board::GetRowVecMove() const
-{
-	return m_MovingObject.size();
-}
-
-int Board::GetRowVecStat() const
-{
-	return m_StaticObject.size();
-
-}
-
-int Board::GetColVecMove(const int row) const
-{
-	return m_MovingObject[row].size();
-}
-
-int Board::GetColVecStat(const int row) const
-{
-	return m_StaticObject[row].size();
-
-}
 
 void Board::UpdateDirection()
 {
-	for (int row = 0; row < this->GetRowVecMove(); ++row)
+	for (int index = 0; index < m_MovingObject.size(); ++index)
 	{
-		for (int col = 0; col < this->GetColVecMove(row); ++col)
-		{
-			m_MovingObject[row][col]->UpdateDirection(GetGameObjectMoving(m_P2Pacman.x,m_P2Pacman.y).getPosition());
-		}
+		m_MovingObject[index]->UpdateDirection(GetGameObjectMoving(m_PacmanIndex).getPosition());
 	}
 }
 
@@ -88,64 +64,63 @@ void Board::InitVector()
 {
 	for (int row = 0; row < m_row; row++)
 	{
-		std::vector < std::unique_ptr< MovingObject>> row_vector_move;
-		std::vector < std::unique_ptr< StaticObjects>> row_vector_static;
 		for (int col = 0; col < m_col; col++)
 		{
 			char type = m_matrix.GetChar(row, col);
 			if (type == 'a' || type == '&')
 			{
-				row_vector_move.push_back(Getptrmove(type, row, col));
+				m_MovingObject.push_back(Getptrmove(type, row, col));
 				if (type == 'a')
 				{
-					int Prow = GetRowVecMove();
-					int Pcol = row_vector_move.size() - 1;
-					m_P2Pacman = { Prow,Pcol };
+					m_PacmanIndex = m_MovingObject.size()-1;
 				}
 			}
 			else if (type != ' ')
 			{
-				row_vector_static.push_back(Getptrstatic(type, row, col));
+				m_StaticObject.push_back(Getptrstatic(type, row, col));
 			}
 		}
-		m_MovingObject.push_back(std::move( row_vector_move));
-		m_StaticObject.push_back(std::move(row_vector_static));
+
 	}
 }
 
-sf::Sprite Board::GetGameObjectMoving(const int row, const int col)
+sf::Sprite Board::GetGameObjectMoving(const int index)
 {
-	return m_MovingObject[row][col]->GetSprite();
+	return m_MovingObject[index]->GetSprite();
 }
 
-sf::Sprite Board::GetGameObjectStatic(const int row, const int col)
+sf::Sprite Board::GetGameObjectStatic(const int index)
 {
-	return m_StaticObject[row][col]->GetSprite();
+	return m_StaticObject[index]->GetSprite();
+}
+
+int Board::GetStaticSize() const
+{
+	return m_StaticObject.size();
+}
+
+int Board::GetMoveSize() const
+{
+	return m_MovingObject.size();
 }
 
 void Board::MoveObjects(sf::Time delta)
 {
-	for (int row = 0; row < this->GetRowVecMove(); row++)
+	for (int index = 0; index < m_MovingObject.size(); index++)
 	{
-		for (int col = 0; col < this->GetColVecMove(row); col++)
-		{
-			m_MovingObject[row][col]->Move(delta);
-			HandleCollisions(*m_MovingObject[row][col]);
+		m_MovingObject[index]->Move(delta);
+		HandleCollisions(*m_MovingObject[index]);
 			
-		}
 	}
 }
 
 void Board::HandleCollisions(GameObject& game_object)
 {
-	for (int row = 0; row < this->GetRowVecStat(); row++)
+	for (int index = 0; index < m_StaticObject.size(); index++)
 	{
-		for (int col = 0; col < this->GetColVecStat(row); col++)
+		if (game_object.CheckCollision(*m_StaticObject[index]))
 		{
-			if (game_object.CheckCollision(*m_StaticObject[row][col]))
-			{
-				game_object.HandleCollision(*m_StaticObject[row][col]);
-			}
+			game_object.HandleCollision(*m_StaticObject[index]);
 		}
 	}
 
@@ -192,30 +167,3 @@ std::unique_ptr<MovingObject> Board::Getptrmove(const char type, const int row, 
 
 
 }
-
-
-
-
-//int Board::AddMod4()
-//{
-//	static int add = 0;
-//	add++;
-//	return add % 4;
-// 
-// 		switch (add)
-		//{
-		//case 0:
-		//	break;
-
-		//case 1:
-		//	break;
-
-		//case 2:
-		//	break;
-
-		//case 3:
-		//	break;
-
-//}
-
-

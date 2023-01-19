@@ -81,15 +81,19 @@ void Pacman::HandleCollision(Door& door)
 {
 }
 
-void Pacman::HandleCollision(Key& door)
+void Pacman::HandleCollision(Key& key)
 {
+    m_score += 7;
+
 }
 
 void Pacman::HandleCollision(Present& present)
 {
+    m_score += 5;
 }
 
 void Pacman::HandleCollision(Cookie& cookie)
 {
+    m_score += 2;
 
 }

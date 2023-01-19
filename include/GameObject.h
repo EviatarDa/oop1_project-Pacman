@@ -18,6 +18,7 @@ class GameObject
 {
 public:
 	GameObject(const int, const int, const int, const int, Object);
+	virtual ~GameObject() = default;
 	sf::Sprite& GetSprite();
 	bool CheckCollision(const GameObject&)const;
 

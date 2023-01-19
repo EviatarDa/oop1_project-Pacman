@@ -18,29 +18,28 @@ public:
     Board();
     int GetRow() const;
     int GetCol() const;
-    int GetRowVecMove()const;
-    int GetRowVecStat()const;
-    int GetColVecMove(const int) const;
-    int GetColVecStat(const int) const;
+
     void UpdateDirection();
     const sf::RectangleShape CreateRectangle(const int, const int) const;
     sf::RectangleShape GetRectangle(const int, const int) const;
     void InitVector();
-    sf::Sprite GetGameObjectMoving(const int, const int);
-    sf::Sprite GetGameObjectStatic(const int, const int);
+    sf::Sprite GetGameObjectMoving(const int);
+    sf::Sprite GetGameObjectStatic(const int);
+    int GetStaticSize()const;
+    int GetMoveSize()const;
     void MoveObjects(sf::Time);
     void HandleCollisions(GameObject&);
 
 
 private:
     std::vector<std::vector<sf::RectangleShape>> m_RectangleMatrix; //the board
-    std::vector < std::vector < std::unique_ptr< MovingObject>> > m_MovingObject;
-    std::vector < std::vector < std::unique_ptr< StaticObjects>> > m_StaticObject;
+    std::vector < std::unique_ptr< MovingObject>>  m_MovingObject;
+    std::vector < std::unique_ptr< StaticObjects>>  m_StaticObject;
 
     Matrix m_matrix;
     int m_row;
     int m_col;
-    sf::Vector2i m_P2Pacman;
+    int m_PacmanIndex;
 
     //function ;
     std::unique_ptr <StaticObjects> Getptrstatic(const char,const int, const int) const;
