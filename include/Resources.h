@@ -14,7 +14,7 @@ enum Object { PACMAN, DEAMON_ORANGE, DEAMON_PINK, DEAMON_RED, DEAMON_AZURE, KEY,
 
 enum Direction { Up, Down, Right, Left, Stay };
 
-enum ToolBarWord { LIFE, SCORE, LEVEL, TIME };
+enum ToolBarWord { LIFE, SCORE, LEVEL, TIME, KEYCOUNTER };
 
 enum Sound { SONG, CLICK, MINUS_LIFE, EAT, GAME_OVER};
 
@@ -23,7 +23,7 @@ const int BUTTONS = 5;
 const int TITLE_OBJECTS = 6;
 const int INSTRUCTIONS = 7;
 const int GAME_OBJECTS = 10;
-const int TOOL_BAR = 4;
+const int TOOL_BAR = 5;
 const int SOUNDS = 5;
 
 class Resources 

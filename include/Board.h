@@ -29,6 +29,9 @@ public:
     int GetMoveSize()const;
     void MoveObjects(sf::Time);
     void HandleCollisions(GameObject&);
+    int ReturnPacmanLife() const;
+    int ReturnPacmanScore() const;
+    int ReturnPacmanKeys() const;
 
 
 private:

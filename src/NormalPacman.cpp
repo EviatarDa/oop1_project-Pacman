@@ -18,4 +18,5 @@ void NormalPacman::handleDoorCollision(int keys, Door& door, Pacman& pacman)
 void NormalPacman::handleDeamonCollision(int life, Deamon& deamon, Pacman& pacman) 
 {
 	pacman.SetToFirstLocation();
+	pacman.SetLife();
 }

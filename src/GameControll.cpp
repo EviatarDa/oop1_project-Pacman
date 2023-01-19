@@ -71,6 +71,7 @@ void GameControll::StartGame()
         m_board.UpdateDirection();
         auto delta = m_game_clock.restart();
         m_board.MoveObjects(delta);
+        UpdateData();
 
 
 
@@ -308,11 +309,19 @@ void GameControll::PlayMusic()
 
 void GameControll::DrawToolBar()
 {
-    for (int word = LIFE; word <= TIME; word++)
+    for (int word = LIFE; word <= KEYCOUNTER; word++)
     {
         m_window.draw(m_toolbar.GetText(word));
         m_window.draw(m_toolbar.GetNum(word));
     }
+}
+
+void GameControll::UpdateData()
+{
+    m_toolbar.SetLife(m_board.ReturnPacmanLife());
+    m_toolbar.SetScore(m_board.ReturnPacmanScore());
+    m_toolbar.SetLevel(m_level);
+    m_toolbar.SetKeys(m_board.ReturnPacmanKeys());
 }
 
 

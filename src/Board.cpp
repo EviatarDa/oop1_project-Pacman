@@ -124,14 +124,29 @@ void Board::HandleCollisions(GameObject& game_object)
 	}
 	std::erase_if(m_StaticObject, [](const auto& game_object) {return game_object->GetIsCollide(); });
 
-	//////////////////new
-	//for (int index = 0; index < m_MovingObject.size(); index++)
-	//{
-	//	if (game_object.CheckCollision(*m_MovingObject[index]))
-	//	{
-	//		game_object.HandleCollision(*m_MovingObject[index]);
-	//	}
-	//}
+	////////////////new
+	for (int index = 0; index < m_MovingObject.size(); index++)
+	{
+		if (game_object.CheckCollision(*m_MovingObject[index]))
+		{
+			game_object.HandleCollision(*m_MovingObject[index]);
+		}
+	}
+}
+
+int Board::ReturnPacmanLife() const
+{
+	return m_MovingObject[m_PacmanIndex]->GetLife();
+}
+
+int Board::ReturnPacmanScore() const
+{
+	return m_MovingObject[m_PacmanIndex]->GetScore();
+}
+
+int Board::ReturnPacmanKeys() const
+{
+	return m_MovingObject[m_PacmanIndex]->GetKeys();
 }
 
 std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int row, const int col) const

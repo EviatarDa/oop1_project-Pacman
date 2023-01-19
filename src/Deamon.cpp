@@ -79,7 +79,7 @@ void Deamon::HandleCollision(GameObject& game_object)
 
 void Deamon::HandleCollision(Pacman& pacman)
 {
-	//pacman
+	//this->SetToFirstLocation(); need to restart all 
 }
 
 void Deamon::HandleCollision(Deamon&)

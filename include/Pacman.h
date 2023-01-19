@@ -21,6 +21,11 @@ public:
     void DecKeys();
     void DecLife();
     void SetLastLocation();////////////new;
+    void SetLife(); /////////////////new shir
+    int GetLife();////////////new shir
+    int GetScore();
+    int GetKeys(); 
+
     virtual void HandleCollision(GameObject&)override;
     virtual void HandleCollision(Pacman&)override;
     virtual void HandleCollision(Deamon&)override;

@@ -93,6 +93,26 @@ void Pacman::SetLastLocation()
     m_sprite.setPosition(m_last_location);
 }
 
+void Pacman::SetLife()
+{
+    m_life--;
+}
+
+int Pacman::GetLife()
+{
+    return m_life;
+}
+
+int Pacman::GetScore()
+{
+    return m_score;
+}
+
+int Pacman::GetKeys()
+{
+    return m_KeyCounter;
+}
+
 void Pacman::HandleCollision(GameObject& game_object) 
 {
     game_object.HandleCollision(*this);
@@ -105,6 +125,7 @@ void Pacman::HandleCollision(Pacman& pacman)
 void Pacman::HandleCollision(Deamon& deamon)
 {
     m_state->handleDeamonCollision(m_life, deamon, *this);
+    deamon.HandleCollision(*this);
 }
 
 void Pacman::HandleCollision(Wall& wall)

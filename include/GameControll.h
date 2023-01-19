@@ -32,6 +32,7 @@ public:
 	void PlayVideo();
 	void PlayMusic();
 	void DrawToolBar();
+	void UpdateData();
 
 
 private:
@@ -44,6 +45,7 @@ private:
 	//Pacman m_pacman;
 	sf::Sound m_Sound;
 	sf::Clock m_game_clock;
+	int m_level = 1;
 
 
 };

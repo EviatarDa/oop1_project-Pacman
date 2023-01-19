@@ -12,6 +12,9 @@ public:
 	virtual void UpdateDirection(sf::Vector2f) = 0;
 	virtual void Move(sf::Time) = 0;
 	void SetToFirstLocation();
+	virtual int GetScore() { return 0; };
+	virtual int GetLife() { return 0; };
+	virtual int GetKeys() { return 0; };
 
 
 private:

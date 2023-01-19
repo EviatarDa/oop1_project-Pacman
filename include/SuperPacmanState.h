@@ -6,5 +6,5 @@ class SuperPacmanState : public PacmanState
 {
 public:
     void handleDoorCollision(int keys, Door& door, Pacman&);
-    virtual void handleDeamonCollision(int, Deamon&, Pacman&) {};
+    void handleDeamonCollision(int, Deamon&, Pacman&) {};
 };
