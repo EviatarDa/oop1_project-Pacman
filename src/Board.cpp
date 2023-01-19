@@ -72,7 +72,7 @@ void Board::InitVector()
 				m_MovingObject.push_back(Getptrmove(type, row, col));
 				if (type == 'a')
 				{
-					m_PacmanIndex = m_MovingObject.size()-1;
+					m_PacmanIndex =(int)m_MovingObject.size()-1;
 				}
 			}
 			else if (type != ' ')
@@ -96,7 +96,7 @@ sf::Sprite Board::GetGameObjectStatic(const int index)
 
 int Board::GetStaticSize() const
 {
-	return m_StaticObject.size();
+	return (int)m_StaticObject.size();
 }
 
 int Board::GetMoveSize() const

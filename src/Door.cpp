@@ -9,10 +9,12 @@ Door::Door(const int row, const int col, const int board_row, const int board_co
 
 void Door::HandleCollision(GameObject&)
 {
+
 }
 
-void Door::HandleCollision(Pacman&)
+void Door::HandleCollision(Pacman& pacman)
 {
+	pacman.HandleCollision(*this);
 }
 
 void Door::HandleCollision(Deamon& deamon)
@@ -38,4 +40,9 @@ void Door::HandleCollision(Present&)
 
 void Door::HandleCollision(Cookie&)
 {
+}
+
+void Door::SetCollide()
+{
+	m_IsCollide = true;
 }

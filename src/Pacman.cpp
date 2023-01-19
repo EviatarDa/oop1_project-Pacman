@@ -3,9 +3,10 @@
 #include "Pacman.h"
 
 Pacman::Pacman(const int row, const int col, const int board_row, const int board_col, Object object)
-    :MovingObject(row, col, board_row, board_col, object)
+    :MovingObject(row, col, board_row, board_col, object),
+     m_state(std::make_unique<NormalPacman>())
 {
-    m_sprite.setOrigin(m_sprite.getTextureRect().height / 2, m_sprite.getTextureRect().width / 2);
+    m_sprite.setOrigin((float)m_sprite.getTextureRect().height / 2,(float) m_sprite.getTextureRect().width / 2);
 }
 
 void Pacman::UpdateDirection(sf::Vector2f PacLocation)
@@ -58,6 +59,21 @@ void Pacman::Move(sf::Time delta)
     
 }
 
+void Pacman::UpgradeToSuper()
+{
+    m_state.reset(new SuperPacmanState());
+}
+
+void Pacman::DowngradeToNormal()
+{
+    m_state.reset(new NormalPacman());
+}
+
+int Pacman::GetKeyCounter()
+{
+    return m_KeyCounter;
+}
+
 void Pacman::HandleCollision(GameObject& game_object) 
 {
     game_object.HandleCollision(*this);
@@ -79,7 +95,7 @@ void Pacman::HandleCollision(Wall& wall)
 
 void Pacman::HandleCollision(Door& door)
 {
-
+    m_state->handleDoorCollision(m_KeyCounter, door);
 }
 
 void Pacman::HandleCollision(Key& key)
@@ -96,5 +112,4 @@ void Pacman::HandleCollision(Present& present)
 void Pacman::HandleCollision(Cookie& cookie)
 {
     m_score += 2;
-
 }

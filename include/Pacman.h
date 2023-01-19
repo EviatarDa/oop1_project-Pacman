@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "MovingObject.h"
 #include "Resources.h"
+#include "PacmanState.h"
 
 const float PACMAN_SPEED = 150;
 
@@ -12,7 +13,9 @@ public:
     Pacman(const int , const int , const int , const int , Object );
     void UpdateDirection(sf::Vector2f);
     void Move(sf::Time);
-
+    void UpgradeToSuper();
+    void DowngradeToNormal();
+    int GetKeyCounter();
     virtual void HandleCollision(GameObject&)override;
     virtual void HandleCollision(Pacman&)override;
     virtual void HandleCollision(Deamon&)override;
@@ -27,7 +30,7 @@ private:
     int m_score = 0;
     int m_KeyCounter = 0;
     Direction m_direction = Stay;
-    //std::unique_ptr <State> m_state;
+    std::unique_ptr <PacmanState> m_state;
 
     //Animation m_animation;
 };

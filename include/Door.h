@@ -18,6 +18,7 @@ public:
     virtual void HandleCollision(Present&)override;
     virtual void HandleCollision(Cookie&)override;
 
+    void SetCollide();
 
 private:
 };
