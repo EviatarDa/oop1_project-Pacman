@@ -38,8 +38,8 @@ void Deamon::UpdateDirection(sf::Vector2f PacLocation)
 
 void Deamon::Move(sf::Time delta)
 {
-	m_last_locatiom = m_location;
-	m_sprite.move(DirectionToVector(m_direction) * delta.asSeconds()* m_Speed);
+	m_last_location = m_sprite.getPosition();
+	m_sprite.move(DirectionToVector(m_direction) * delta.asSeconds() * m_Speed);
 }
 
 Direction Deamon::PursueTarget(sf::Vector2f Target)
@@ -87,14 +87,12 @@ void Deamon::HandleCollision(Deamon&)
 
 void Deamon::HandleCollision(Wall& wall)
 {
-	m_location = m_last_locatiom;
-	m_sprite.move(OppositeVector(m_direction) * 0.1f *  150.f); ////fix delta
+	m_sprite.setPosition(m_last_location);
 }
 
 void Deamon::HandleCollision(Door&)
 {
-	m_location = m_last_locatiom;
-	m_sprite.move(OppositeVector(m_direction) * 0.1f * 150.f); ////fix delta
+	m_sprite.setPosition(m_last_location);
 }
 
 void Deamon::HandleCollision(Key&)

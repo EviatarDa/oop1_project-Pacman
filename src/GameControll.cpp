@@ -51,7 +51,8 @@ void GameControll::run()
 
 void GameControll::StartGame()
 {
-    //init();
+    m_game_clock.restart();
+
     while (m_window.isOpen())
     {
         m_window.clear(sf::Color::Color(0, 0, 0));
@@ -65,22 +66,6 @@ void GameControll::StartGame()
             case sf::Event::Closed:
                 m_window.close();
                 break;
-
-            //case sf::Event::KeyPressed:
-            //{
-            //    m_board.UpdateDirection(event.key.code);
-            //    m_pacman.UpdateDirection(event.key.code);
-            //    break;
-            //}
-            //case sf::Event::KeyReleased:
-            //{
-            //    m_board.UpdateDirection(sf::Keyboard::Space);
-            //    //m_pacman.UpdateDirection(sf::Keyboard::Space);
-            //    break;
-            //}
-            //default:
-            //    m_board.UpdateDirection(sf::Keyboard::Space);
-            //    break;
             }
         }
         m_board.UpdateDirection();
@@ -129,7 +114,7 @@ void GameControll::handleClick(const sf::Vector2f& location)
     if (m_menu.GetButton(PLAY).getGlobalBounds().contains(location))
     {
         m_menu.PlaySound(CLICK);
-        PlayVideo();
+        //PlayVideo();
         //PlayMusic();
         StartGame();
     }

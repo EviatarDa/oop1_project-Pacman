@@ -131,6 +131,7 @@ void Board::MoveObjects(sf::Time delta)
 		{
 			m_MovingObject[row][col]->Move(delta);
 			HandleCollisions(*m_MovingObject[row][col]);
+			
 		}
 	}
 }

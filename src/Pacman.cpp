@@ -53,7 +53,7 @@ void Pacman::Move(sf::Time delta)
     default:
         break;
     }
-    m_last_locatiom = m_location;
+    m_last_location = m_sprite.getPosition();
     m_sprite.move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
     
 }
@@ -74,8 +74,7 @@ void Pacman::HandleCollision(Deamon& deamon)
 
 void Pacman::HandleCollision(Wall& wall)
 {
-    m_location = m_last_locatiom;
-    m_sprite.move(OppositeVector(m_direction) * 0.1f * PACMAN_SPEED);
+    m_sprite.setPosition(m_last_location);
 }
 
 void Pacman::HandleCollision(Door& door)

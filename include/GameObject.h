@@ -32,8 +32,7 @@ public:
 
 protected:
 	sf::Sprite m_sprite;
-	sf::Vector2f m_location;
-	sf::Vector2f m_last_locatiom = m_location;
+	sf::Vector2f m_last_location;
 
 private:
 };
