@@ -22,3 +22,8 @@ bool GameObject::CheckCollision(const GameObject& game_object) const
 		return false;
 	return m_sprite.getGlobalBounds().intersects(game_object.m_sprite.getGlobalBounds());
 }
+
+const bool GameObject::GetIsCollide() const
+{
+	return m_IsCollide;
+}

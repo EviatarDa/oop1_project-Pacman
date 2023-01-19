@@ -21,6 +21,7 @@ public:
 	virtual ~GameObject() = default;
 	sf::Sprite& GetSprite();
 	bool CheckCollision(const GameObject&)const;
+	const bool GetIsCollide()const;
 
 	virtual void HandleCollision(GameObject&) = 0;
 	virtual void HandleCollision(Pacman&) = 0;
@@ -34,6 +35,8 @@ public:
 protected:
 	sf::Sprite m_sprite;
 	sf::Vector2f m_last_location;
+	bool m_IsCollide = false;
 
 private:
+	
 };

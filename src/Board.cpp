@@ -123,7 +123,7 @@ void Board::HandleCollisions(GameObject& game_object)
 			game_object.HandleCollision(*m_StaticObject[index]);
 		}
 	}
-
+	std::erase_if(m_StaticObject, [](const auto& game_object) {return game_object->GetIsCollide(); });
 }
 
 std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int row, const int col) const

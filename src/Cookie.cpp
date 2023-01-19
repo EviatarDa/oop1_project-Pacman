@@ -12,8 +12,10 @@ void Cookie::HandleCollision(GameObject&)
 {
 }
 
-void Cookie::HandleCollision(Pacman&)
+void Cookie::HandleCollision(Pacman& pacman)
 {
+	m_IsCollide = true;
+	pacman.HandleCollision(*this);
 }
 
 void Cookie::HandleCollision(Deamon&)
