@@ -3,7 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include "MovingObject.h"
 #include "Resources.h"
-#include "PacmanState.h"
+#include "SuperPacmanState.h"
+#include "NormalPacman.h"
+
 
 const float PACMAN_SPEED = 150;
 

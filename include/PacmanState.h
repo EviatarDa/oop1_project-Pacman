@@ -4,6 +4,10 @@
 
 class Door;
 
+#pragma once
+
+//#include 
+
 class PacmanState 
 {
 
@@ -14,23 +18,6 @@ public:
 private:
 };
 
-class SuperPacmanState : public PacmanState 
-{
-public:
-    void handleDoorCollision(int keys, Door& door)
-    {
-      // door.SetCollide();
-    }
-};
 
-class NormalPacman : public PacmanState
-{
-public:
-    void handleDoorCollision(int keys, Door&) override
-    {
-        if (keys > 0)
-        {
-          //  door.SetCollide();
-        }
-    }
-};
+
+
