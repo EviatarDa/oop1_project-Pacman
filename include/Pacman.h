@@ -18,6 +18,8 @@ public:
     void UpgradeToSuper();
     void DowngradeToNormal();
     int GetKeyCounter();
+    void DecKeys();
+    void SetLastLocation();////////////new;
     virtual void HandleCollision(GameObject&)override;
     virtual void HandleCollision(Pacman&)override;
     virtual void HandleCollision(Deamon&)override;

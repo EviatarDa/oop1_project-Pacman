@@ -14,7 +14,7 @@ void Key::HandleCollision(GameObject&)
 void Key::HandleCollision(Pacman& pacman)
 {
 	m_IsCollide = true;
-	
+	pacman.HandleCollision(*this);
 }
 
 void Key::HandleCollision(Deamon&)

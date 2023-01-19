@@ -5,5 +5,5 @@
 class SuperPacmanState : public PacmanState
 {
 public:
-    void handleDoorCollision(int keys, Door& door);
+    void handleDoorCollision(int keys, Door& door, Pacman&);
 };

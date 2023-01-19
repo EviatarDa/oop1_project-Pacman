@@ -74,6 +74,16 @@ int Pacman::GetKeyCounter()
     return m_KeyCounter;
 }
 
+void Pacman::DecKeys()
+{
+    m_KeyCounter--;
+}
+
+void Pacman::SetLastLocation()
+{
+    m_sprite.setPosition(m_last_location);
+}
+
 void Pacman::HandleCollision(GameObject& game_object) 
 {
     game_object.HandleCollision(*this);
@@ -85,7 +95,7 @@ void Pacman::HandleCollision(Pacman& pacman)
 
 void Pacman::HandleCollision(Deamon& deamon)
 {
-
+    //m_state->handleDeamonCollision(m_KeyCounter, deamon, *this);
 }
 
 void Pacman::HandleCollision(Wall& wall)
@@ -95,7 +105,7 @@ void Pacman::HandleCollision(Wall& wall)
 
 void Pacman::HandleCollision(Door& door)
 {
-    m_state->handleDoorCollision(m_KeyCounter, door);
+    m_state->handleDoorCollision(m_KeyCounter, door, *this);
 }
 
 void Pacman::HandleCollision(Key& key)
