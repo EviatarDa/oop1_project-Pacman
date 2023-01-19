@@ -25,6 +25,9 @@ public:
 private:
     int m_life = 3;
     int m_score = 0;
+    int m_KeyCounter = 0;
     Direction m_direction = Stay;
+    //std::unique_ptr <State> m_state;
+
     //Animation m_animation;
 };

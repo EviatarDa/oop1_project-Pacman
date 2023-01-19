@@ -11,8 +11,10 @@ void Key::HandleCollision(GameObject&)
 {
 }
 
-void Key::HandleCollision(Pacman&)
+void Key::HandleCollision(Pacman& pacman)
 {
+	m_IsCollide = true;
+	
 }
 
 void Key::HandleCollision(Deamon&)

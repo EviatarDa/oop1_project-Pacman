@@ -79,12 +79,13 @@ void Pacman::HandleCollision(Wall& wall)
 
 void Pacman::HandleCollision(Door& door)
 {
+
 }
 
 void Pacman::HandleCollision(Key& key)
 {
     m_score += 7;
-
+    m_KeyCounter++;
 }
 
 void Pacman::HandleCollision(Present& present)
