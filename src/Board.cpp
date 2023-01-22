@@ -5,15 +5,7 @@
 Board::Board()
 	:m_matrix(), m_row(m_matrix.GetRow()), m_col(m_matrix.GetCol())
 {
-	for (int row = 0; row < m_row; ++row)
-	{
-		std::vector < sf::RectangleShape > vector_row;
-		for (int col = 0; col < m_col; ++col)
-		{
-			vector_row.push_back(CreateRectangle(row, col)); // create the corrent row
-		}
-		m_RectangleMatrix.push_back(vector_row); // push the vector to the vector
-	}
+	CreateReactangles();
 	InitVector();
 }
 
@@ -37,9 +29,27 @@ int Board::GetEattenCookies() const
 	return m_MovingObject[m_PacmanIndex]->GetEatten();
 }
 
-bool Board::ReadLevel()
+bool Board::ReadNewLevel()
 {
-	return m_matrix.ReadLevel();
+	m_matrix.ClearMatrix();
+	ClearReactangles();
+	
+	if (m_matrix.ReadLevel())
+	{
+		m_MovingObject.clear();
+		m_StaticObject.clear();
+		m_PacmanIndex = 0;
+		m_Cookies = 0;
+		m_col = m_matrix.GetCol();
+		m_row = m_matrix.GetRow();
+		CreateReactangles();
+
+		InitVector();
+		initData();
+		return true;
+	}
+	return false;
+
 }
 
 void Board::UpdateDirection()
@@ -202,3 +212,33 @@ std::unique_ptr<MovingObject> Board::Getptrmove(const char type, const int row, 
 	}
 	}
 }
+
+void Board::CreateReactangles()
+{
+	for (int row = 0; row < m_row; ++row)
+	{
+		std::vector < sf::RectangleShape > vector_row;
+		for (int col = 0; col < m_col; ++col)
+		{
+			vector_row.push_back(CreateRectangle(row, col)); // create the corrent row
+		}
+		m_RectangleMatrix.push_back(vector_row); // push the vector to the vector
+	}
+}
+
+void Board::ClearReactangles()
+{
+	for (int row = 0; row < m_row; ++row)
+	{
+
+		m_RectangleMatrix[row].clear();
+	}
+	m_RectangleMatrix.clear();
+}
+
+void Board::initData()
+{
+	m_MovingObject[m_PacmanIndex]->SetCookies();
+}
+
+

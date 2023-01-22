@@ -25,8 +25,9 @@ bool Matrix::ReadLevel()
             }
             m_matrix.push_back(row_vector);
         }
+        return true;
     }
-    return (m_file.eof());
+    return false;
 }
 
 const int Matrix::GetRow() const
@@ -42,4 +43,14 @@ const int Matrix::GetCol() const
 const char Matrix::GetChar(const int row, const int col)
 {
     return m_matrix[row][col];
+}
+
+void Matrix::ClearMatrix()
+{
+    for (int row = 0; row < m_row; ++row)
+    {
+
+         m_matrix[row].clear();
+	}
+    m_matrix.clear();
 }

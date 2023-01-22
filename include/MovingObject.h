@@ -16,6 +16,7 @@ public:
 	virtual int GetLife() { return 0; };
 	virtual int GetKeys() { return 0; };
 	virtual int GetEatten() { return 0; };
+	virtual void SetCookies() {};
 
 
 private:

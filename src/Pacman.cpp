@@ -118,6 +118,11 @@ int Pacman::GetEatten()
     return m_EattenCookies;
 }
 
+void Pacman::SetCookies()
+{
+    m_EattenCookies = 0;
+}
+
 void Pacman::HandleCollision(GameObject& game_object) 
 {
     game_object.HandleCollision(*this);

@@ -20,7 +20,7 @@ public:
     int GetCol() const;
     int GetCookies() const;
     int GetEattenCookies() const;
-    bool ReadLevel();
+    bool ReadNewLevel();
 
     void UpdateDirection();
     const sf::RectangleShape CreateRectangle(const int, const int) const;
@@ -51,5 +51,9 @@ private:
     //function ;
     std::unique_ptr <StaticObjects> Getptrstatic(const char,const int, const int);
     std::unique_ptr <MovingObject> Getptrmove(const char,const int, const int) const;
+    void CreateReactangles();   
+    void ClearReactangles();  
+    void initData();
+
     //int AddMod4();
 };

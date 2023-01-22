@@ -26,6 +26,7 @@ public:
     int GetScore();
     int GetKeys(); 
     int GetEatten();
+    void SetCookies();
 
     virtual void HandleCollision(GameObject&)override;
     virtual void HandleCollision(Pacman&)override;

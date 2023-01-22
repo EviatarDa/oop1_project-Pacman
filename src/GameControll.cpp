@@ -80,9 +80,13 @@ void GameControll::StartGame()
 
         if (m_board.GetCookies() - m_board.GetEattenCookies() == 0)
         {
-            if (!m_board.ReadLevel())
+            if (m_board.ReadNewLevel())
             {
-
+                m_level++;
+            }
+            else
+            {
+                break;
             }
         }
     }
