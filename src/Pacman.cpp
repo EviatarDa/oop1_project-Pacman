@@ -113,6 +113,11 @@ int Pacman::GetKeys()
     return m_KeyCounter;
 }
 
+int Pacman::GetEatten()
+{
+    return m_EattenCookies;
+}
+
 void Pacman::HandleCollision(GameObject& game_object) 
 {
     game_object.HandleCollision(*this);
@@ -152,5 +157,6 @@ void Pacman::HandleCollision(Present& present)
 void Pacman::HandleCollision(Cookie& cookie)
 {
     m_score += 2;
+    m_EattenCookies++;
     m_Sounds[EAT].play();
 }

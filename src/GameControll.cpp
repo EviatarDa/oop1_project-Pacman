@@ -73,11 +73,17 @@ void GameControll::StartGame()
         m_board.MoveObjects(delta);
         UpdateData();
 
-
-
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         {
             m_window.close();
+        }
+
+        if (m_board.GetCookies() - m_board.GetEattenCookies() == 0)
+        {
+            if (!m_board.ReadLevel())
+            {
+
+            }
         }
     }
 }

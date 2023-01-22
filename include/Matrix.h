@@ -7,7 +7,7 @@ class Matrix
 {
 public:
 	Matrix();
-	void ReadLevel();
+	bool ReadLevel();
 	const int GetRow()const;
 	const int GetCol()const;
 	const char GetChar(const int, const int);

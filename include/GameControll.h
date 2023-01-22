@@ -42,7 +42,6 @@ private:
 	Menu m_menu;
 	Board m_board;
 	ToolBar m_toolbar;
-	//Pacman m_pacman;
 	sf::Sound m_Sound;
 	sf::Clock m_game_clock;
 	int m_level = 1;

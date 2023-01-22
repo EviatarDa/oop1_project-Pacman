@@ -15,6 +15,7 @@ public:
 	virtual int GetScore() { return 0; };
 	virtual int GetLife() { return 0; };
 	virtual int GetKeys() { return 0; };
+	virtual int GetEatten() { return 0; };
 
 
 private:

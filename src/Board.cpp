@@ -27,6 +27,20 @@ int Board::GetCol() const
 	return m_col;
 }
 
+int Board::GetCookies() const
+{
+	 return m_Cookies;
+}
+
+int Board::GetEattenCookies() const
+{
+	return m_MovingObject[m_PacmanIndex]->GetEatten();
+}
+
+bool Board::ReadLevel()
+{
+	return m_matrix.ReadLevel();
+}
 
 void Board::UpdateDirection()
 {
@@ -124,7 +138,6 @@ void Board::HandleCollisions(GameObject& game_object)
 	}
 	std::erase_if(m_StaticObject, [](const auto& game_object) {return game_object->GetIsCollide(); });
 
-	////////////////new
 	for (int index = 0; index < m_MovingObject.size(); index++)
 	{
 		if (game_object.CheckCollision(*m_MovingObject[index]))
@@ -149,7 +162,7 @@ int Board::ReturnPacmanKeys() const
 	return m_MovingObject[m_PacmanIndex]->GetKeys();
 }
 
-std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int row, const int col) const
+std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int row, const int col)
 {
 	switch (type)
 	{
@@ -163,6 +176,7 @@ std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int ro
 		return std::make_unique<Present>(row, col, m_row, m_col, PRESENT);
 
 	case '*':
+		m_Cookies++;
 		return std::make_unique<Cookie>(row, col, m_row, m_col, COOKIE);
 
 	case '#':

@@ -18,6 +18,9 @@ public:
     Board();
     int GetRow() const;
     int GetCol() const;
+    int GetCookies() const;
+    int GetEattenCookies() const;
+    bool ReadLevel();
 
     void UpdateDirection();
     const sf::RectangleShape CreateRectangle(const int, const int) const;
@@ -43,9 +46,10 @@ private:
     int m_row;
     int m_col;
     int m_PacmanIndex;
+    int m_Cookies = 0;
 
     //function ;
-    std::unique_ptr <StaticObjects> Getptrstatic(const char,const int, const int) const;
+    std::unique_ptr <StaticObjects> Getptrstatic(const char,const int, const int);
     std::unique_ptr <MovingObject> Getptrmove(const char,const int, const int) const;
     //int AddMod4();
 };

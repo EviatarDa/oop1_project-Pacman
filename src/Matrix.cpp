@@ -7,24 +7,26 @@ Matrix::Matrix() /// constructor?
     ReadLevel();
 }
 
-void Matrix::ReadLevel()
+bool Matrix::ReadLevel()
 {
-    //TODO check
-    //m_file.seekg(0);
-    m_file >> m_row >> m_col;
-    m_file.get(); //for /n
-
-    for (int row = 0; row < m_row; ++row)
+    if(!m_file.eof())
     {
-        std::string row_string;
-        std::getline(m_file, row_string);
-        std::vector <char> row_vector;
-        for (int col = 0; col < m_col; ++col)
+        m_file >> m_row >> m_col;
+        m_file.get(); //for /n
+
+        for (int row = 0; row < m_row; ++row)
         {
-            row_vector.push_back(row_string[col]);
+            std::string row_string;
+            std::getline(m_file, row_string);
+            std::vector <char> row_vector;
+            for (int col = 0; col < m_col; ++col)
+            {
+                row_vector.push_back(row_string[col]);
+            }
+            m_matrix.push_back(row_vector);
         }
-        m_matrix.push_back(row_vector);
     }
+    return (m_file.eof());
 }
 
 const int Matrix::GetRow() const

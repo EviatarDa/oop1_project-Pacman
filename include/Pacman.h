@@ -25,6 +25,7 @@ public:
     int GetLife();////////////new shir
     int GetScore();
     int GetKeys(); 
+    int GetEatten();
 
     virtual void HandleCollision(GameObject&)override;
     virtual void HandleCollision(Pacman&)override;
@@ -39,6 +40,7 @@ private:
     int m_life = 3;
     int m_score = 0;
     int m_KeyCounter = 0;
+    int m_EattenCookies = 0;
     Direction m_direction = Stay;
     std::unique_ptr <PacmanState> m_state;
     sf::Sound m_Sounds[SOUNDS];
