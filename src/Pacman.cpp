@@ -211,6 +211,7 @@ void Pacman::HandleCollision(AddLife&)
 {
     m_score += 5;
     m_life++;
+    m_Sounds[EXTRA_LIFE].play();
 }
 
 void Pacman::HandleCollision(Cookie& cookie)
