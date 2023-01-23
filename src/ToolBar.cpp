@@ -12,7 +12,7 @@ ToolBar::ToolBar()
 		m_toolbar[word].setFont(Resources::instance().GetFont());
 		m_toolbar[word].setCharacterSize(30);
 		m_toolbar[word].setString(m_Words[word]);
-		m_toolbar[word].setPosition(20.f, word * 150.f+10);
+		m_toolbar[word].setPosition(10.f, word * 150.f+10);
 	}
 	//set the num:
 	m_info_num[LIFE] = 3;
@@ -26,7 +26,7 @@ ToolBar::ToolBar()
 		m_Info[word].setFont(Resources::instance().GetFont());
 		m_Info[word].setCharacterSize(30);
 		m_Info[word].setString(std::to_string(m_info_num[word]));
-		m_Info[word].setPosition(40.f,40 + word * 150.f+10);
+		m_Info[word].setPosition(30.f,40 + word * 150.f+10);
 	}
 }
 

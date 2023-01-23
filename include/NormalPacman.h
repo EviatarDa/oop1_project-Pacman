@@ -7,7 +7,6 @@
 class NormalPacman : public PacmanState
 {
 public:
-    void handleDoorCollision(int keys, Door&, Pacman&) ;
+    void handleDoorCollision(int keys, Door&, Pacman&, sf::Sound&);
     virtual void handleDeamonCollision(int, Deamon&, Pacman&);
-
 };

@@ -175,8 +175,7 @@ void Pacman::HandleCollision(Wall& wall)
 
 void Pacman::HandleCollision(Door& door)
 {
-    m_state->handleDoorCollision(m_KeyCounter, door, *this);
-    
+    m_state->handleDoorCollision(m_KeyCounter, door, *this, m_Sounds[DOOR_SOUND]);
 }
 
 void Pacman::HandleCollision(Key& key)

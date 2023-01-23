@@ -90,6 +90,7 @@ void Deamon::HandleCollision(Pacman& pacman)
 
 void Deamon::HandleCollision(Deamon&)
 {
+	m_sprite.setPosition(m_last_location);
 }
 
 void Deamon::HandleCollision(Wall& wall)

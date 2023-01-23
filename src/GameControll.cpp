@@ -140,9 +140,8 @@ void GameControll::handleClick(const sf::Vector2f& location)
     if (m_menu.GetButton(PLAY).getGlobalBounds().contains(location))
     {
         m_menu.PlaySound(CLICK);
-      //  m_Sound[0].play();
-        //PlayVideo();
-        //PlayMusic();
+        m_Sound[0].play();
+        PlayVideo();
         StartGame();
     }
     else if (m_menu.GetButton(HELP).getGlobalBounds().contains(location))
