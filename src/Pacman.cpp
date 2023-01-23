@@ -127,7 +127,7 @@ void Pacman::SetCookies()
     m_EattenCookies = 0;
 }
 
-void Pacman::UpdateState(bool freeze, int& added_time)
+void Pacman::UpdateState(bool freeze , int& added_time)
 {
     if (m_PaClock.getElapsedTime() > m_SuperTime + sf::seconds(20))
     {

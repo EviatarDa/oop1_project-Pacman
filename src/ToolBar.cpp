@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ToolBar.h"
+#include <iostream>
 
 
 ToolBar::ToolBar()
@@ -62,4 +63,10 @@ void ToolBar::SetKeys(const int keys)
 {
 	m_info_num[KEYCOUNTER] = keys;
 	m_Info[KEYCOUNTER].setString(std::to_string(keys));
+}
+
+void ToolBar::SetTime(const int time)
+{
+	m_info_num[TIME] = 120 - time;
+	m_Info[TIME].setString(std::to_string(m_info_num[TIME]));
 }

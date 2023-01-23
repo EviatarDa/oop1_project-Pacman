@@ -19,9 +19,14 @@ public:
 	virtual void SetCookies() {};
 	virtual void UpdateState(bool, int&) = 0;
 	bool GetFreeze();
+	bool GetResetLocation();
+	void SetResetLocation();
+	void ResetLocation();
 
 protected:
 	bool m_freeze = false;
+	bool m_reset_location = false;
+
 private:
 
 };

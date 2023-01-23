@@ -80,22 +80,30 @@ void GameControll::StartGame()
             m_window.close();
         }
 
-        if (m_board.GetCookies() - m_board.GetEattenCookies() == 0)
+        if (m_board.ReturnPacmanLife() == 0)
+        {
+            m_game_over = true;
+            break;
+        }
+
+        else if (m_board.GetCookies() - m_board.GetEattenCookies() == 0)
         {
             if (m_board.ReadNewLevel())
             {
                 m_level++;
+                m_GameClock.restart();
             }
             else
             {
                 break;
             }
         }
-        else if (m_GameClock.getElapsedTime().asSeconds() > 10 + m_AddedTime)
+        else if (m_GameClock.getElapsedTime().asSeconds() > 120 + m_AddedTime)
         {
             m_board.InitLevel();
             m_GameClock.restart();
         }
+
     }
 }
 
@@ -129,6 +137,7 @@ void GameControll::handleClick(const sf::Vector2f& location)
         //PlayVideo();
         //PlayMusic();
         StartGame();
+        m_game_over = false;
     }
     else if (m_menu.GetButton(HELP).getGlobalBounds().contains(location))
     {
@@ -339,7 +348,8 @@ void GameControll::UpdateData()
     m_toolbar.SetScore(m_board.ReturnPacmanScore());
     m_toolbar.SetLevel(m_level);
     m_toolbar.SetKeys(m_board.ReturnPacmanKeys());
-    m_toolbar.SetTime(m_GameClock.getElapsedTime().asSeconds() + m_AddedTime);
+    m_toolbar.SetTime(m_GameClock.getElapsedTime().asSeconds() - m_AddedTime);
+
 }
 
 

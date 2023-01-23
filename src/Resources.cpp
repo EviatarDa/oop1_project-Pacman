@@ -46,7 +46,6 @@ void Resources::LoadFromFile()
 		m_Sounds[sound].loadFromFile(m_SoundFiles[sound]);
 	}
 	m_font.loadFromFile("C:/Windows/Fonts/Arial.ttf");
-
 }
 
 sf::Texture& Resources::GetButton(Button button)

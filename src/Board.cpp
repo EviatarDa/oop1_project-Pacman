@@ -170,6 +170,14 @@ void Board::UpdateMoving(int& added_time)
 	{
 		m_MovingObject[index]->UpdateState(m_MovingObject[m_PacmanIndex]->GetFreeze(), added_time);
 	}
+	if (m_MovingObject[m_PacmanIndex]->GetResetLocation())
+	{
+		for (int index = 0; index < m_MovingObject.size(); ++index)
+		{
+			m_MovingObject[index]->ResetLocation();
+		}
+		m_MovingObject[m_PacmanIndex]->SetResetLocation();
+	}
 }
 
 void Board::InitLevel()

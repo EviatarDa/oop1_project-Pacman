@@ -48,8 +48,6 @@ private:
 	sf::Time m_LevelTime;
 	int m_level = 1;
 	int m_AddedTime = 0;
-
-
-
+	bool m_game_over = false;
 
 };

@@ -43,10 +43,26 @@ sf::Vector2f MovingObject::OppositeVector(Direction direction)
 
 void MovingObject::SetToFirstLocation()
 {
-    m_sprite.setPosition(m_first_location);
+    m_reset_location = true;
+   // m_sprite.setPosition(m_first_location);
 }
 
 bool MovingObject::GetFreeze()
 {
     return m_freeze;
+}
+
+bool MovingObject::GetResetLocation()
+{
+    return m_reset_location;
+}
+
+void MovingObject::SetResetLocation()
+{
+    m_reset_location = false;
+}
+
+void MovingObject::ResetLocation()
+{
+    m_sprite.setPosition(m_first_location);
 }
