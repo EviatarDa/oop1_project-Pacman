@@ -100,6 +100,7 @@ void Pacman::SetLastLocation()
 void Pacman::SetLife()
 {
     m_life--;
+    m_Sounds[MINUS_LIFE].play();
 }
 
 int Pacman::GetLife()
@@ -202,6 +203,5 @@ void Pacman::HandleCollision(Cookie& cookie)
 {
     m_score += 2;
     m_EattenCookies++;
-    m_Sounds[EAT].play();
     m_Sounds[EAT].play();
 }
