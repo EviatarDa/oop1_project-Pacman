@@ -7,7 +7,7 @@ Pacman::Pacman(const int row, const int col, const int board_row, const int boar
      m_state(std::make_unique<NormalPacman>())
 {
     m_sprite.setOrigin((float)m_sprite.getTextureRect().height / 2, (float)m_sprite.getTextureRect().width / 2);
-    for (int sound = MINUS_LIFE ; sound <= EAT ;sound++)
+    for (int sound = MINUS_LIFE ; sound <= SUPER_PACMAN_SOUND;sound++)
     {
         m_Sounds[sound].setBuffer(Resources::instance().GetSound((Sound)sound));
     }
@@ -69,6 +69,7 @@ void Pacman::UpgradeToSuper()
 {
     m_sprite.setColor(sf::Color::Red);
     m_state.reset(new SuperPacmanState());
+    m_Sounds[SUPER_PACMAN_SOUND].play();
 }
 
 void Pacman::DowngradeToNormal()
@@ -175,12 +176,14 @@ void Pacman::HandleCollision(Wall& wall)
 void Pacman::HandleCollision(Door& door)
 {
     m_state->handleDoorCollision(m_KeyCounter, door, *this);
+    
 }
 
 void Pacman::HandleCollision(Key& key)
 {
     m_score += 7;
     m_KeyCounter++;
+    m_Sounds[KEY_SOUND].play();
 }
 
 void Pacman::HandleCollision(SuperPresent&)
@@ -194,6 +197,7 @@ void Pacman::HandleCollision(AddTime&)
 {
     m_time_collected += 20;
     m_score += 5;
+    m_Sounds[CLOCK_SOUND].play();
 }
 
 void Pacman::HandleCollision(Freeze&)
@@ -201,6 +205,7 @@ void Pacman::HandleCollision(Freeze&)
     m_FreezeTime = m_PaClock.getElapsedTime();
     m_score += 5;
     m_freeze = true;
+    m_Sounds[FREEZE_SOUND].play();
 }
 
 void Pacman::HandleCollision(AddLife&)

@@ -73,7 +73,7 @@ const sf::RectangleShape Board::CreateRectangle(const int row, const int col) co
 	//Style
 	rec.setOutlineColor(sf::Color::Color(102, 102, 102));
 	rec.setOutlineThickness(0.f);
-	rec.setFillColor(sf::Color::Color(224,224,224));
+	rec.setFillColor(sf::Color::Color(228, 203, 180));
 
 	return rec;
 }

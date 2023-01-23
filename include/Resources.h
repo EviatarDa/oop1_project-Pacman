@@ -16,7 +16,7 @@ enum Direction { Up, Down, Right, Left, Stay };
 
 enum ToolBarWord { LIFE, SCORE, LEVEL, TIME, KEYCOUNTER };
 
-enum Sound { SONG, CLICK, MINUS_LIFE, EAT, GAME_OVER};
+enum Sound { SONG, CLICK, MINUS_LIFE, EAT, CLOCK_SOUND, DOOR_SOUND, FREEZE_SOUND,  KEY_SOUND, SUPER_PACMAN_SOUND, GAME_OVER};
 
 
 const int BUTTONS = 5;
@@ -24,7 +24,7 @@ const int TITLE_OBJECTS = 6;
 const int INSTRUCTIONS = 7;
 const int GAME_OBJECTS = 13;
 const int TOOL_BAR = 5;
-const int SOUNDS = 5;
+const int SOUNDS = 10;
 
 class Resources 
 {
@@ -57,7 +57,8 @@ private:
 	std::string m_InstructionFiles[INSTRUCTIONS] = { "Shir.png" , "Eviatar1.png", "Eviatar2.png", "ShirDrop.png" , "EviatarDrop.png", "OhNo.png", "GameRules.png" };
 	std::string m_GameObjectFiles[GAME_OBJECTS] = { "Pacman.png", "Deamon_Orange.png" ,"Deamon_Pink.png","Deamon_Red.png","Deamon_Azure.png",
 													"Key.png", "Wall.png", "Door.png", "Cookie.png", "SuperPresent.png", "AddLife.png", "Freeze.png", "AddTime.png" };
-	std::string m_SoundFiles[SOUNDS] = { "Song.ogg", "Click.ogg", "MinusLife.ogg", "Eat.ogg", "GameOver.ogg"};
+	std::string m_SoundFiles[SOUNDS] = { "Song.ogg", "Click.ogg", "MinusLife.ogg", "Eat.ogg", "ClockSound.ogg", "DoorSound.ogg" , "FreezeSound.ogg" ,
+									 	 "KeySound.ogg" , "SuperPacmanSound.ogg" , "GameOver.ogg" };
 
 
 };
