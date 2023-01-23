@@ -30,7 +30,6 @@ public:
 	void DrawInstructions();
 	void BrighteningSprite(Title, int&, int, int);
 	void PlayVideo();
-	void PlayMusic();
 	void DrawToolBar();
 	void UpdateData();
 
@@ -42,7 +41,7 @@ private:
 	Menu m_menu;
 	Board m_board;
 	ToolBar m_toolbar;
-	sf::Sound m_Sound;
+	sf::Sound m_Sound[2];
 	sf::Clock m_GameClock;
 	sf::Clock m_MoveClock;
 	sf::Time m_LevelTime;

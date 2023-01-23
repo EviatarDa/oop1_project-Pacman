@@ -15,6 +15,9 @@ public:
 	void SetLevel(const int);
 	void SetKeys(const int);
 	void SetTime(const int);
+	int GetScore();
+	int GetLife();
+
 
 
 

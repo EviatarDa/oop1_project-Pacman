@@ -22,6 +22,8 @@ public:
 	bool GetResetLocation();
 	void SetResetLocation();
 	void ResetLocation();
+	virtual void SetLife(int) {};
+	virtual void SetScore(int) {};
 
 protected:
 	bool m_freeze = false;

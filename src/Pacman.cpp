@@ -142,6 +142,16 @@ void Pacman::UpdateState(bool freeze , int& added_time)
     added_time = m_time_collected;
 }
 
+void Pacman::SetLife(int life)
+{
+    m_life = life;
+}
+
+void Pacman::SetScore(int score)
+{
+    m_score = score; 
+}
+
 void Pacman::HandleCollision(GameObject& game_object) 
 {
     game_object.HandleCollision(*this);

@@ -8,6 +8,8 @@ GameControll::GameControll()
      m_board()
 {
     m_window.setFramerateLimit(60);
+    m_Sound[0].setBuffer(m_resource.GetSound(SONG));
+    m_Sound[1].setBuffer(m_resource.GetSound(GAME_OVER));
 }
 
 void GameControll::run()
@@ -53,10 +55,10 @@ void GameControll::StartGame()
 {
     m_MoveClock.restart();
     m_GameClock.restart();
-
+    m_board.ResetMatrix();
     while (m_window.isOpen())
     {
-        m_window.clear(sf::Color::Color(0, 0, 0));
+        m_window.clear(sf::Color::Color(0, 102, 102)); // purple
         DrawGame();
         m_window.display();
 
@@ -83,6 +85,8 @@ void GameControll::StartGame()
         if (m_board.ReturnPacmanLife() == 0)
         {
             m_game_over = true;
+            m_Sound[1].play(); 
+            m_level = 0;
             break;
         }
 
@@ -90,11 +94,13 @@ void GameControll::StartGame()
         {
             if (m_board.ReadNewLevel())
             {
+                m_board.SetPacmanData(m_toolbar.GetLife(),m_toolbar.GetScore());
                 m_level++;
                 m_GameClock.restart();
             }
             else
             {
+                m_level = 0;
                 break;
             }
         }
@@ -137,7 +143,6 @@ void GameControll::handleClick(const sf::Vector2f& location)
         //PlayVideo();
         //PlayMusic();
         StartGame();
-        m_game_over = false;
     }
     else if (m_menu.GetButton(HELP).getGlobalBounds().contains(location))
     {
@@ -326,12 +331,6 @@ void GameControll::PlayVideo()
     }
 }
 
-void GameControll::PlayMusic()
-{
-    m_Sound.setBuffer(m_resource.GetSound(SONG));
-    m_Sound.play();
-    m_Sound.setLoop(true);
-}
 
 void GameControll::DrawToolBar()
 {

@@ -49,8 +49,12 @@ void Matrix::ClearMatrix()
 {
     for (int row = 0; row < m_row; ++row)
     {
-
          m_matrix[row].clear();
 	}
     m_matrix.clear();
+}
+
+void Matrix::Reset()
+{
+    m_file.seekg(0);
 }

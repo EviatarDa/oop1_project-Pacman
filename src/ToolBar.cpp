@@ -49,7 +49,7 @@ void ToolBar::SetLife(const int life)
 
 void ToolBar::SetScore(const int score)
 {
-	m_info_num[SCORE] += score;
+	m_info_num[SCORE] = score;
 	m_Info[SCORE].setString(std::to_string(score));
 }
 
@@ -69,4 +69,14 @@ void ToolBar::SetTime(const int time)
 {
 	m_info_num[TIME] = 120 - time;
 	m_Info[TIME].setString(std::to_string(m_info_num[TIME]));
+}
+
+int ToolBar::GetScore()
+{
+	return m_info_num[SCORE];
+}
+
+int ToolBar::GetLife()
+{
+	return m_info_num[LIFE];
 }

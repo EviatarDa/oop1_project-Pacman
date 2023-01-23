@@ -24,6 +24,7 @@ public:
     int GetCookies() const;
     int GetEattenCookies() const;
     bool ReadNewLevel();
+    void ResetMatrix();
 
     void UpdateDirection();
     const sf::RectangleShape CreateRectangle(const int, const int) const;
@@ -40,6 +41,7 @@ public:
     int ReturnPacmanKeys() const;
     void UpdateMoving(int&);
     void InitLevel();
+    void SetPacmanData(int, int);
 
 
 private:
@@ -52,6 +54,7 @@ private:
     int m_col;
     int m_PacmanIndex;
     int m_Cookies = 0;
+    
 
     //function ;
     std::unique_ptr <StaticObjects> Getptrstatic(const char,const int, const int);

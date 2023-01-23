@@ -33,7 +33,6 @@ bool Board::ReadNewLevel()
 {
 	m_matrix.ClearMatrix();
 	ClearReactangles();
-	
 	if (m_matrix.ReadLevel())
 	{
 		InitLevel();
@@ -41,7 +40,16 @@ bool Board::ReadNewLevel()
 		return true;
 	}
 	return false;
+}
 
+void Board::ResetMatrix()
+{
+	m_matrix.Reset();
+	if (m_matrix.ReadLevel())
+	{
+		InitLevel();
+		CreateReactangles();
+	}
 }
 
 void Board::UpdateDirection()
@@ -64,8 +72,8 @@ const sf::RectangleShape Board::CreateRectangle(const int row, const int col) co
 
 	//Style
 	rec.setOutlineColor(sf::Color::Color(102, 102, 102));
-	rec.setOutlineThickness(1.f);
-	rec.setFillColor(sf::Color::White);
+	rec.setOutlineThickness(0.f);
+	rec.setFillColor(sf::Color::Color(224,224,224));
 
 	return rec;
 }
@@ -182,6 +190,7 @@ void Board::UpdateMoving(int& added_time)
 
 void Board::InitLevel()
 {
+	
 	m_MovingObject.clear();
 	m_StaticObject.clear();
 	m_PacmanIndex = 0;
@@ -190,6 +199,13 @@ void Board::InitLevel()
 	m_row = m_matrix.GetRow();
 	InitVector();
 	initData();
+}
+
+void Board::SetPacmanData(int life, int score)
+{
+	m_MovingObject[m_PacmanIndex]->SetLife(life);
+	m_MovingObject[m_PacmanIndex]->SetScore(score);
+
 }
 
 std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int row, const int col)

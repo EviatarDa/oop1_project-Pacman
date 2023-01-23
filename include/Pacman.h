@@ -29,6 +29,9 @@ public:
     void SetCookies();
     void UpdateState(bool, int&)override;
 
+    void SetLife(int);
+    void SetScore(int);
+
     virtual void HandleCollision(GameObject&)override;
     virtual void HandleCollision(Pacman&)override;
     virtual void HandleCollision(Deamon&)override;
