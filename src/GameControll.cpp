@@ -51,7 +51,8 @@ void GameControll::run()
 
 void GameControll::StartGame()
 {
-    m_game_clock.restart();
+    m_MoveClock.restart();
+    m_GameClock.restart();
 
     while (m_window.isOpen())
     {
@@ -69,7 +70,8 @@ void GameControll::StartGame()
             }
         }
         m_board.UpdateDirection();
-        auto delta = m_game_clock.restart();
+        m_board.UpdateMoving(m_AddedTime);
+        auto delta = m_MoveClock.restart();
         m_board.MoveObjects(delta);
         UpdateData();
 
@@ -88,6 +90,11 @@ void GameControll::StartGame()
             {
                 break;
             }
+        }
+        else if (m_GameClock.getElapsedTime().asSeconds() > 10 + m_AddedTime)
+        {
+            m_board.InitLevel();
+            m_GameClock.restart();
         }
     }
 }
@@ -332,6 +339,7 @@ void GameControll::UpdateData()
     m_toolbar.SetScore(m_board.ReturnPacmanScore());
     m_toolbar.SetLevel(m_level);
     m_toolbar.SetKeys(m_board.ReturnPacmanKeys());
+    m_toolbar.SetTime(m_GameClock.getElapsedTime().asSeconds() + m_AddedTime);
 }
 
 

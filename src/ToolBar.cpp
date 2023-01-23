@@ -48,7 +48,7 @@ void ToolBar::SetLife(const int life)
 
 void ToolBar::SetScore(const int score)
 {
-	m_info_num[SCORE] = score;
+	m_info_num[SCORE] += score;
 	m_Info[SCORE].setString(std::to_string(score));
 }
 

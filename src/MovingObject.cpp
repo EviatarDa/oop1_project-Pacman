@@ -45,3 +45,8 @@ void MovingObject::SetToFirstLocation()
 {
     m_sprite.setPosition(m_first_location);
 }
+
+bool MovingObject::GetFreeze()
+{
+    return m_freeze;
+}

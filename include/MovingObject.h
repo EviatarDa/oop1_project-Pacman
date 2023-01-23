@@ -17,8 +17,11 @@ public:
 	virtual int GetKeys() { return 0; };
 	virtual int GetEatten() { return 0; };
 	virtual void SetCookies() {};
+	virtual void UpdateState(bool, int&) = 0;
+	bool GetFreeze();
 
-
+protected:
+	bool m_freeze = false;
 private:
-	//sf::Vector2f m_last_location;// = m_location;
+
 };

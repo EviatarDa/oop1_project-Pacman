@@ -9,30 +9,37 @@ Deamon::Deamon(const int row, const int col, const int board_row, const int boar
 
 void Deamon::UpdateDirection(sf::Vector2f PacLocation)
 {
-	switch (m_Type)
+	if(!m_freeze)
 	{
-	case DEAMON_AZURE:
-		m_direction = PursueTarget(PacLocation);
-		m_Speed = 75.f;
-		break;
+		switch (m_Type)
+		{
+		case DEAMON_AZURE:
+			m_direction = PursueTarget(PacLocation);
+			m_Speed = 75.f;
+			break;
 
-	case DEAMON_ORANGE:
-		m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (4 * 50.f), PacLocation.y));
-		m_Speed = 50.f;
-		break;
+		case DEAMON_ORANGE:
+			m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (4 * 50.f), PacLocation.y));
+			m_Speed = 50.f;
+			break;
 
-	case DEAMON_PINK:
-		m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (2 * 50.f), PacLocation.y));
-		m_Speed = 100.f;
-		break;
+		case DEAMON_PINK:
+			m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (2 * 50.f), PacLocation.y));
+			m_Speed = 100.f;
+			break;
 
-	case DEAMON_RED:
-		m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (2 * 50.f), PacLocation.y + (2 * 50.f)));
-		m_Speed = 75.f;
-		break;
+		case DEAMON_RED:
+			m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (2 * 50.f), PacLocation.y + (2 * 50.f)));
+			m_Speed = 75.f;
+			break;
 
-	default:
-		break;
+		default:
+			break;
+		}
+	}
+	else
+	{
+		m_direction = Stay;
 	}
 }
 
@@ -100,10 +107,28 @@ void Deamon::HandleCollision(Key&)
 {
 }
 
-void Deamon::HandleCollision(Present&)
+void Deamon::HandleCollision(SuperPresent&)
 {
 }
 
+void Deamon::HandleCollision(AddTime&)
+{
+}
+
+void Deamon::HandleCollision(Freeze&)
+{
+}
+
+void Deamon::HandleCollision(AddLife&)
+{
+}
+
+
 void Deamon::HandleCollision(Cookie&)
 {
+}
+
+void Deamon::UpdateState(bool freeze, int&)
+{
+	m_freeze = freeze;
 }

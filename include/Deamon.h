@@ -18,8 +18,13 @@ public:
 	virtual void HandleCollision(Wall&)override;
 	virtual void HandleCollision(Door&)override;
 	virtual void HandleCollision(Key&)override;
-	virtual void HandleCollision(Present&)override;
+	virtual void HandleCollision(SuperPresent&)override;
+	virtual void HandleCollision(AddTime&)override;
+	virtual void HandleCollision(Freeze&)override;
+	virtual void HandleCollision(AddLife&)override;
 	virtual void HandleCollision(Cookie&)override;
+	void UpdateState(bool, int&)override;
+
 
 private:
 	Direction m_direction = Stay;

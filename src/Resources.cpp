@@ -35,7 +35,7 @@ void Resources::LoadFromFile()
 		m_InstructionsTextures[instruction].setSmooth(true);
 	}
 
-	for (int object = PACMAN; object <= PRESENT; object++)
+	for (int object = PACMAN; object <= ADD_TIME; object++)
 	{
 		m_GameObjectTextures[object].loadFromFile(m_GameObjectFiles[object]);
 		m_GameObjectTextures[object].setSmooth(true);

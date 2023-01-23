@@ -34,9 +34,22 @@ void Door::HandleCollision(Key&)
 {
 }
 
-void Door::HandleCollision(Present&)
+void Door::HandleCollision(SuperPresent&)
 {
 }
+
+void Door::HandleCollision(AddTime&)
+{
+}
+
+void Door::HandleCollision(Freeze&)
+{
+}
+
+void Door::HandleCollision(AddLife&)
+{
+}
+
 
 void Door::HandleCollision(Cookie&)
 {

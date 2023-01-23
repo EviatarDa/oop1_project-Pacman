@@ -14,6 +14,7 @@ public:
 	void SetScore(const int);
 	void SetLevel(const int);
 	void SetKeys(const int);
+	void SetTime(const int);
 
 
 

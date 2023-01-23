@@ -27,6 +27,7 @@ public:
     int GetKeys(); 
     int GetEatten();
     void SetCookies();
+    void UpdateState(bool, int&)override;
 
     virtual void HandleCollision(GameObject&)override;
     virtual void HandleCollision(Pacman&)override;
@@ -34,7 +35,10 @@ public:
     virtual void HandleCollision(Wall&)override;
     virtual void HandleCollision(Door&)override;
     virtual void HandleCollision(Key&)override;
-    virtual void HandleCollision(Present&)override;
+    virtual void HandleCollision(SuperPresent&)override;
+    virtual void HandleCollision(AddTime&)override;
+    virtual void HandleCollision(Freeze&)override;
+    virtual void HandleCollision(AddLife&)override;
     virtual void HandleCollision(Cookie&)override;
 
 private:
@@ -42,6 +46,11 @@ private:
     int m_score = 0;
     int m_KeyCounter = 0;
     int m_EattenCookies = 0;
+    int m_time_collected = 0;
+
+    sf::Time m_SuperTime;
+    sf::Time m_FreezeTime;
+    sf::Clock m_PaClock;
     Direction m_direction = Stay;
     std::unique_ptr <PacmanState> m_state;
     sf::Sound m_Sounds[SOUNDS];

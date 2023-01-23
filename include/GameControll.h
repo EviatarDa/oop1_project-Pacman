@@ -43,8 +43,11 @@ private:
 	Board m_board;
 	ToolBar m_toolbar;
 	sf::Sound m_Sound;
-	sf::Clock m_game_clock;
+	sf::Clock m_GameClock;
+	sf::Clock m_MoveClock;
+	sf::Time m_LevelTime;
 	int m_level = 1;
+	int m_AddedTime = 0;
 
 
 

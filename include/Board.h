@@ -5,7 +5,10 @@
 #include "Matrix.h"
 #include "GameObject.h"
 #include "Key.h"
-#include "Present.h"
+#include "SuperPresent.h"
+#include "Freeze.h"
+#include "AddLife.h"
+#include "AddTime.h"
 #include "Door.h"
 #include "Cookie.h"
 #include "Wall.h"
@@ -35,6 +38,8 @@ public:
     int ReturnPacmanLife() const;
     int ReturnPacmanScore() const;
     int ReturnPacmanKeys() const;
+    void UpdateMoving(int&);
+    void InitLevel();
 
 
 private:

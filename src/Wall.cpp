@@ -36,9 +36,22 @@ void Wall::HandleCollision(Key&)
 {
 }
 
-void Wall::HandleCollision(Present&)
+void Wall::HandleCollision(SuperPresent&)
 {
 }
+
+void Wall::HandleCollision(AddTime&)
+{
+}
+
+void Wall::HandleCollision(Freeze&)
+{
+}
+
+void Wall::HandleCollision(AddLife&)
+{
+}
+
 
 void Wall::HandleCollision(Cookie&)
 {

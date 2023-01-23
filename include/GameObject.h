@@ -2,15 +2,16 @@
 
 #include <SFML/Graphics.hpp>
 #include "Resources.h"
-//#include "StaticObjects.h"
-//#include "MovingObject.h"
 
 class Pacman;
 class Deamon;
 class Wall;
 class Door;
 class Key;
-class Present;
+class SuperPresent;
+class AddTime;
+class Freeze;
+class AddLife;
 class Cookie;
 
 
@@ -29,7 +30,10 @@ public:
 	virtual void HandleCollision(Wall&) = 0;
 	virtual void HandleCollision(Door&) = 0;
 	virtual void HandleCollision(Key&) = 0;
-	virtual void HandleCollision(Present&) = 0;
+	virtual void HandleCollision(SuperPresent&) = 0;
+	virtual void HandleCollision(AddTime&) = 0;
+	virtual void HandleCollision(Freeze&) = 0;
+	virtual void HandleCollision(AddLife&) = 0;
 	virtual void HandleCollision(Cookie&) = 0;
 
 protected:

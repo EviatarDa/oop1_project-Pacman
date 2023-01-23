@@ -34,9 +34,22 @@ void Cookie::HandleCollision(Key&)
 {
 }
 
-void Cookie::HandleCollision(Present&)
+void Cookie::HandleCollision(SuperPresent&)
 {
 }
+
+void Cookie::HandleCollision(AddTime&)
+{
+}
+
+void Cookie::HandleCollision(Freeze&)
+{
+}
+
+void Cookie::HandleCollision(AddLife&)
+{
+}
+
 
 void Cookie::HandleCollision(Cookie&)
 {

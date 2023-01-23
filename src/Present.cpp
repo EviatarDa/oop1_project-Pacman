@@ -31,7 +31,19 @@ void Present::HandleCollision(Key&)
 {
 }
 
-void Present::HandleCollision(Present&)
+void Present::HandleCollision(SuperPresent&)
+{
+}
+
+void Present::HandleCollision(AddTime&)
+{
+}
+
+void Present::HandleCollision(Freeze&)
+{
+}
+
+void Present::HandleCollision(AddLife&)
 {
 }
 

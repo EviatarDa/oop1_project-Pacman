@@ -36,16 +36,8 @@ bool Board::ReadNewLevel()
 	
 	if (m_matrix.ReadLevel())
 	{
-		m_MovingObject.clear();
-		m_StaticObject.clear();
-		m_PacmanIndex = 0;
-		m_Cookies = 0;
-		m_col = m_matrix.GetCol();
-		m_row = m_matrix.GetRow();
+		InitLevel();
 		CreateReactangles();
-
-		InitVector();
-		initData();
 		return true;
 	}
 	return false;
@@ -172,6 +164,26 @@ int Board::ReturnPacmanKeys() const
 	return m_MovingObject[m_PacmanIndex]->GetKeys();
 }
 
+void Board::UpdateMoving(int& added_time)
+{
+	for (int index = 0; index < m_MovingObject.size(); ++index)
+	{
+		m_MovingObject[index]->UpdateState(m_MovingObject[m_PacmanIndex]->GetFreeze(), added_time);
+	}
+}
+
+void Board::InitLevel()
+{
+	m_MovingObject.clear();
+	m_StaticObject.clear();
+	m_PacmanIndex = 0;
+	m_Cookies = 0;
+	m_col = m_matrix.GetCol();
+	m_row = m_matrix.GetRow();
+	InitVector();
+	initData();
+}
+
 std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int row, const int col)
 {
 	switch (type)
@@ -182,8 +194,17 @@ std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int ro
 	case '%':
 		return std::make_unique<Key>(row, col, m_row, m_col, KEY);
 
-	case '$':
-		return std::make_unique<Present>(row, col, m_row, m_col, PRESENT);
+	case '$': // superpacman
+		return std::make_unique<SuperPresent>(row, col, m_row, m_col, SUPER_PRESENT);
+
+	case 'F': //freeze
+		return std::make_unique<Freeze>(row, col, m_row, m_col, FREEZE);
+
+	case 'T'://addtime
+		return std::make_unique<AddTime>(row, col, m_row, m_col, ADD_TIME);
+
+	case 'L': // addlife
+		return std::make_unique<AddLife>(row, col, m_row, m_col, ADD_LIFE);
 
 	case '*':
 		m_Cookies++;

@@ -33,9 +33,22 @@ void Key::HandleCollision(Key&)
 {
 }
 
-void Key::HandleCollision(Present&)
+void Key::HandleCollision(SuperPresent&)
 {
 }
+
+void Key::HandleCollision(AddTime&)
+{
+}
+
+void Key::HandleCollision(Freeze&)
+{
+}
+
+void Key::HandleCollision(AddLife&)
+{
+}
+
 
 void Key::HandleCollision(Cookie&)
 {
