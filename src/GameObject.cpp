@@ -10,6 +10,7 @@ GameObject::GameObject(const int row, const int col, const int board_row, const 
 	m_sprite.setTexture(Resources::instance().GetGameObject(object));
 	m_sprite.setPosition(m_last_location);
 	m_sprite.scale(0.125, 0.125);
+	//set origin to the center
 	m_sprite.setOrigin((float)m_sprite.getTextureRect().height / 2, (float)m_sprite.getTextureRect().width / 2);
 }
 

@@ -5,8 +5,7 @@
 Menu::Menu(int width, int height)
 	:m_WINDOW_WIDTH(width), m_WINDOW_HEIGHT(height)
 {
-	//define the array:
-
+	//define the arrays:
 	for (int button = PLAY; button <= BACK; button++)
 	{
 		m_Buttons[button].setTexture(Resources::instance().GetButton((Button)button));

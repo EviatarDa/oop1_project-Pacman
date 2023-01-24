@@ -15,7 +15,7 @@ public:
 	void Reset();
 
 private:
-	std::ifstream m_file = std::ifstream("Board.txt"); // where is he locate?>
+	std::ifstream m_file = std::ifstream("Board.txt"); // the board
 	std::vector< std::vector <char> > m_matrix;
 	int m_row;
 	int m_col;

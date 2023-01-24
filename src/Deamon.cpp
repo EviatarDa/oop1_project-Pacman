@@ -13,22 +13,22 @@ void Deamon::UpdateDirection(sf::Vector2f PacLocation)
 	{
 		switch (m_Type)
 		{
-		case DEAMON_AZURE:
-			m_direction = PursueTarget(PacLocation);
+		case DEAMON_AZURE://pursue pacman
+			m_direction = PursueTarget(PacLocation); 
 			m_Speed = 75.f;
 			break;
 
-		case DEAMON_ORANGE:
+		case DEAMON_ORANGE://pursue pacman + 4 (X)
 			m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (4 * 50.f), PacLocation.y));
 			m_Speed = 50.f;
 			break;
 
-		case DEAMON_PINK:
+		case DEAMON_PINK: //pursue pacman + 2 (X)
 			m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (2 * 50.f), PacLocation.y));
 			m_Speed = 100.f;
 			break;
 
-		case DEAMON_RED:
+		case DEAMON_RED: //pursue pacman + 2 (X), +2 (y)
 			m_direction = PursueTarget(sf::Vector2f(PacLocation.x + (2 * 50.f), PacLocation.y + (2 * 50.f)));
 			m_Speed = 75.f;
 			break;
@@ -39,7 +39,7 @@ void Deamon::UpdateDirection(sf::Vector2f PacLocation)
 	}
 	else
 	{
-		m_direction = Stay;
+		m_direction = Stay; //freeze
 	}
 }
 
@@ -51,6 +51,7 @@ void Deamon::Move(sf::Time delta)
 
 Direction Deamon::PursueTarget(sf::Vector2f Target)
 {
+	//deamons algorithem - getting closer to the target
 	float my_Pixlcol = this->GetSprite().getPosition().x;
 	float my_Pixlrow = this->GetSprite().getPosition().y;
 
@@ -90,7 +91,7 @@ void Deamon::HandleCollision(Pacman& pacman)
 
 void Deamon::HandleCollision(Deamon&)
 {
-	m_sprite.setPosition(m_last_location);
+	//m_sprite.setPosition(m_last_location); //possible to add
 }
 
 void Deamon::HandleCollision(Wall& wall)

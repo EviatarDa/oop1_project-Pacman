@@ -19,10 +19,9 @@ public:
     void DowngradeToNormal();
     int GetKeyCounter();
     void DecKeys();
-    void DecLife();
-    void SetLastLocation();////////////new;
-    void SetLife(); /////////////////new shir
-    int GetLife();////////////new shir
+    void SetLastLocation();
+    void SetLife();
+    int GetLife();
     int GetScore();
     int GetKeys(); 
     int GetEatten();
@@ -58,5 +57,4 @@ private:
     std::unique_ptr <PacmanState> m_state;
     sf::Sound m_Sounds[SOUNDS];
 
-    //Animation m_animation;
 };

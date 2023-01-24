@@ -7,10 +7,6 @@ class Door;
 class Pacman;
 class Deamon;
 
-//#pragma once
-
-//#include 
-
 class PacmanState 
 {
 

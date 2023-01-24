@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-//#include <memory.h>
 #include "Matrix.h"
 #include "GameObject.h"
 #include "Key.h"
@@ -25,7 +24,6 @@ public:
     int GetEattenCookies() const;
     bool ReadNewLevel();
     void ResetMatrix();
-
     void UpdateDirection();
     const sf::RectangleShape CreateRectangle(const int, const int) const;
     sf::RectangleShape GetRectangle(const int, const int) const;
@@ -45,6 +43,7 @@ public:
 
 
 private:
+    //members:
     std::vector<std::vector<sf::RectangleShape>> m_RectangleMatrix; //the board
     std::vector < std::unique_ptr< MovingObject>>  m_MovingObject;
     std::vector < std::unique_ptr< StaticObjects>>  m_StaticObject;
@@ -56,12 +55,10 @@ private:
     int m_Cookies = 0;
     
 
-    //function ;
+    //function 
     std::unique_ptr <StaticObjects> Getptrstatic(const char,const int, const int);
     std::unique_ptr <MovingObject> Getptrmove(const char,const int, const int) const;
     void CreateReactangles();   
     void ClearReactangles();  
     void initData();
-
-    //int AddMod4();
 };

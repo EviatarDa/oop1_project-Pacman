@@ -4,9 +4,9 @@
 
 Pacman::Pacman(const int row, const int col, const int board_row, const int board_col, Object object)
     :MovingObject(row, col, board_row, board_col, object),
-     m_state(std::make_unique<NormalPacman>())
+     m_state(std::make_unique<NormalPacman>()) //make first normal pacman
 {
-    m_sprite.setOrigin((float)m_sprite.getTextureRect().height / 2, (float)m_sprite.getTextureRect().width / 2);
+    //init pacman sounds
     for (int sound = MINUS_LIFE ; sound <= SUPER_PACMAN_SOUND;sound++)
     {
         m_Sounds[sound].setBuffer(Resources::instance().GetSound((Sound)sound));
@@ -35,12 +35,11 @@ void Pacman::UpdateDirection(sf::Vector2f PacLocation)
     {
         m_direction = Stay;
     }
-
-
 }
 
 void Pacman::Move(sf::Time delta)
 {
+    //rotate the pacman correspondingly
     switch (m_direction)
     {
     case Up:
@@ -60,6 +59,7 @@ void Pacman::Move(sf::Time delta)
     default:
         break;
     }
+    //move
     m_last_location = m_sprite.getPosition();
     m_sprite.move(DirectionToVector(m_direction) * delta.asSeconds() * PACMAN_SPEED);
     
@@ -86,11 +86,6 @@ int Pacman::GetKeyCounter()
 void Pacman::DecKeys()
 {
     m_KeyCounter--;
-}
-
-void Pacman::DecLife()
-{
-    m_life--;
 }
 
 void Pacman::SetLastLocation()
@@ -131,11 +126,13 @@ void Pacman::SetCookies()
 
 void Pacman::UpdateState(bool freeze , int& added_time)
 {
+    //20 sec to be super pacman
     if (m_PaClock.getElapsedTime() > m_SuperTime + sf::seconds(20))
     {
         DowngradeToNormal();
     }
 
+    // 5 sec to be freeze
     if (m_PaClock.getElapsedTime() > m_FreezeTime + sf::seconds(5))
     {
         m_freeze = false;
@@ -164,6 +161,7 @@ void Pacman::HandleCollision(Pacman& pacman)
 
 void Pacman::HandleCollision(Deamon& deamon)
 {
+    //the corrent state will decide what to do
     m_state->handleDeamonCollision(m_life, deamon, *this);
     deamon.HandleCollision(*this);
 }
@@ -175,6 +173,7 @@ void Pacman::HandleCollision(Wall& wall)
 
 void Pacman::HandleCollision(Door& door)
 {
+    //the corrent state will decide what to do
     m_state->handleDoorCollision(m_KeyCounter, door, *this, m_Sounds[DOOR_SOUND]);
 }
 
@@ -187,6 +186,7 @@ void Pacman::HandleCollision(Key& key)
 
 void Pacman::HandleCollision(SuperPresent&)
 {
+    //start counting from now
     m_SuperTime = m_PaClock.getElapsedTime();
     m_score += 5;
     UpgradeToSuper();
@@ -201,6 +201,7 @@ void Pacman::HandleCollision(AddTime&)
 
 void Pacman::HandleCollision(Freeze&)
 {
+    //start counting from now
     m_FreezeTime = m_PaClock.getElapsedTime();
     m_score += 5;
     m_freeze = true;

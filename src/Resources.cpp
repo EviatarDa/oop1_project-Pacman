@@ -16,6 +16,7 @@ Resources& Resources::instance()
 
 void Resources::LoadFromFile()
 {
+	//load all from files
 	for (int button = PLAY; button <= BACK; button++)
 	{
 		m_ButtonTextures[button].loadFromFile(m_ButtonFiles[button]);
@@ -26,7 +27,6 @@ void Resources::LoadFromFile()
 	{
 		m_TitleTextures[title].loadFromFile(m_TitleFiles[title]);
 		m_TitleTextures[title].setSmooth(true);
-
 	}
 
 	for (int instruction = SHIR; instruction <= GAME_RULES; instruction++)

@@ -53,12 +53,14 @@ void GameControll::run()
 
 void GameControll::StartGame()
 {
+    //reset variabels
     m_MoveClock.restart();
     m_GameClock.restart();
     m_board.ResetMatrix();
+
     while (m_window.isOpen())
     {
-        m_window.clear(sf::Color::Color(0, 102, 102)); // purple
+        m_window.clear(sf::Color::Color(0, 102, 102)); // blue
         DrawGame();
         m_window.display();
 
@@ -71,10 +73,10 @@ void GameControll::StartGame()
                 break;
             }
         }
-        m_board.UpdateDirection();
-        m_board.UpdateMoving(m_AddedTime);
-        auto delta = m_MoveClock.restart();
-        m_board.MoveObjects(delta);
+        m_board.UpdateDirection(); //update moving directions
+        m_board.UpdateMoving(m_AddedTime); // update moving objects below the situation
+        auto delta = m_MoveClock.restart(); 
+        m_board.MoveObjects(delta); // move all moving objects
         UpdateData();
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -82,15 +84,14 @@ void GameControll::StartGame()
             m_window.close();
         }
 
-        if (m_board.ReturnPacmanLife() == 0)
+        if (m_board.ReturnPacmanLife() == 0) //lose
         {
-            m_game_over = true;
             m_Sound[1].play(); 
             m_level = 0;
             break;
         }
 
-        else if (m_board.GetCookies() - m_board.GetEattenCookies() == 0)
+        else if (m_board.GetCookies() - m_board.GetEattenCookies() == 0) // next level
         {
             if (m_board.ReadNewLevel())
             {
@@ -98,13 +99,13 @@ void GameControll::StartGame()
                 m_level++;
                 m_GameClock.restart();
             }
-            else
+            else // end of the game
             {
                 m_level = 0;
                 break;
             }
         }
-        else if (m_GameClock.getElapsedTime().asSeconds() > 120 + m_AddedTime)
+        else if (m_GameClock.getElapsedTime().asSeconds() > 120 + m_AddedTime) // time over
         {
             m_board.InitLevel();
             m_GameClock.restart();
@@ -343,12 +344,12 @@ void GameControll::DrawToolBar()
 
 void GameControll::UpdateData()
 {
+    //update the toolbar data
     m_toolbar.SetLife(m_board.ReturnPacmanLife());
     m_toolbar.SetScore(m_board.ReturnPacmanScore());
     m_toolbar.SetLevel(m_level);
     m_toolbar.SetKeys(m_board.ReturnPacmanKeys());
     m_toolbar.SetTime(m_GameClock.getElapsedTime().asSeconds() - m_AddedTime);
-
 }
 
 

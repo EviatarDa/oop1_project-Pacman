@@ -6,7 +6,6 @@
 #include "Resources.h"
 #include "Board.h"
 #include "Pacman.h"
-//#include "Deamon.h"
 #include "StaticObjects.h"
 #include "ToolBar.h"
 
@@ -35,7 +34,6 @@ public:
 
 
 private:
-//	sf::SoundBuffer m_song;
 	sf::RenderWindow m_window;
 	Resources& m_resource = Resources::instance();
 	Menu m_menu;
@@ -47,6 +45,5 @@ private:
 	sf::Time m_LevelTime;
 	int m_level = 1;
 	int m_AddedTime = 0;
-	bool m_game_over = false;
 
 };

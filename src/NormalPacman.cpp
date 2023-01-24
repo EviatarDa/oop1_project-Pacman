@@ -4,6 +4,7 @@
 
 void NormalPacman::handleDoorCollision(int keys, Door& door, Pacman& pacman, sf::Sound& DoorSound)
 {
+	//open the door if pacman have keys
 	if (keys > 0)
 	{
 		door.SetCollide();
@@ -19,5 +20,5 @@ void NormalPacman::handleDoorCollision(int keys, Door& door, Pacman& pacman, sf:
 void NormalPacman::handleDeamonCollision(int life, Deamon& deamon, Pacman& pacman) 
 {
 	pacman.SetToFirstLocation();
-	pacman.SetLife();
+	pacman.SetLife(); // minus life
 }

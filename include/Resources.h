@@ -4,6 +4,7 @@
 #include <SFML/Audio.hpp>
 #include <string.h>
 
+//enums
 enum Button { PLAY, HELP, EXIT, VIDEO_PLAY, BACK };
 
 enum Title { TITLE, HELLO, WANNA_PLAY, LETS_GO, TITLE_PACMAN, TITLE_DEAMONS };
@@ -18,7 +19,7 @@ enum ToolBarWord { LIFE, SCORE, LEVEL, TIME, KEYCOUNTER };
 
 enum Sound { SONG, CLICK, MINUS_LIFE, EAT, CLOCK_SOUND, DOOR_SOUND, FREEZE_SOUND, KEY_SOUND, EXTRA_LIFE, SUPER_PACMAN_SOUND, GAME_OVER };
 
-
+//consts
 const int BUTTONS = 5;
 const int TITLE_OBJECTS = 6;
 const int INSTRUCTIONS = 7;
@@ -43,8 +44,10 @@ public:
 
 private:
 	
-	Resources(const Resources&)= delete;
+	Resources(const Resources&) = delete;
 	Resources operator=(const Resources&) = delete;
+	
+	//members
 	sf::Font m_font;
 	sf::SoundBuffer m_Sounds[SOUNDS];
 	sf::Texture m_ButtonTextures[BUTTONS];
@@ -52,6 +55,7 @@ private:
 	sf::Texture m_InstructionsTextures[INSTRUCTIONS];
 	sf::Texture m_GameObjectTextures[GAME_OBJECTS];
 
+	//all the files
 	std::string m_ButtonFiles[BUTTONS] = { "Play.png", "Help.png", "Exit.png" , "VideoPlay.png" , "Back.png" };
 	std::string m_TitleFiles[TITLE_OBJECTS] = { "title.png", "Hello.png", "WannaPlay.png", "LetsGo.png" , "Pacman-Title.png" , "Deamons-Title.png" };
 	std::string m_InstructionFiles[INSTRUCTIONS] = { "Shir.png" , "Eviatar1.png", "Eviatar2.png", "ShirDrop.png" , "EviatarDrop.png", "OhNo.png", "GameRules.png" };

@@ -24,27 +24,10 @@ sf::Vector2f MovingObject::DirectionToVector(Direction direction)
     }
 }
 
-sf::Vector2f MovingObject::OppositeVector(Direction direction)
-{
-    switch (direction)
-    {
-    case Direction::Up:
-        return { 0, 1 };
-    case Direction::Down:
-        return { 0, -1 };
-    case Direction::Right:
-        return { -1, 0 };
-    case Direction::Left:
-        return { 1, 0 };
-    default:
-        return { 0, 0 };
-    }
-}
 
 void MovingObject::SetToFirstLocation()
 {
     m_reset_location = true;
-   // m_sprite.setPosition(m_first_location);
 }
 
 bool MovingObject::GetFreeze()

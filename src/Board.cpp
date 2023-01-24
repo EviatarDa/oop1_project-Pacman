@@ -33,13 +33,13 @@ bool Board::ReadNewLevel()
 {
 	m_matrix.ClearMatrix();
 	ClearReactangles();
-	if (m_matrix.ReadLevel())
+	if (m_matrix.ReadLevel()) // if eof
 	{
 		InitLevel();
 		CreateReactangles();
 		return true;
 	}
-	return false;
+	return false; 
 }
 
 void Board::ResetMatrix()
@@ -54,6 +54,7 @@ void Board::ResetMatrix()
 
 void Board::UpdateDirection()
 {
+	//update each object direction 
 	for (int index = 0; index < m_MovingObject.size(); ++index)
 	{
 		m_MovingObject[index]->UpdateDirection(GetGameObjectMoving(m_PacmanIndex).getPosition());
@@ -81,7 +82,6 @@ const sf::RectangleShape Board::CreateRectangle(const int row, const int col) co
 sf::RectangleShape Board::GetRectangle(const int row, const int col) const
 {
 	return m_RectangleMatrix[row][col];
-
 }
 
 void Board::InitVector()
@@ -93,15 +93,15 @@ void Board::InitVector()
 			char type = m_matrix.GetChar(row, col);
 			if (type == 'a' || type == '&')
 			{
-				m_MovingObject.push_back(Getptrmove(type, row, col));
+				m_MovingObject.push_back(Getptrmove(type, row, col)); // push to moving
 				if (type == 'a')
 				{
-					m_PacmanIndex =(int)m_MovingObject.size()-1;
+					m_PacmanIndex =(int)m_MovingObject.size()-1; // keep the pacman index
 				}
 			}
 			else if (type != ' ')
 			{
-				m_StaticObject.push_back(Getptrstatic(type, row, col));
+				m_StaticObject.push_back(Getptrstatic(type, row, col)); // push to static
 			}
 		}
 
@@ -130,6 +130,7 @@ int Board::GetMoveSize() const
 
 void Board::MoveObjects(sf::Time delta)
 {
+	//move all the moving objects and deal collision if needed
 	for (int index = 0; index < m_MovingObject.size(); index++)
 	{
 		m_MovingObject[index]->Move(delta);
@@ -139,6 +140,7 @@ void Board::MoveObjects(sf::Time delta)
 
 void Board::HandleCollisions(GameObject& game_object)
 {
+	// static & moving collision
 	for (int index = 0; index < m_StaticObject.size(); index++)
 	{
 		if (game_object.CheckCollision(*m_StaticObject[index]))
@@ -146,8 +148,10 @@ void Board::HandleCollisions(GameObject& game_object)
 			game_object.HandleCollision(*m_StaticObject[index]);
 		}
 	}
+	//erase what eatten
 	std::erase_if(m_StaticObject, [](const auto& game_object) {return game_object->GetIsCollide(); });
 
+	//moving & moving collision
 	for (int index = 0; index < m_MovingObject.size(); index++)
 	{
 		if (game_object.CheckCollision(*m_MovingObject[index]))
@@ -174,6 +178,7 @@ int Board::ReturnPacmanKeys() const
 
 void Board::UpdateMoving(int& added_time)
 {
+	//update freeze/location/time below the present that pacman ate
 	for (int index = 0; index < m_MovingObject.size(); ++index)
 	{
 		m_MovingObject[index]->UpdateState(m_MovingObject[m_PacmanIndex]->GetFreeze(), added_time);
@@ -190,7 +195,7 @@ void Board::UpdateMoving(int& added_time)
 
 void Board::InitLevel()
 {
-	
+	//reset members for new game
 	m_MovingObject.clear();
 	m_StaticObject.clear();
 	m_PacmanIndex = 0;
@@ -203,9 +208,9 @@ void Board::InitLevel()
 
 void Board::SetPacmanData(int life, int score)
 {
+	//sets pacman data for next levels
 	m_MovingObject[m_PacmanIndex]->SetLife(life);
 	m_MovingObject[m_PacmanIndex]->SetScore(score);
-
 }
 
 std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int row, const int col)
@@ -231,7 +236,7 @@ std::unique_ptr<StaticObjects> Board::Getptrstatic(const char type, const int ro
 		return std::make_unique<AddLife>(row, col, m_row, m_col, ADD_LIFE);
 
 	case '*':
-		m_Cookies++;
+		m_Cookies++; //counting the cookies at the corrent level
 		return std::make_unique<Cookie>(row, col, m_row, m_col, COOKIE);
 
 	case '#':
@@ -250,10 +255,12 @@ std::unique_ptr<MovingObject> Board::Getptrmove(const char type, const int row, 
 
 	case '&':
 	{
+		//creates 4 kinds of deamons 
 		static int add = 0;
 		add++;
 		add %= 4;
-		return std::make_unique<Deamon>(row, col, m_row, m_col, (Object)(DEAMON_ORANGE + add), (Object)(DEAMON_ORANGE + add));///todo fix
+		return std::make_unique<Deamon>(row, col, m_row, m_col, (Object)(DEAMON_ORANGE + add),
+																(Object)(DEAMON_ORANGE + add));
 	}
 	}
 }
@@ -275,7 +282,6 @@ void Board::ClearReactangles()
 {
 	for (int row = 0; row < m_row; ++row)
 	{
-
 		m_RectangleMatrix[row].clear();
 	}
 	m_RectangleMatrix.clear();

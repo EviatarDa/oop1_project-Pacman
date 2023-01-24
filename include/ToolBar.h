@@ -22,10 +22,10 @@ public:
 
 
 private:
+	//members:
 	sf::Text m_toolbar[TOOL_BAR];
 	sf::Text m_Info[TOOL_BAR];
-	std::string m_Words[TOOL_BAR] = { "Life:" , "Score:", "Level:", "Time:" ,"Keys:"};
+	std::string m_Words[TOOL_BAR] = { "Life:" , "Score:", "Level:", "Time:" ,"Keys:" };
 	int m_info_num[TOOL_BAR];
-	
 
 };
